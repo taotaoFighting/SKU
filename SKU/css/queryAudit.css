@@ -1,0 +1,13 @@
+#labelSpace{
+	margin-left: 0.5em;
+}
+#boxRow{
+	margin-top: 0.5em;
+	margin-left: 3%;
+	width: 97%;
+}
+#queryList{
+	margin-top: 44px;
+	background-color: lavender;
+	font-size: 0.9rem;
+}

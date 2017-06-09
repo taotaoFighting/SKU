@@ -85,11 +85,17 @@
 		
 		$()
 		function buttonClick(value){
-			if(value == 'SKU商品分布'){
+			
+			if(value=='交货单审批'){
 				mui.openWindow({
-				url: 'sku-goodsDistribution.html', 
-				id:'goodsDistribution',
-			});
+					url: 'sku-audit.html', 
+					id:'audit',
+				});
+			}else if(value == 'SKU商品分布'){
+				mui.openWindow({
+					url: 'sku-goodsDistribution.html', 
+					id:'goodsDistribution',
+				});
 			}
 		}
 	</script>
