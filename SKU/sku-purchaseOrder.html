@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="./resources/semantic.css">
+		<link rel="stylesheet" type="text/css" href="./resources/cola.css">
+		<link rel="stylesheet" type="text/css" href="./css/purchaseOrder.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title" style="color: white;">采购订单详情</h1>
+		</header>
+		<div class="v-box" style="background-color: lavender;">
+			<div class="box" style="margin-top: 54px;background-color: white;margin-left: 1%;width: 98%;">
+				<label id="titleLabel" style="margin-left: 4%;width: 97%;">交货单编号：<label>HJ009888uu900888</label></label>
+			</div>
+			<div class="flex-box">
+				<c-listView id="queryList" itemClick="itemClick">
+				<template name="row">
+					<li style="margin-top:0.7em;">
+						<div class="v-box" style="margin-left: 3%;width: 97%;">
+						    <label>采购订单编号：<span c-bind="item.value1"></span></label>
+						    <label id="labelSpace">行项目号：<span c-bind="item.value2"></span></label>
+						    <label id="labelSpace">条码：<span c-bind="item.value3"></span></label>
+						    <label id="labelSpace">款号：<span c-bind="item.value4"></span></label>
+						    <label id="labelSpace">颜色代码：<span c-bind="item.value5"></span></label>
+						    <label id="labelSpace">颜色名称：<span c-bind="item.value6"></span></label>
+						    <label id="labelSpace">尺码代码：<span c-bind="item.value4"></span></label>
+						    <label id="labelSpace">尺码名称：<span c-bind="item.value5"></span></label>
+						    <label id="labelSpace">生产订单数量：<span c-bind="item.value6"></span></label>
+						    <label id="labelSpace">已包装数量：<span c-bind="item.value4"></span></label>
+						    <label id="labelSpace">已完工数量：<span c-bind="item.value5"></span></label>
+						    <label id="labelSpace">未完工数量：<span c-bind="item.value6"></span></label>
+						</div>
+					</li>
+				</template>			        
+			</c-listView>
+			</div>
+		</div>
+		<script src="./resources/jquery-2.1.3.js"></script> 
+		<script src="./resources/3rd.js"></script>
+		<script src="./resources/semantic.js"></script>
+		<script src="./resources/cola.js"></script>
+		<script src="./resources/i18n/zh/cola.js"></script>
+		<script src="./js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			cola(function(model){
+				
+//				alert(window.screen.width)
+				$('#queryList').css("font-size",(window.screen.width/375.0)*12);
+				$('#titleLabel').css("font-size",(window.screen.width/375.0)*12);
+				
+				model.set({
+					items:[{
+						value1:"新建",
+						value2:"DH1232530012232",
+						value3:"2",
+						value4:"2234",
+						value5:"合格入库",
+						value6:"1",
+						value7:"2017-06-22"
+					},{
+						value1:"审批通过",
+						value2:"DH1232530012232",
+						value3:"40",
+						value4:"30333",
+						value5:"合格入库",
+						value6:"0",
+						value7:"2017-06-22"
+					},{
+						value1:"审批通过",
+						value2:"DH1232530012232",
+						value3:"40",
+						value4:"30333",
+						value5:"合格入库",
+						value6:"0",
+						value7:"2017-06-22"
+					},{
+						value1:"审批通过",
+						value2:"DH1232530012232",
+						value3:"40",
+						value4:"30333",
+						value5:"合格入库",
+						value6:"0",
+						value7:"2017-06-22"
+					},{
+						value1:"审批通过",
+						value2:"DH1232530012232",
+						value3:"40",
+						value4:"30333",
+						value5:"合格入库",
+						value6:"0",
+						value7:"2017-06-22"
+					},{
+						value1:"审批通过",
+						value2:"DH1232530012232",
+						value3:"40",
+						value4:"30333",
+						value5:"合格入库",
+						value6:"0",
+						value7:"2017-06-22"
+					}]
+				});
+				
+				model.action({
+					
+				
+				});
+				
+				model.widgetConfig({
+		            queryList: {
+		                $type: "listView",
+		                bind: "item in items",
+		                height:window.screen.height-60,
+		                getItemTemplate: function(arg) {
+		                    return "row";
+		                }
+		            }
+	        	});
+			});
+		</script>
+	</body>
+
+</html>

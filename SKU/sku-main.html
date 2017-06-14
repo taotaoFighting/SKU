@@ -42,7 +42,7 @@
 							<button type="button" class="smallButton" style="background-color: blue;" onclick="buttonClick('SKU商品分布')">SKU商品分布</button>
 						</div>
 						<div class="box" id="rightBoxLow">
-							<button type="button" class="smallButton" style="background-color: blue;">我的关注</button>
+							<button type="button" class="smallButton" style="background-color: blue;" onclick="buttonClick('我的关注')">我的关注</button>
 						</div>
 					</div>
 				</div>
@@ -73,7 +73,7 @@
 		
 		document.addEventListener('plusready',plusReady,false);
 		function plusReady(){
-			plus.navigator.setStatusBarBackground('#D74B28');
+			plus.navigator.setStatusBarBackground('#439CF6');
 		};
 		cola(function(model){
 			
@@ -91,10 +91,15 @@
 					url: 'sku-audit.html', 
 					id:'audit',
 				});
-			}else if(value == 'SKU商品分布'){
+			}else if(value == 'SKU商品分布'){ 
 				mui.openWindow({
 					url: 'sku-goodsDistribution.html', 
 					id:'goodsDistribution',
+				});
+			}else if(value == '我的关注'){
+				mui.openWindow({
+					url: 'sku-myFocus.html', 
+					id:'myFocus',
 				});
 			}
 		}

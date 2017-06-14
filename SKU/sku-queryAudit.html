@@ -12,14 +12,14 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
+		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		    <h1 class="mui-title">查询结果</h1>
+		    <h1 class="mui-title" style="color: white;">查询结果</h1>
 		</header>
 		<div class="v-box">
 			<c-listView id="queryList" itemClick="itemClick">
 				<template name="row">
-					<li style="padding: 0.6em 0px 0px 0px;">
+					<li style="margin-top:0.7em;background-position: right;background-image: url(img/assess.png);background-repeat: no-repeat;">
 						<div class="v-box">
 						    <div class="box" style="margin-left: 3%;width: 97%;">
 						    	<label>交货单状态：<span c-bind="item.value1"></span></label>
@@ -32,10 +32,9 @@
 						    	<label id="labelSpace">折扣率：<span c-bind="item.value6"></span></label>
 						    	<!--<img style="width: 2em;position: fixed;margin-right: 10em;" src="img/assess.png"/>-->
 						    </div>
-						     <div class="box" id="boxRow" style="margin-bottom: 0.6em;">
+						     <div class="box" id="boxRow" style="margin-bottom: 6px;">
 						    	<label>预计到货时间：<span c-bind="item.value7"></span></label>
 						    </div>
-						    <div class="box" style="height: 0.8em;background-color: lavender;"></div>
 						</div>
 					</li>
 				</template>			        
@@ -51,7 +50,7 @@
 			mui.init();
 			cola(function(model){
 				
-				alert(window.screen.width)
+//				alert(window.screen.width)
 				$('#queryList').css("font-size",(window.screen.width/375.0)*12);
 				
 				model.set({
@@ -76,7 +75,14 @@
 				
 				model.action({
 					itemClick:function(self,arg){
-						alert(JSON.stringify(arg.item));
+//						alert(JSON.stringify(arg.item));
+						mui.openWindow({
+						    url: 'sku-auditDetial.html', 
+						    id:'auditDetial',
+						    extras:{
+						        data:arg.item  //扩展参数
+						    }
+						 });
 					}
 				});
 				

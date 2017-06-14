@@ -12,24 +12,30 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">交货单审批</h1>
+		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title" style="color: white;">交货单审批</h1>
 		</header>
 		<div class="v-box" style="background-color: lavender;">
-			<div class="box" id="rowBox" style="margin-top: 60px;">
-				<label id="rowLabel">交货单编号：<span>GH46235120023215</span></label><br />
-				<label id="rowLabel">交货单状态：<span>已确认</span></label>
-			</div>
-			<div class="box" id="rowBox" style="margin-top: 0.5em;">
-				<label id="rowLabel">箱数：<span>1</span></label>
-				<label id="rowLabel">数量：<span>3345</span></label>
-				<label id="rowLabel">入库方式：<span>合格入库</span></label>
-				<label id="rowLabel">折扣率：<span>1</span>1</label>
-				<label id="rowLabel">预计到货时间：<span>21098877</span></label>
-				<label id="rowLabel">生产订单编号：<span>\(^o^)/~4645645认</span></label>
-				<label id="rowLabel">交客户编号：<span>56456564</span></label>
-				<label id="rowLabel">生产订单状态：<span>包装完成</span></label>
+			<div class="v-box" id="rowBox">
+				<label id="rowLabel">交货单编号：<span c-bind="data.value2"></span></label>
+				<label id="rowLabel">交货单状态：<span c-bind="data.value1"></span></label>
+				<label id="rowLabel">箱数：<span c-bind="data.value3"></span></label> 
+				<label id="rowLabel">数量：<span c-bind="data.value4"></span></label>
+				<label id="rowLabel">入库方式：<span c-bind="data.value5"></span></label>
+				<label id="rowLabel">折扣率：<span c-bind="data.value6"></span>1</label>
+				<label id="rowLabel">预计到货时间：<span c-bind="data.value7"></span></label>
+				<label id="rowLabel">生产订单编号：<span>待商议</span></label>
+				<label id="rowLabel">交客户编号：<span>待商议</span></label>
+				<label id="rowLabel" style="margin-bottom: 1em;">生产订单状态：<span>待商议</span></label>
+				<div class="flex-box" style="background-color: lavender;">
+					<div class="box">
+						<c-button id="buttonPosition" size="small" color="blue" c-widget="caption:装箱单详情;width:90%;click:detial" style="margin-left: 5%;"></c-button>
+						<c-button id="buttonPosition" size="small" color="blue" c-widget="caption:采购订单详情;width:90%;click:purchaseDetial" style="margin-left: 5%;"></c-button>
+						<c-button id="buttonPosition" size="small" color="blue" c-widget="caption:审核通过;width:90%;click:passWay" style="margin-left: 5%;"></c-button>
+						<c-button id="buttonPosition" size="small" color="blue" c-widget="caption:退回;width:90%;click:comeBack" style="margin-left: 5%;"></c-button>
+					</div>
+				</div>
 			</div>
 		</div>
 		
@@ -42,8 +48,40 @@
 		<script type="text/javascript">
 			mui.init();
 			cola(function(model){
+				mui.plusReady(function(){
+				var self = plus.webview.currentWebview();
+				model.set("data",self.data);
+				});
 				
+				model.action({
+					detial:function(){
+						mui.openWindow({
+						    url: 'sku-boxDetail.html', 
+						    id:'boxDetial',
+						 }); 
+					},
+					purchaseDetial:function(){
+						mui.openWindow({
+						    url: 'sku-purchaseOrder.html', 
+						    id:'purchaseOrder',
+						 }); 
+					},
+					passWay:function(){
+						
+						//剩余量不足情况
+						mui.confirm("剩余可收货数量小于当前交货单的数量，超出xxx,请确认是否继续审批","注意",function(value){
+							if(value.index == 1){
+								alert("是");
+							}else{
+								
+							}
+						},"div");
+						//正常情况
+						mui.toast('审批成功',{ duration:'short', type:'div' });
+					}
+				});
 			});
+			
 		</script>
 	</body>
 
