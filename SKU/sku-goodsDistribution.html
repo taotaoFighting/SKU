@@ -12,7 +12,7 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
+		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
 			<img id="rightAddImage" src="img/rightAddImage.png"/>
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 				<div id="segmentedControl" class="mui-segmented-control">
@@ -24,36 +24,36 @@
 			<div class="box" style="height: 100%;">
 				<div id="item1" class="mui-control-content mui-active">
 					<div class="v-box" id="inputFrom">
-						<label>款号：<c-input id="queryInput" c-widget="width:80%" style="margin-top: 20%;"></c-input></label>
-						<label>颜色：<c-dropdown id="queryInput" items="{{colors}}"  openmode="drop" value="红色" valueProperty="color" textProperty="color" c-widget="width:80%"></c-dropdown></label>
-						<label>年份：<c-input id="queryInput" c-widget="datePicker;width:80%"></c-input></label> 
-						<label>季节：<c-dropdown id="queryInput" items="{{seasons}}"  openmode="drop" value="春季" valueProperty="season" textProperty="season" c-widget="width:80%"></c-dropdown></label>
-						<label>波段：<c-dropdown id="queryInput" items="{{band}}"  openmode="drop" value="第一波" valueProperty="title" textProperty="title" c-widget="width:80%"></c-dropdown></label>
+						<label>款号：<c-input id="queryInput" bind="queryData.styleCode" c-widget="width:80%" style="margin-top: 20%;"></c-input></label>
+						<label>颜色：<c-dropdown id="queryInput" bind="queryData.colorCode" items="{{colors}}"  openmode="drop" valueProperty="value" textProperty="color" c-widget="width:80%"></c-dropdown></label>
+						<label>年份：<c-dropdown id="queryInput" bind="queryData.years" items="{{years}}"  openmode="drop"  valueProperty="year" textProperty="year" c-widget="width:80%"></c-dropdown></label> 
+						<label>季节：<c-dropdown id="queryInput" bind="queryData.season" items="{{seasons}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown></label>
+						<label>波段：<c-dropdown id="queryInput" bind="queryData.band" items="{{band}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown></label>
 						<div class="box" style="margin-top: 10%;">
 							<c-button size="big" color="blue" c-widget="caption:查询;width:90%;click:query" style="margin-left: 5%;"></c-button>
 						</div>
 						<div class="box" style="text-align: center;margin-top: 20%;">
-							<c-button size="large" color="teal" c-widget="caption:重置;width:35%;click:launch"></c-button>
-							<c-button size="large" color="blue" c-widget="caption:关注;width:35%;click:launch" style="margin-left: 5%;"></c-button>
+							<c-button size="small" color="teal" c-widget="caption:重置;width:35%;click:resetQuery"></c-button>
+							<c-button size="small" color="blue" c-widget="caption:关注;width:35%;click:attention" style="margin-left: 5%;"></c-button>
 						</div>
 					</div>
 				</div>
 				<div id="item3" class="mui-control-content">
 					<div class="v-box">
-						<div id="fousList" style="margin-top: 44px;">
+						<c-listView id="fousList" itemClick="itemClick" style="margin-top: 44px;">
 						    <template name="odd">
 						        <li id="liRow">
 						        	<div id="boxRow" class="v-box">
 						        		<div class="box" style="padding-top: 1em;">
-						        			<label id="labelRow" c-bind="country.title"></label>
+						        			<label id="labelRow" c-bind="transfromTitle(country)"></label>
 						        		</div>
 						        		<div id="line"></div>
 						        		<div class="box" style="padding-top: 0.5em;">
-						        			<label>年份：<label id="labelRow" c-bind="country.year"></label></label>
-						        			<label style="margin-left: 2em;">季节：<label id="labelRow" c-bind="country.season"></label></label>
+						        			<label>年份：<label id="labelRow" c-bind="country.years"></label></label>
+						        			<label style="margin-left: 2em;">季节：<label id="labelRow" c-bind="transfromSeason(country)"></label></label>
 						        		</div>
 						        		<div class="box" style="padding-top: 0.5em;margin-bottom: 0.5em;">
-						        			<label>波段：<label id="labelRow" c-bind="country.band"></label></label>
+						        			<label>波段：<label id="labelRow" c-bind="transfromBand(country)"></label></label>
 						        		</div>
 						        	</div>
 						        </li>
@@ -63,7 +63,7 @@
 						            <div style="position:relative; top:50%; line-height:1.5em; margin-top:-0.75em" class="text">delete</div>
 						        </div>
 						    </template>
-						</div>
+						</c-listView>
 					</div>
 				</div>
 			</div>
@@ -79,78 +79,187 @@
 			
 			cola(function(model){
 				
+				var years = [];
+				var today = new Date();
+			        for (var row = today.getFullYear() - 5; row <= today.getFullYear() + 5; row++) {
+			            var item = {
+			                year: row
+			            };
+			            years.push(item);
+			        }
+			        model.set("years", years);
+				
 				model.set({
-					band:[
-						{
-							title:"第一波"
-						},{
-							title:"第二波"
-						},{
-							title:"第三波"
-						},{
-							title:"第四波"
-						}
-					],
+					queryData:{},
 					colors:[{
-						color:"红色"
+						color:"红色",
+						value:"354"
 					},{
-						color:"蓝色"
+						color:"蓝色",
+						value:"354"
+						
 					},{
-						color:"白色"
+						color:"白色",
+						value:"354"
 					},{
-						color:"淡红色"
-					}],
-					seasons:[{
-						season:"春季"
-					},{
-						season:"夏季"
-					},{
-						season:"秋季"
-					},{
-						season:"冬季"
-					}],
-					countries:[{
-						title:"2017春季第一波",
-						year:"2017年",
-						season:"春季",
-						band:"第一波"
-					},{
-						title:"2017夏季第一波",
-						year:"2017年",
-						season:"夏季",
-						band:"第五波"
-					},{
-						title:"2017冬季第一波",
-						year:"2017年",
-						season:"冬季",
-						band:"第一波"
-					},{
-						title:"2017秋季第一波",
-						year:"2017年",
-						season:"秋季",
-						band:"第二波"
-					},{
-						title:"2017夏季第一波",
-						year:"2017年",
-						season:"夏季",
-						band:"第二波"
-					},{
-						title:"2017夏季第一波",
-						year:"2017年",
-						season:"夏季",
-						band:"第二波"
+						color:"淡红色",
+						value:"354"
 					}]
 				});
 				
+				model.describe("band",{
+					provider:{
+						method:"POST",
+						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/enum/Wave/list",
+						success:function(arg){
+							model.set("band",arg.result.dataList);
+						}
+					}
+				});
+				model.describe("seasons",{
+					provider:{
+						method:"POST",
+						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/enum/Season/list",
+						success:function(arg){
+							model.set("seasons",arg.result.dataList);
+						}
+					}
+				});
+				model.describe("countries",{
+					provider:{
+						method:"POST",
+						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/board/my_attention/list",
+						success:function(arg){
+							model.set("countries",arg.result.dataList);
+						}
+					}
+				});
+				
 				model.action({
-					onRemoveClick:function(contries){
-						contries.remove();
+					onRemoveClick:function(contries){//移除
+						alert(localStorage.getItem("localhost")+"/scmmk/rest/mobile/board/my_attention/delete?pkId="+contries.get("pkId"));
+						$.ajax({
+							type: "POST",
+							url: localStorage.getItem("localhost")+"/scmmk/rest/mobile/board/my_attention/delete?pkId="+contries.get("pkId"),
+							//提交的数据
+//							data: JSON.stringify({}),
+							//返回数据的格式
+							datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
+							success: function(data) {
+								alert(JSON.stringify(data));
+								if(data.status == 200){
+									
+									contries.remove();
+									mui.toast('删除成功！',{ duration:'short', type:'div' });
+								}
+							},
+							//调用出错执行的函数
+							error: function(e) {
+								//请求出错处理
+								mui.toast('删除失败！',{ duration:'short', type:'div' });
+							}
+						});
 					},
-					query:function(){
+					query:function(){//查询
 						 mui.openWindow({
 						    url: 'queryResult.html', 
 						    id:'queryResult',
+						    extras:{
+						        queryData:model.get("queryData")  //扩展参数
+						    }
 						 }); 
+					},
+					resetQuery:function(){//重置查询条件
+						model.set("queryData",{});
+					},
+					attention:function(){//关注
+						var queryData = model.get("queryData");
+						if(!model.get("queryData").get("years")){
+//							alert(model.get("queryData").get("years"))
+							mui.toast('年份不能为空',{ duration:'short', type:'div' });
+							return;
+						}
+						if(!model.get("queryData").get("season")){
+//							alert(model.get("queryData").get("years"))
+							mui.toast('季节不能为空',{ duration:'short', type:'div' });
+							return;
+						}
+						if(!model.get("queryData").get("band")){
+//							alert(model.get("queryData").get("years"))
+							mui.toast('波段不能为空',{ duration:'short', type:'div' });
+							return;
+						}
+						var param = {"years":model.get("queryData").get("years"),"season":model.get("queryData").get("season"),"band":model.get("queryData").get("band")};
+						
+						$.ajax({
+						type: "POST",
+						contentType:'application/json;charset=UTF-8',
+						url: localStorage.getItem("localhost")+"/scmmk/rest/mobile/board/my_attention/add",
+						//提交的数据
+						data: JSON.stringify(param),
+						//返回数据的格式
+						datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
+						success: function(data) {
+							if(data.status == 200){
+								alert(JSON.stringify(data));
+								model.get("countries").insert(data.data);
+								mui.toast('关注成功！',{ duration:'short', type:'div' });
+							}
+						},
+						//调用出错执行的函数
+						error: function(e) {
+							//请求出错处理
+							mui.toast('关注失败！',{ duration:'short', type:'div' });
+						}
+					});
+					},
+					transfromSeason:function(country){
+						var tmp = "";
+						switch(country.get("season")){
+							case "1":
+								tmp = "春季";
+								return tmp;
+							case "2":
+								tmp = "夏季";
+								return tmp;
+							case "3":
+								tmp = "秋季";
+								return tmp;
+							case "4":
+								tmp = "冬季";
+								return tmp;
+						}
+					},
+					transfromBand:function(country){
+						return "第"+country.get("band")+"波";
+					},
+					transfromTitle:function(country){
+						var tmp = country.get("years")+"年";
+						switch(country.get("season")){
+							case "1":
+								tmp += "春季" + "第"+country.get("band")+"波";
+								return tmp;
+							case "2":
+								tmp += "夏季" + "第"+country.get("band")+"波";
+								return tmp;
+							case "3":
+								tmp += "秋季" + "第"+country.get("band")+"波";
+								return tmp;
+							case "4":
+								tmp += "冬季" + "第"+country.get("band")+"波";
+								return tmp;
+						}
+					},
+					itemClick:function(self,arg){
+						var param = {"years":arg.item.get("years"),"season":arg.item.get("season"),"band":arg.item.get("band")};
+						mui.openWindow({
+						    url: 'queryResult.html', 
+						    id:'queryResult',
+						    extras:{
+						        queryData:param  //扩展参数
+						    }
+						 });
+						
 					}
 				});
 				

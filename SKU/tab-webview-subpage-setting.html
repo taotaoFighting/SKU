@@ -137,7 +137,9 @@
 			})
 		});
 		document.getElementById("logout").addEventListener('tap',function () {
-			 mui.back();
+			
+			localStorage.removeItem("firstLaunch");
+			 mui.back("ww");
 		});
 		document.getElementById("tel").addEventListener('tap',function () {
 			 mui.openWindow({

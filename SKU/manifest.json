@@ -211,7 +211,9 @@
 					"resources/cola.js",
 					"resources/cola.css",
 					"resources/semantic.css",
-					"resources/3rd.js"
+					"resources/3rd.js",
+					"css/mui.min.css",
+					"manifest.json"
 				],
 				"refer": [
 					"tab-webview-main.html"

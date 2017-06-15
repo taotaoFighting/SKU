@@ -16,9 +16,9 @@
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		    <h1 class="mui-title" style="color: white;">2017春季第一波</h1>
 		</header>
-		<div class="v-box" style="height: 100%;width: 160%;overflow: scroll;">
+		<div class="v-box" style="height: 100%;width: 100%;overflow: scroll;">
 			<div class="box" style="margin-top: 3em;overflow: scroll;">
-				<div id="queryTable" style="font-size: 0.9em;width: 160%;overflow: scroll;">
+				<div id="queryTable" style="font-size: 0.9em;width: 350%;overflow: scroll;">
 					<template name="int-template">
 				        <div c-widget="input; bind:$default; class:fluid" c-class="error:$default>500"></div>
 				    </template>
@@ -36,48 +36,25 @@
 			mui.init();
 			cola(function(model){
 				
-				model.set({
-					items:[{
-						c1:"语尚、第一波"
-					},{
-						c1:"713420206100150",
-						c2:'645000',
-						c3:"445",
-						c4:"100",
-						c5:"200"
-					},{
-						c1:"713420206100150",
-						c2:'645',
-						c3:"445",
-						c4:"100",
-						c5:"200"
-					},{
-						c1:"713420206100150",
-						c2:'645',
-						c3:"445",
-						c4:"100",
-						c5:"200"
-					},{
-						c1:"713420206100150",
-						c2:'645',
-						c3:"445",
-						c4:"100",
-						c5:"200"
-					},{
-						c1:"木木、第一波"
-					},{
-						c1:"713420206100150",
-						c2:'645000',
-						c3:"445",
-						c4:"100",
-						c5:"200"
-					},{
-						c1:"713420206100150",
-						c2:'645',
-						c3:"445",
-						c4:"100",
-						c5:"200"
-					}]
+				mui.plusReady(function(){
+				var self = plus.webview.currentWebview();
+				var param = self.queryData;
+				$.ajax({
+						type: "POST",
+						contentType:'application/json;charset=UTF-8',
+						url: localStorage.getItem("localhost")+"/scmmk/rest/mobile/board/product_distribution/list",
+						//提交的数据
+						data: JSON.stringify(param),
+						//返回数据的格式
+						datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
+						success: function(data) {
+							model.set("items",data.dataList);
+						},
+						//调用出错执行的函数
+						error: function(e) {
+							//请求出错处理
+						}
+					});
 				});
 				
 				model.widgetConfig({
@@ -87,24 +64,44 @@
 		                showHeader: true, 
 		                height:window.screen.height - 70, 
 		                columns: [{
-		                    bind: ".c1",
+		                    bind: ".SKU",
 		                    caption: "SKU",
 		                    align: "center",
 		                }, {
-		                    bind: ".c2",
-		                    caption: "订单",
+		                    bind: ".PO_CODE",
+		                    caption: "采购订单号",
 		                    align: "center"
 		                }, {
-		                    bind: ".c3",
-		                    caption: "工厂发货",
+		                    bind: ".PO_DELIVERY_DATE",
+		                    caption: "订单交期",
 		                    align: "center"
 		                }, {
-		                    bind: ".c4",
-		                    caption: "已收",
+		                    bind: ".PO_AMOUNT",
+		                    caption: "订单数",
 		                    align: "center"
 		                }, {
-		                    bind: ".c5",
-		                    caption: "未收",
+		                    bind: ".WAVE_NAME",
+		                    caption: "波段",
+		                    align: "center"
+		                },{
+		                    bind: ".SUPPLIER_NAME",
+		                    caption: "工厂",
+		                    align: "center",
+		                }, {
+		                    bind: ".RECEIVED_DATE",
+		                    caption: "入库日期",
+		                    align: "center"
+		                }, {
+		                    bind: ".RECEIVED_AMOUNT",
+		                    caption: "入库数",
+		                    align: "center"
+		                }, {
+		                    bind: ".PACKED_AMOUNT",
+		                    caption: "工厂发货数",
+		                    align: "center"
+		                }, {
+		                    bind: ".UN_RECEIVED_AMOUNT",
+		                    caption: "未入库数",
 		                    align: "center"
 		                }]
 		            }

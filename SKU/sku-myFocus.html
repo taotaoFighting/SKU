@@ -17,23 +17,23 @@
 		    <h1 class="mui-title" style="color: white;">我的关注</h1>
 		</header>
 		<div class="v-box">
-			<c-listView id="fousList" itemSlideStart="itemSlideStart" style="margin-top: 44px;">
+			<c-listView id="fousList" itemSlideStart="itemSlideStart" itemClick="itemClick" style="margin-top: 44px;">
 				<template name="odd">
 					<li id="liRow">
-						<div id="boxRow" class="v-box">
-						    <div class="box" style="padding-top: 1em;">
-						        <label id="labelRow" c-bind="country.title"></label>
-						    </div>
-						    <div id="line"></div>
-						    <div class="box" style="padding-top: 0.5em;">
-						        <label>年份：<label id="labelRow" c-bind="country.year"></label></label>
-						        <label style="margin-left: 2em;">季节：<label id="labelRow" c-bind="country.season"></label></label>
-						    </div>
-						    <div class="box" style="padding-top: 0.5em;margin-bottom: 0.5em;">
-						        <label>波段：<label id="labelRow" c-bind="country.band"></label></label>
-						    </div>
-						</div>
-					</li>
+						        	<div id="boxRow" class="v-box">
+						        		<div class="box" style="padding-top: 1em;">
+						        			<label id="labelRow" c-bind="transfromTitle(country)"></label>
+						        		</div>
+						        		<div id="line"></div>
+						        		<div class="box" style="padding-top: 0.5em;">
+						        			<label>年份：<label id="labelRow" c-bind="country.years"></label></label>
+						        			<label style="margin-left: 2em;">季节：<label id="labelRow" c-bind="transfromSeason(country)"></label></label>
+						        		</div>
+						        		<div class="box" style="padding-top: 0.5em;margin-bottom: 0.5em;">
+						        			<label>波段：<label id="labelRow" c-bind="transfromBand(country)"></label></label>
+						        		</div>
+						        	</div>
+						        </li>
 				</template>
 				<template name="slide-left-pane">
 					<div c-onclick="onRemoveClick(country)" style="padding:0 0.75em; color:#fff" class="remove red-background">
@@ -52,49 +52,96 @@
 			mui.init()
 			cola(function(model){
 				model.set({
-					countries:[{
-						title:"2017春季第一波",
-						year:"2017年",
-						season:"春季",
-						band:"第一波"
-					},{
-						title:"2017夏季第一波",
-						year:"2017年",
-						season:"夏季",
-						band:"第五波"
-					},{
-						title:"2017冬季第一波",
-						year:"2017年",
-						season:"冬季",
-						band:"第一波"
-					},{
-						title:"2017秋季第一波",
-						year:"2017年",
-						season:"秋季",
-						band:"第二波"
-					},{
-						title:"2017夏季第一波",
-						year:"2017年",
-						season:"夏季",
-						band:"第二波"
-					},{
-						title:"2017夏季第一波",
-						year:"2017年",
-						season:"夏季",
-						band:"第二波"
-					}]
+				});
+				model.describe("countries",{
+					provider:{
+						method:"POST",
+						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/board/my_attention/list",
+						success:function(arg){
+							model.set("countries",arg.result.dataList);
+						}
+					}
 				});
 				model.action({
 					itemSlideStart:function(self,arg){
 						console.log(arg)
 						return true;
+					},
+					onRemoveClick:function(contries){//移除
+						$.ajax({
+							type: "POST",
+							url: localStorage.getItem("localhost")+"/scmmk/rest/mobile/board/my_attention/delete?pkId="+contries.get("pkId"),
+							//提交的数据
+//							data: JSON.stringify({}),
+							//返回数据的格式
+							datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
+							success: function(data) {
+								if(data.status == 200){
+									contries.remove();
+									mui.toast('删除成功！',{ duration:'short', type:'div' });
+								}
+							},
+							//调用出错执行的函数
+							error: function(e) {
+								//请求出错处理
+								mui.toast('删除失败！',{ duration:'short', type:'div' });
+							}
+						});
+					},
+					transfromSeason:function(country){
+						var tmp = "";
+						switch(country.get("season")){
+							case "1":
+								tmp = "春季";
+								return tmp;
+							case "2":
+								tmp = "夏季";
+								return tmp;
+							case "3":
+								tmp = "秋季";
+								return tmp;
+							case "4":
+								tmp = "冬季";
+								return tmp;
+						}
+					},
+					transfromBand:function(country){
+						return "第"+country.get("band")+"波";
+					},
+					transfromTitle:function(country){
+						var tmp = country.get("years")+"年";
+						switch(country.get("season")){
+							case "1":
+								tmp += "春季" + "第"+country.get("band")+"波";
+								return tmp;
+							case "2":
+								tmp += "夏季" + "第"+country.get("band")+"波";
+								return tmp;
+							case "3":
+								tmp += "秋季" + "第"+country.get("band")+"波";
+								return tmp;
+							case "4":
+								tmp += "冬季" + "第"+country.get("band")+"波";
+								return tmp;
+						}
+					},
+					itemClick:function(self,arg){
+						var param = {"years":arg.item.get("years"),"season":arg.item.get("season"),"band":arg.item.get("band")};
+						mui.openWindow({
+						    url: 'queryResult.html', 
+						    id:'queryResult',
+						    extras:{
+						        queryData:param  //扩展参数
+						    }
+						 });
+						
 					}
 				});
 				 model.widgetConfig({
 		            fousList: {
 		                $type: "listView",
 		                bind: "country in countries",
-		                itemSlide: "left",
+		                itemSlide: "both",
 		                height:window.screen.height-60,
 		                getItemTemplate: function(arg) {
 		                    return "odd";
