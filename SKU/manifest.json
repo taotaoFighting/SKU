@@ -213,11 +213,11 @@
 					"resources/semantic.css",
 					"resources/3rd.js",
 					"css/mui.min.css",
-					"manifest.json"
+					"manifest.json",
+					"tab-webview-main.html",
+					"launch.html"
 				],
-				"refer": [
-					"tab-webview-main.html"
-				],
+				"refer": [],
 				"priority": 0
 			},
 			"tab-webview-main.html": {
@@ -349,7 +349,11 @@
 				],
 				"refer": [
 					"sku-audit.html",
-					"sku-goodsDistribution.html"
+					"sku-goodsDistribution.html",
+					"sku-dayMaintain.html",
+					"sku-daySurplusQuery.html",
+					"sku-incomePlan.html",
+					"sku-deliveryPlan.html"
 				],
 				"priority": 0
 			},
@@ -409,6 +413,150 @@
 					"resources/cola.css",
 					"resources/semantic.css",
 					"resources/3rd.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"sku-dayMaintain.html": {
+				"resources": [
+					"js/cola.js",
+					"resources/semantic.js",
+					"resources/i18n/zh/cola.js",
+					"resources/jquery-2.1.3.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"resources/cola.css",
+					"resources/semantic.css",
+					"resources/3rd.js",
+					"css/dayMaintain.css",
+					"resources/themes/default/assets/fonts/icons.woff"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"sku-daySurplusQuery.html": {
+				"resources": [
+					"css/dayMaintain.css",
+					"css/mui.min.css",
+					"js/cola.js",
+					"resources/themes/default/assets/fonts/icons.woff",
+					"fonts/mui.ttf",
+					"resources/semantic.js",
+					"resources/i18n/zh/cola.js",
+					"resources/jquery-2.1.3.js",
+					"js/mui.min.js",
+					"resources/cola.css",
+					"resources/semantic.css",
+					"resources/3rd.js"
+				],
+				"refer": [
+					"sku-daySurplusQueryResult.html"
+				],
+				"priority": 0
+			},
+			"launch.html": {
+				"resources": [
+					"resources/semantic.js",
+					"resources/i18n/zh/cola.js",
+					"resources/jquery-2.1.3.js",
+					"resources/cola.js",
+					"resources/cola.css",
+					"resources/semantic.css",
+					"resources/3rd.js"
+				],
+				"refer": [
+					"tab-webview-main.html"
+				],
+				"priority": 0
+			},
+			"sku-daySurplusQueryResult.html": {
+				"resources": [
+					"resources/semantic.js",
+					"resources/i18n/zh/cola.js",
+					"resources/jquery-2.1.3.js",
+					"js/mui.min.js",
+					"resources/cola.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"resources/cola.css",
+					"resources/semantic.css",
+					"resources/3rd.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"sku-incomePlan.html": {
+				"resources": [
+					"css/dayMaintain.css",
+					"css/mui.min.css",
+					"js/cola.js",
+					"resources/themes/default/assets/fonts/icons.woff",
+					"fonts/mui.ttf",
+					"resources/semantic.js",
+					"resources/i18n/zh/cola.js",
+					"resources/jquery-2.1.3.js",
+					"js/mui.min.js",
+					"resources/cola.css",
+					"resources/semantic.css",
+					"resources/3rd.js"
+				],
+				"refer": [
+					"sku-daySurplusQueryResult.html",
+					"sku-incomePlanQuery.html"
+				],
+				"priority": 0
+			},
+			"sku-incomePlanQuery.html": {
+				"resources": [
+					"resources/cola.js",
+					"css/queryAudit.css",
+					"resources/jquery-2.1.3.js",
+					"css/mui.min.css",
+					"resources/cola.css",
+					"resources/semantic.css",
+					"resources/semantic.js",
+					"resources/i18n/zh/cola.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"resources/3rd.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"sku-deliveryPlan.html": {
+				"resources": [
+					"css/dayMaintain.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/cola.js",
+					"resources/themes/default/assets/fonts/icons.woff",
+					"resources/semantic.js",
+					"resources/i18n/zh/cola.js",
+					"resources/jquery-2.1.3.js",
+					"js/mui.min.js",
+					"resources/cola.css",
+					"resources/semantic.css",
+					"resources/3rd.js"
+				],
+				"refer": [
+					"sku-deliveryPalnQueryResult.html"
+				],
+				"priority": 0
+			},
+			"sku-deliveryPalnQueryResult.html": {
+				"resources": [
+					"css/queryAudit.css",
+					"resources/semantic.js",
+					"resources/i18n/zh/cola.js",
+					"resources/jquery-2.1.3.js",
+					"js/mui.min.js",
+					"resources/cola.js",
+					"css/mui.min.css",
+					"resources/cola.css",
+					"resources/semantic.css",
+					"resources/3rd.js",
+					"fonts/mui.ttf"
 				],
 				"refer": [],
 				"priority": 0

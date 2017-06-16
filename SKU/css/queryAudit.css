@@ -11,3 +11,23 @@
 	background-color: lavender;
 	font-size: 0.9rem;
 }
+.ui.label {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: baseline;
+    margin: 0em 0.14285714em;
+    background-color: #E8E8E8;
+    background-image: none;
+    padding: 0.5833em 0.833em;
+    padding-top: 0.5833em;
+    padding-right: 0em;
+    padding-bottom: 0.5833em;
+    padding-left: 0em;
+    color: rgba(0, 0, 0, 0.6);
+    text-transform: none;
+    font-weight: bold;
+    border: 0px solid transparent;
+    border-radius: 4px;
+    -webkit-transition: background 0.1s ease;
+    transition: background 0.1s ease;
+}

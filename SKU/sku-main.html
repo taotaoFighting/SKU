@@ -22,17 +22,17 @@
 				</div>
 				<div class="box" id="rightBox">
 					<div class="box"  id="leftBox">
-						<button type="button" class="smallButton" style="background-color: red;">日收获量维护</button>
+						<button type="button" class="smallButton" style="background-color: red;" onclick="buttonClick('日收货量维护')">日收货量维护</button>
 					</div>
 					<div class="box" id="rightBoxLow">
-						<button type="button" class="smallButton" style="background-color: red;">日收货量查询</button>
+						<button type="button" class="smallButton" style="background-color: red;" onclick="buttonClick('日收货量查询')">日收货量查询</button>
 					</div>
 				</div>
 			</div>
 				
 				<div class="h-box" id="r1">
 					<div class="box" id="contain">
-						<button type="button" class="r1c1" style="background-color: blue;">
+						<button type="button" class="r1c1" style="background-color: blue;" onclick="buttonClick('预计工厂入库情况跟踪')">
 							预计工厂入库情况跟踪
 							<img id="containImg" style="width: 2em;" src="img/menu.png" />
 						</button>
@@ -49,13 +49,13 @@
 				
 				<div class="h-box" id="r1">
 					<div class="box" id="contain">
-						<button type="button" class="r1c1" style="background-color: orange;">
+						<button type="button" class="r1c1" style="background-color: orange;" onclick="buttonClick('仓库日交货计划')">
 							仓库日交货计划
 							<img id="containImg" style="width: 2em;" src="img/mirror.png" />
 						</button>
 					</div>
 					<div class="box" id="rightBox">
-						<button type="button" class="smallButton" style="background-color: orange;">入库计划&执行情况</button>
+						<button type="button" class="smallButton" style="background-color: orange;" onclick="buttonClick('入库计划&执行情况')">入库计划&执行情况</button>
 					</div>
 			</div>
 		</div>
@@ -91,6 +91,16 @@
 					url: 'sku-audit.html', 
 					id:'audit',
 				});
+			}else if(value == '日收货量维护'){ 
+				mui.openWindow({
+					url: 'sku-dayMaintain.html', 
+					id:'dayMaintain',
+				});
+			}else if(value == '日收货量查询'){ 
+				mui.openWindow({
+					url: 'sku-daySurplusQuery.html', 
+					id:'daySurplusQuery',
+				});
 			}else if(value == 'SKU商品分布'){ 
 				mui.openWindow({
 					url: 'sku-goodsDistribution.html', 
@@ -100,6 +110,16 @@
 				mui.openWindow({
 					url: 'sku-myFocus.html', 
 					id:'myFocus',
+				});
+			}else if(value == '仓库日交货计划'){
+				mui.openWindow({
+					url: 'sku-deliveryPlan.html', 
+					id:'deliveryPlan',
+				});
+			}else if(value == '入库计划&执行情况'){
+				mui.openWindow({
+					url: 'sku-incomePlan.html', 
+					id:'incomePlan',
 				});
 			}
 		}
