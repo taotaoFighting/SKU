@@ -48,7 +48,55 @@
 						//返回数据的格式
 						datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
 						success: function(data) {
-							model.set("items",data.dataList);
+//							model.set("items",data.dataList);
+							var dataList = data.dataList;
+							var tmpItms = [];
+							var titles = [];
+							for(k = 0 ; k < dataList.length ; k++){
+								var e = dataList[k];
+								var title = e["SUPPLIER_NAME"]+","+e["WAVE_NAME"];
+								console.log(JSON.stringify(e))
+								if(titles.length == 0){
+									titles.push(title);
+								}else{
+									var count = 0;
+									for(i = 0 ; i<titles.length ; i++){
+										if(title == titles[i]){
+											break;
+										}else{
+											count++;
+										}
+										if(count == titles.length){
+											titles.push(title);
+										}
+								}
+								}
+							}
+							
+							var sitems = [];
+							for(i = 0 ; i < titles.length ; i++){
+								 sitems.push([{"SKU":titles[i]}]);
+							}
+							
+							for(k = 0 ; k < dataList.length ; k++){
+								var e = dataList[k];
+								var title = e["SUPPLIER_NAME"]+","+e["WAVE_NAME"];
+								for(i = 0 ; i <sitems.length ; i ++){
+									var titleObj = sitems[i][0];
+									if(titleObj["SKU"] == title){
+										sitems[i].push(e);
+									}
+								}
+							}
+							
+							for(i = 0 ; i < sitems.length ; i++){
+								var objs = sitems[i];
+								for(j = 0 ; j < objs.length ; j++){
+									tmpItms.push(objs[j]);
+								}
+							}
+							
+							model.set("items",tmpItms);
 						},
 						//调用出错执行的函数
 						error: function(e) {

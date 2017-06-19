@@ -139,7 +139,7 @@
 		document.getElementById("logout").addEventListener('tap',function () {
 			
 			localStorage.removeItem("firstLaunch");
-			 mui.back("ww");
+			 plus.runtime.restart();
 		});
 		document.getElementById("tel").addEventListener('tap',function () {
 			 mui.openWindow({

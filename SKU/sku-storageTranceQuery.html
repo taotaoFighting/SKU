@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="./resources/semantic.css">
+		<link rel="stylesheet" type="text/css" href="./resources/cola.css">
+		<link rel="stylesheet" type="text/css" href="css/queryAudit.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title" style="color: white;">工厂入库情况跟踪</h1>
+		</header>
+		
+		<div class="v-box" style="padding-top: 54px;">
+			<div class="h-box" style="text-align: center;">
+				<div c-repeat="title in titles" c-widget="#titles"></div>
+			</div>
+			<div class="flex-box" >
+				<c-listView id="queryList" style="margin-top: -0.7em;">
+				<template name="row">
+					<li style="margin-top:0.7em;">
+						<div class="box">
+							<label c-bind="getName(items)"></label>
+						</div>
+						<div c-repeat="item in items" c-widget="#labelRow">
+						</div>
+					</li>
+				</template>			        
+			</c-listView>
+			</div>
+		</div>
+		<script src="./resources/jquery-2.1.3.js"></script> 
+		<script src="./resources/3rd.js"></script>
+		<script src="./resources/semantic.js"></script>
+		<script src="./resources/cola.js"></script>
+		<script src="./resources/i18n/zh/cola.js"></script>
+		<script src="./js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			cola(function(model){
+				model.set("titles", ["波段", "目标", "目标SKU数", "欠量", "欠SKU数"]);
+				
+//				alert(window.screen.width)
+				$('#queryList').css("font-size",(window.screen.width/375.0)*12);
+				
+				model.set({
+					itemes:[[{
+						label1:"2",
+						label2:"2",
+						label3:"3",
+						label4:"4",
+						label5:"5"
+					},{
+						label1:"2",
+						label2:"2",
+						label3:"3",
+						label4:"4",
+						label5:"5"
+					},{
+						label1:"2",
+						label2:"2",
+						label3:"3",
+						label4:"4",
+						label5:"5"
+					}],[{
+						label1:"1",
+						label2:"2",
+						label3:"3",
+						label4:"4",
+						label5:"5"
+					},{
+						label1:"1",
+						label2:"2",
+						label3:"3",
+						label4:"4",
+						label5:"5"
+					}]]
+				});
+				
+				model.action({
+					getName:function(items){
+						
+						return items[0].label1;
+					}
+				});
+				
+				model.widgetConfig({
+		            queryList: {
+		                $type: "listView",
+		                bind: "items in itemes",
+		                getItemTemplate: function(arg) {
+		                    return "row";
+		                }
+		            },
+			        labelRow: {
+						$type:"table",
+						bind: "i in item",
+						showHeader: true,
+						renderRow: function(self, arg) {
+						},
+						columns: [{
+							align:"center",
+							caption:"{{item.label1}}",
+							height:"1"
+						}, {
+							align:"center",
+							caption:"{{item.label2}}"
+						}, {
+							align:"center",
+							caption:"{{item.label3}}"
+						}, {
+							align:"center",
+							caption:"{{item.label4}}"
+						}, {
+							align:"center",
+							caption:"{{item.label5}}"
+						}]
+					},
+					titles: {
+		                $type: "label",
+		                width:window.screen.width/5,
+		                text: "{{title}}",
+		            }
+	        	});
+			});
+		</script>
+	</body>
+
+</html>

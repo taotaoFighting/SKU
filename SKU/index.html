@@ -12,6 +12,10 @@
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript">
 			mui.init({
+				swipeBack:false,
+				 styles:{
+				 	popGesture:'none'
+				 },
 			    subpages:[{ 
 			      url:localStorage.getItem("firstLaunch")? "tab-webview-main.html":'launch.html', 
 			      id:'list',
@@ -21,6 +25,11 @@
 			      }
 			    }]
 		  });
+		  
+		  window.addEventListener('index.html',function(event){
+		  //获得事件参数
+		  alert(111)
+		});
 		</script>
 	</body>
 

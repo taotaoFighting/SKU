@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="./resources/semantic.css">
+		<link rel="stylesheet" type="text/css" href="./resources/cola.css">
+		<link rel="stylesheet" type="text/css" href="./css/goodsDistribution.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title" style="color: white;">工厂入库情况跟踪</h1>
+		</header>
+		<div class="v-box">
+			<div class="box" style="height: 100%;">
+				<div id="item1" class="mui-control-content mui-active">
+					<div class="v-box" id="inputFrom">
+						<label>工厂：<c-input id="queryInput" bind="queryData.styleCode" c-widget="width:80%" style="margin-top: 20%;"></c-input></label>
+						<label>品牌：<c-dropdown id="queryInput" bind="queryData.colorCode" items="{{colors}}"  openmode="drop" valueProperty="value" textProperty="color" c-widget="width:80%"></c-dropdown></label>
+<!--						<label>年份：<c-dropdown id="queryInput" bind="queryData.years" items="{{years}}"  openmode="drop"  valueProperty="year" textProperty="year" c-widget="width:80%"></c-dropdown></label> 
+-->						<label>季节：<c-dropdown id="queryInput" bind="queryData.season" items="{{seasons}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown></label>
+						<label>波段：<c-dropdown id="queryInput" bind="queryData.band" items="{{band}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown></label>
+						<label>起时：<c-input id="queryInput" c-widget="datePicker;width:80%"></c-input></label>
+						<label>止时：<c-input id="queryInput" c-widget="datePicker;width:80%"></c-input></label>
+						<div class="box" style="margin-top: 10%;">
+							<c-button size="small" color="blue" c-widget="caption:查询;width:90%;click:query" style="margin-left: 5%;"></c-button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="./resources/jquery-2.1.3.js"></script> 
+		<script src="./resources/3rd.js"></script>
+		<script src="./resources/semantic.js"></script>
+		<script src="./js/cola.js"></script>
+		<script src="./resources/i18n/zh/cola.js"></script>
+		<script src="./js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			
+			cola(function(model){
+				
+				var years = [];
+				var today = new Date();
+			        for (var row = today.getFullYear() - 5; row <= today.getFullYear() + 5; row++) {
+			            var item = {
+			                year: row
+			            };
+			            years.push(item);
+			        }
+			        model.set("years", years);
+				
+				model.set({
+					queryData:{},
+					colors:[{
+						color:"红色",
+						value:"354"
+					},{
+						color:"蓝色",
+						value:"354"
+						
+					},{
+						color:"白色",
+						value:"354"
+					},{
+						color:"淡红色",
+						value:"354"
+					}]
+				});
+				
+				model.describe("band",{
+					provider:{
+						method:"POST",
+						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/enum/Wave/list",
+						success:function(arg){
+							model.set("band",arg.result.dataList);
+						}
+					}
+				});
+				model.describe("seasons",{
+					provider:{
+						method:"POST",
+						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/enum/Season/list",
+						success:function(arg){
+							model.set("seasons",arg.result.dataList);
+						}
+					}
+				});
+				model.describe("countries",{
+					provider:{
+						method:"POST",
+						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/board/my_attention/list",
+						success:function(arg){
+							model.set("countries",arg.result.dataList);
+						}
+					}
+				});
+				
+				model.action({
+					query:function(){//查询
+						 mui.openWindow({
+						    url: 'sku-storageTranceQuery.html', 
+						    id:'storageTranceQuery',
+						    extras:{
+						        queryData:model.get("queryData")  //扩展参数
+						    }
+						 }); 
+					},
+					resetQuery:function(){//重置查询条件
+						model.set("queryData",{});
+					}
+				});
+			})
+		</script>
+	</body>
+
+</html>

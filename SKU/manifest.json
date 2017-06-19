@@ -327,7 +327,8 @@
 					"css/mui.min.css",
 					"resources/cola.css",
 					"resources/semantic.css",
-					"resources/3rd.js"
+					"resources/3rd.js",
+					"resources/themes/default/assets/fonts/icons.woff"
 				],
 				"refer": [],
 				"priority": 0
@@ -345,7 +346,8 @@
 					"resources/cola.js",
 					"resources/cola.css",
 					"resources/semantic.css",
-					"resources/3rd.js"
+					"resources/3rd.js",
+					"img/background.jpg"
 				],
 				"refer": [
 					"sku-audit.html",

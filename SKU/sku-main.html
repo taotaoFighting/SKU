@@ -10,7 +10,8 @@
 </head>
 <body>
 		<div class="v-box" style="height: 100%;">
-		    <div class="box" style="width: 100%;height: 20%;background-color: #005F81;">
+		    <div class="box" style="height: 20%;">
+		    	<img src="img/background.jpg" style="height: 100%;width: 100%;"/>
 			</div>
 				
 			<div class="h-box" id="r1">
@@ -100,6 +101,11 @@
 				mui.openWindow({
 					url: 'sku-daySurplusQuery.html', 
 					id:'daySurplusQuery',
+				});
+			}else if(value == '预计工厂入库情况跟踪'){ 
+				mui.openWindow({
+					url: 'sku-storageTrance.html', 
+					id:'storageTrance',
 				});
 			}else if(value == 'SKU商品分布'){ 
 				mui.openWindow({
