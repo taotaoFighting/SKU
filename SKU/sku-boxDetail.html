@@ -18,19 +18,19 @@
 		</header>
 		<div class="v-box" style="background-color: lavender;">
 			<div class="box" style="margin-top: 54px;background-color: white;margin-left: 1%;width: 98%;">
-				<label id="titleLabel" style="margin-left: 4%;width: 97%;">交货单编号：<label>HJ009888uu900888</label></label>
+				<label id="titleLabel" style="margin-left: 4%;width: 97%;">交货单编号：<span c-bind="receiptCode"></span></label>
 			</div>
 			<div class="flex-box">
 				<c-listView id="queryList" itemClick="itemClick">
 				<template name="row">
 					<li style="margin-top:0.7em;">
 						<div class="v-box" style="margin-left: 3%;width: 97%;">
-						    <label>箱码：<span c-bind="item.value1"></span></label>
-						    <label id="labelSpace">箱型代码：<span c-bind="item.value2"></span></label>
-						    <label id="labelSpace">已扫描数量：<span c-bind="item.value3"></span></label>
-						    <label id="labelSpace">重量（kg）：<span c-bind="item.value4"></span></label>
-						    <label id="labelSpace">包装箱状态：<span c-bind="item.value5"></span></label>
-						    <label id="labelSpace">尾箱：<span c-bind="item.value6"></span></label>
+						    <label>箱码：<span c-bind="item.boxNo"></span></label>
+						    <label id="labelSpace">箱型代码：<span c-bind="item.boxTypeCode"></span></label>
+						    <label id="labelSpace">已扫描数量：<span c-bind="item.amount"></span></label>
+						    <label id="labelSpace">重量（kg）：<span c-bind="item.weight"></span></label>
+						    <label id="labelSpace">包装箱状态：<span c-bind="item.boxStatus"></span></label>
+						    <label id="labelSpace">尾箱：<span c-bind="transfromrear(item)"></span></label>
 						</div>
 					</li>
 				</template>			        
@@ -50,61 +50,35 @@
 //				alert(window.screen.width)
 				$('#queryList').css("font-size",(window.screen.width/375.0)*12);
 				$('#titleLabel').css("font-size",(window.screen.width/375.0)*12);
-				
-				model.set({
-					items:[{
-						value1:"新建",
-						value2:"DH1232530012232",
-						value3:"2",
-						value4:"2234",
-						value5:"合格入库",
-						value6:"1",
-						value7:"2017-06-22"
-					},{
-						value1:"审批通过",
-						value2:"DH1232530012232",
-						value3:"40",
-						value4:"30333",
-						value5:"合格入库",
-						value6:"0",
-						value7:"2017-06-22"
-					},{
-						value1:"审批通过",
-						value2:"DH1232530012232",
-						value3:"40",
-						value4:"30333",
-						value5:"合格入库",
-						value6:"0",
-						value7:"2017-06-22"
-					},{
-						value1:"审批通过",
-						value2:"DH1232530012232",
-						value3:"40",
-						value4:"30333",
-						value5:"合格入库",
-						value6:"0",
-						value7:"2017-06-22"
-					},{
-						value1:"审批通过",
-						value2:"DH1232530012232",
-						value3:"40",
-						value4:"30333",
-						value5:"合格入库",
-						value6:"0",
-						value7:"2017-06-22"
-					},{
-						value1:"审批通过",
-						value2:"DH1232530012232",
-						value3:"40",
-						value4:"30333",
-						value5:"合格入库",
-						value6:"0",
-						value7:"2017-06-22"
-					}]
+				mui.plusReady(function(){
+				var self = plus.webview.currentWebview();
+				var receiptCode = self.receiptCode;
+				model.set("receiptCode",receiptCode);
+				$.ajax({
+						type: "POST",
+						contentType:'application/json;charset=UTF-8',
+						url: localStorage.getItem("localhost")+"/scmmk/rest/mobile/board/delivery_note/inbox/list?receiptCode="+receiptCode,
+						//提交的数据
+						//返回数据的格式
+						datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
+						success: function(data) {
+							model.set("items",data.dataList);
+						},
+						//调用出错执行的函数
+						error: function(e) {
+							//请求出错处理
+						}
+					});
 				});
 				
 				model.action({
-					
+					transfromrear:function(item){
+						if(item.get("rear") == "Y"){
+							return "是";
+						}else{
+							return "否";
+						}
+					}
 				
 				});
 				

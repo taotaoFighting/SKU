@@ -22,18 +22,18 @@
 					<li style="margin-top:0.7em;background-position: right;background-image: url(img/assess.png);background-repeat: no-repeat;">
 						<div class="v-box">
 						    <div class="box" style="margin-left: 3%;width: 97%;">
-						    	<label>交货单状态：<span c-bind="item.value1"></span></label>
-						    	<label id="labelSpace">交货单编号：<span c-bind="item.value2"></span></label>
+						    	<label>交货单状态：<span c-bind="transformCode(item)"></span></label>
+						    	<label id="labelSpace">交货单编号：<span c-bind="item.receiptCode"></span></label>
 						    </div>
 						     <div class="box" id="boxRow">
-						    	<label>箱数：<span c-bind="item.value3"></span></label>
-						    	<label id="labelSpace">数量：<span c-bind="item.value4"></span></label>
-						    	<label id="labelSpace">入库方式：<span c-bind="item.value5"></span></label>
-						    	<label id="labelSpace">折扣率：<span c-bind="item.value6"></span></label>
+						    	<label>箱数：<span c-bind="item.boxNum"></span></label>
+						    	<label id="labelSpace">数量：<span c-bind="item.productNum"></span></label>
+						    	<label id="labelSpace">入库方式：<span c-bind="transfromStorageWay(item)"></span></label>
+						    	<label id="labelSpace">折扣率：<span c-bind="item.discount"></span></label>
 						    	<!--<img style="width: 2em;position: fixed;margin-right: 10em;" src="img/assess.png"/>-->
 						    </div>
 						     <div class="box" id="boxRow" style="margin-bottom: 6px;">
-						    	<label>预计到货时间：<span c-bind="item.value7"></span></label>
+						    	<label>预计到货时间：<span c-bind="item.predictReceiptDate"></span></label>
 						    </div>
 						</div>
 					</li>
@@ -57,38 +57,68 @@
 				
 //				alert(window.screen.width)
 				$('#queryList').css("font-size",(window.screen.width/375.0)*12);
-				
-				model.set({
-					items:[{
-						value1:"新建",
-						value2:"DH1232530012232",
-						value3:"2",
-						value4:"2234",
-						value5:"合格入库",
-						value6:"1",
-						value7:"2017-06-22"
-					},{
-						value1:"审批通过",
-						value2:"DH1232530012232",
-						value3:"40",
-						value4:"30333",
-						value5:"合格入库",
-						value6:"0",
-						value7:"2017-06-22"
-					}]
-				});
-				
 				model.action({
 					itemClick:function(self,arg){
-//						alert(JSON.stringify(arg.item));
+						var receiptStatus = arg.item.get("receiptStatus");
+						var storageWay = arg.item.get("storageWay");
+						arg.item.set("receiptStatus",model.action.transformCode(arg.item));
+						arg.item.set("storageWay",model.action.transfromStorageWay(arg.item));
+						alert(receiptStatus + storageWay)
 						mui.openWindow({
 						    url: 'sku-auditDetial.html', 
 						    id:'auditDetial',
 						    extras:{
-						        data:arg.item  //扩展参数
+						        data: arg.item,//扩展参数
+						        receiptStatus:receiptStatus,
+						        storageWay:storageWay
 						    }
 						 });
+					},
+					transformCode:function(item){
+						var receiptStatus = "";
+						model.get("DelOrderStatus").each(function(e){
+							if(item.get("receiptStatus") == e.get("enumvCode")){
+								receiptStatus = e.get("enumvName");
+							}
+						})
+						return receiptStatus;
+					},
+					transfromStorageWay:function(item){
+						var storageWay = "";
+						model.get("StorageWay").each(function(e){
+							if(item.get("storageWay") == e.get("enumvCode")){
+								storageWay = e.get("enumvName");
+							}
+						})
+						return storageWay;
 					}
+				});
+				
+				mui.plusReady(function(){
+				var self = plus.webview.currentWebview();
+				var param = self.queryData;
+				model.set("StorageWay",self.StorageWay);
+				model.set("DelOrderStatus",self.DelOrderStatus);
+				param["pageSize"]="20";
+				param["pageNo"]="1";
+				$.ajax({
+						type: "POST",
+						contentType:'application/json;charset=UTF-8',
+						url: localStorage.getItem("localhost")+"/scmmk/rest/mobile/board/delivery_note/header/list",
+						//提交的数据
+						data: JSON.stringify(param),
+						//返回数据的格式
+						datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
+						success: function(data) {
+							model.set("items",data.data.entities); 
+							
+						},
+						//调用出错执行的函数
+						error: function(e) {
+							//请求出错处理
+							console.log(JSON.stringify(e))
+						}
+					});
 				});
 				
 				model.widgetConfig({
@@ -96,21 +126,12 @@
 		                $type: "listView",
 		                bind: "item in items",
 		                height:window.screen.height - 54,
-		                pullUp:true, 
+		                pullUp:false, 
 		                pullStep: function(arg) {
 		                    $("#divPullUp").text((arg.distance < arg.theshold) ? "继续上拉加载更多" : "释放以刷新");
 		                },
 		                pullComplete: function(self,arg) {
 		                    $("#divPullUp").text("正在加载...");
-		                    model.get("items").insert({
-								value1:"审批通过",
-								value2:"DH1232530012232",
-								value3:"40",
-								value4:"30333",
-								value5:"合格入库",
-								value6:"0",
-								value7:"2017-06-22"
-							})
 		                    arg.done();
 		                },
 		                getItemTemplate: function(arg) {

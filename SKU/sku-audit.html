@@ -20,11 +20,11 @@
 		<div class="v-box" style="">
 			<div class="h-box">
 				<div class="v-box" style="width: 90%;text-align: right;padding-top: 10%;">
-					<label>交货单状态：<c-dropdown c-bind="queryData.value1" id="formInput" items="{{status}}"  openmode="drop" value="2" valueProperty="value" textProperty="label" c-widget="width:65%"></c-dropdown></label>
-					<label>交货单编号：<c-input c-bind="queryData.value2" id="formInput" c-widget="width:65%"></c-input></label> 
-					<label>生产订单号：<c-input c-bind="queryData.value3" id="formInput" c-widget="width:65%"></c-input></label>
-					<label>采购订单编号：<c-input c-bind="queryData.value4" id="formInput" c-widget="width:65%"></c-input></label>
-					<label>款号：<c-input c-bind="queryData.value5" id="formInput" c-widget="width:65%"></c-input></label>
+					<label>交货单状态：<c-dropdown c-bind="queryData.receiptStatus" id="formInput" items="{{DelOrderStatus}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:65%"></c-dropdown></label>
+					<label>交货单编号：<c-input c-bind="queryData.receiptCode" id="formInput" c-widget="width:65%"></c-input></label> 
+					<label>生产订单号：<c-input c-bind="queryData.productionOrderCode" id="formInput" c-widget="width:65%"></c-input></label>
+					<label>采购订单编号：<c-input c-bind="queryData.poCode" id="formInput" c-widget="width:65%"></c-input></label>
+					<label>款号：<c-input c-bind="queryData.style" id="formInput" c-widget="width:65%"></c-input></label>
 				</div>
 			</div>
 			<div class="box" style="margin-top: 5em;">
@@ -43,33 +43,58 @@
 			mui.init();
 			cola(function(model){
 				
+				$.ajax({
+						type: "POST",
+						contentType:'application/json;charset=UTF-8',
+						url: localStorage.getItem("localhost")+"/scmmk/rest/mobile/enum/StorageWay/list",
+						//提交的数据
+						//返回数据的格式
+						datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
+						success: function(data) {
+							model.set("StorageWay",data.dataList);
+						},
+						//调用出错执行的函数
+						error: function(e) {
+							//请求出错处理
+						}
+					});
+				$.ajax({
+						type: "POST",
+						contentType:'application/json;charset=UTF-8',
+						url: localStorage.getItem("localhost")+"/scmmk/rest/mobile/enum/DelOrderStatus/list",
+						//提交的数据
+						//返回数据的格式
+						datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
+						success: function(data) {
+							model.set("DelOrderStatus",data.dataList);
+							model.get("queryData").set("receiptStatus","01");
+						},
+						//调用出错执行的函数
+						error: function(e) {
+							//请求出错处理
+						}
+					});
+				
 				model.set({
-					status:[{
-						label:"显示全部",
-						value:"1"
-					},{
-						label:"只显示新建状态",
-						value:"2"
-					},{
-						label:"只显示审批通过状态",
-						value:"3"
-					},{
-						label:"只显示退回状态",
-						value:"4"
-					}],
 					queryData:{
-						
+						style:"716301027003"
 					}
 				});
 				
 				model.action({
 					dataBack:function(){
-						model.set("queryData",{"value1":"2"});
+						model.set("queryData",{receiptStatus:"01"});  
 					},
 					query:function(){
+						alert(JSON.stringify(model.get("queryData")))
 						mui.openWindow({
 						    url: 'sku-queryAudit.html', 
 						    id:'queryAudit',
+						    extras:{
+						        queryData:model.get("queryData").toJSON(),  //扩展参数
+						        StorageWay:model.get("StorageWay"),
+						        DelOrderStatus:model.get("DelOrderStatus")
+						    }
 						 }); 
 					}
 				});

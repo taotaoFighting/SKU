@@ -208,7 +208,10 @@
 			"resources/semantic.css",
 			"resources/3rd.js"
 		],
-		"refer": []
+		"refer": [
+			"sku-boxDetail.html",
+			"sku-purchaseOrder.html"
+		]
 	},
 	"sku-dayMaintain.html": {
 		"resources": [
@@ -333,6 +336,36 @@
 			"resources/semantic.js",
 			"resources/i18n/zh/cola.js",
 			"resources/jquery-2.1.3.js",
+			"js/mui.min.js",
+			"resources/cola.js",
+			"css/mui.min.css",
+			"resources/cola.css",
+			"resources/semantic.css",
+			"resources/3rd.js",
+			"fonts/mui.ttf"
+		]
+	},
+	"sku-boxDetail.html": {
+		"resources": [
+			"css/boxDetial.css",
+			"resources/cola.js",
+			"resources/semantic.js",
+			"resources/i18n/zh/cola.js",
+			"resources/jquery-2.1.3.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"resources/cola.css",
+			"resources/semantic.css",
+			"resources/3rd.js"
+		]
+	},
+	"sku-purchaseOrder.html": {
+		"resources": [
+			"resources/semantic.js",
+			"resources/i18n/zh/cola.js",
+			"resources/jquery-2.1.3.js",
+			"css/purchaseOrder.css",
 			"js/mui.min.js",
 			"resources/cola.js",
 			"css/mui.min.css",
