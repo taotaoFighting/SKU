@@ -87,6 +87,10 @@
 					},
 					query:function(){
 						alert(JSON.stringify(model.get("queryData")))
+						if(!model.get("queryData").get("style")){
+							mui.toast('款号不能为空',{ duration:'short', type:'div' });
+							return;
+						}
 						mui.openWindow({
 						    url: 'sku-queryAudit.html', 
 						    id:'queryAudit',

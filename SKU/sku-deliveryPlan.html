@@ -14,7 +14,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		    <h1 class="mui-title" style="color: white;">日收货量查询</h1>
+		    <h1 class="mui-title" style="color: white;">仓库日交货计划</h1>
 		</header>
 		<div class="v-box" style="padding-top: 54px;">
 			<div class="v-box" style="width: 85%;margin-left: 5%;text-align: right;">
@@ -38,6 +38,7 @@
 			mui.init()
 			cola(function(model){
 				
+				
 				model.set({
 					resp:[{
 						label:"仓库1",
@@ -52,11 +53,13 @@
 						label:"brand2",
 					},{
 						label:"brand3",
-					}]
+					}],
+					queryData:{}
 				});
 				
 				model.action({
 					query:function(){
+						alert(JSON.stringify(model.get("queryData")))
 						mui.openWindow({
 						    url: 'sku-deliveryPalnQueryResult.html', 
 						    id:'deliveryPalnQueryResult',

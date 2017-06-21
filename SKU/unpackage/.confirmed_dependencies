@@ -150,7 +150,8 @@
 			"sku-dayMaintain.html",
 			"sku-daySurplusQuery.html",
 			"sku-incomePlan.html",
-			"sku-deliveryPlan.html"
+			"sku-deliveryPlan.html",
+			"sku-storageTrance.html"
 		]
 	},
 	"sku-audit.html": {
@@ -373,6 +374,40 @@
 			"resources/semantic.css",
 			"resources/3rd.js",
 			"fonts/mui.ttf"
+		]
+	},
+	"sku-storageTrance.html": {
+		"resources": [
+			"resources/semantic.js",
+			"resources/i18n/zh/cola.js",
+			"resources/jquery-2.1.3.js",
+			"js/mui.min.js",
+			"css/goodsDistribution.css",
+			"css/mui.min.css",
+			"js/cola.js",
+			"resources/cola.css",
+			"resources/semantic.css",
+			"resources/3rd.js",
+			"resources/themes/default/assets/fonts/icons.woff",
+			"fonts/mui.ttf"
+		],
+		"refer": [
+			"sku-storageTranceQuery.html"
+		]
+	},
+	"sku-storageTranceQuery.html": {
+		"resources": [
+			"resources/cola.js",
+			"css/queryAudit.css",
+			"resources/semantic.js",
+			"resources/i18n/zh/cola.js",
+			"resources/jquery-2.1.3.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"resources/cola.css",
+			"resources/semantic.css",
+			"resources/3rd.js"
 		]
 	}
 }
