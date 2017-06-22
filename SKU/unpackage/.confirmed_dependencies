@@ -309,7 +309,10 @@
 			"resources/i18n/zh/cola.js",
 			"js/mui.min.js",
 			"fonts/mui.ttf",
-			"resources/3rd.js"
+			"resources/3rd.js",
+			"images/loading.gif",
+			"css/loading.css",
+			"js/loading.js"
 		]
 	},
 	"sku-deliveryPlan.html": {
@@ -343,7 +346,12 @@
 			"resources/cola.css",
 			"resources/semantic.css",
 			"resources/3rd.js",
-			"fonts/mui.ttf"
+			"fonts/mui.ttf",
+			"css/fakeLoader.css",
+			"js/fakeLoader.js",
+			"css/loading.css",
+			"js/loading.js",
+			"images/loading.gif"
 		]
 	},
 	"sku-boxDetail.html": {

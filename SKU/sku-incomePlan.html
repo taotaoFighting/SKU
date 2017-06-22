@@ -18,14 +18,14 @@
 		</header>
 		<div class="v-box" style="padding-top: 54px;">
 			<div class="v-box" style="width: 80%;margin-left: 5%;text-align: right;">
-			<label id="rowLabel">品牌：<c-dropdown  id="formInput" items="{{resp}}" openmode="drop" valueProperty="label" textProperty="label" c-widget="width:70%"></c-dropdown></label>
-			<label id="rowLabel">大仓：<c-dropdown  id="formInput" items="{{brand}}" openmode="drop" valueProperty="label" textProperty="label" c-widget="width:70%"></c-input></label> 
-			<label id="rowLabel">年份：<c-dropdown  id="formInput" items="{{years}}" openmode="drop" valueProperty="year" textProperty="year" c-widget="width:70%"></c-dropdown></label>
-			<label id="rowLabel">季节：<c-dropdown  id="formInput" items="{{resp}}" openmode="drop" valueProperty="label" textProperty="label" c-widget="width:70%"></c-dropdown></label>
-			<label id="rowLabel">波段：<c-dropdown  id="formInput" items="{{resp}}" openmode="drop" valueProperty="label" textProperty="label" c-widget="width:70%"></c-dropdown></label>
+			<label id="rowLabel">品牌：<c-dropdown c-bind="queryData.brand"  id="formInput" items="{{brands}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-dropdown></label>
+			<label id="rowLabel">大仓：<c-dropdown c-bind="queryData.customerCode" id="formInput" items="{{brands}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-input></label> 
+			<label id="rowLabel">年份：<c-dropdown c-bind="queryData.years" id="formInput" items="{{years}}" openmode="drop" valueProperty="year" textProperty="year" c-widget="width:70%"></c-dropdown></label>
+			<label id="rowLabel">季节：<c-dropdown c-bind="queryData.season" id="formInput" items="{{seasons}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-dropdown></label>
+			<label id="rowLabel">波段：<c-dropdown c-bind="queryData.band" id="formInput" items="{{waves}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-dropdown></label>
 			<div class="box" style="margin-top: 20%;">
 				<c-button color="blue" c-widget="caption:查询;width:90%;click:query" style="margin-left: 5%;"></c-button>
-				<c-button c-widget="caption:重置;width:90%;click:reset" style="margin-left: 5%;margin-top: 10%;"></c-button>
+				<c-button c-widget="caption:重置;width:90%;click:resetData" style="margin-left: 5%;margin-top: 10%;"></c-button>
 			</div>
 			</div>
 		</div>
@@ -43,7 +43,7 @@
 				var today = new Date();
 			        for (var row = today.getFullYear() - 5; row <= today.getFullYear() + 5; row++) {
 			            var item = {
-			                year: row
+			                year: row+""
 			            };
 			            years.push(item);
 			        }
@@ -57,17 +57,41 @@
 					},{
 						label:"仓库3",
 					}],
-					brand:[{
-						label:"brand1",
-					},{
-						label:"brand2",
-					},{
-						label:"brand3",
-					}]
+					queryData:{}
+				});
+				model.describe("brands",{
+					provider:{
+						method:"POST",
+						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/enum/Brand/list",
+						success:function(arg){
+							model.set("brands",arg.result.dataList);
+						}
+					}
+				});
+				
+				model.describe("seasons",{
+					provider:{
+						method:"POST",
+						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/enum/Season/list",
+						success:function(arg){
+							model.set("seasons",arg.result.dataList);
+						}
+					}
+				});
+				
+				model.describe("waves",{
+					provider:{
+						method:"POST",
+						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/enum/Wave/list",
+						success:function(arg){
+							model.set("waves",arg.result.dataList);
+						}
+					}
 				});
 				
 				model.action({
 					query:function(){
+						alert(JSON.stringify(model.get("queryData")))
 						mui.openWindow({
 						    url: 'sku-incomePlanQuery.html', 
 						    id:'incomePlanQuery',
@@ -75,6 +99,9 @@
 						        queryData:model.get("queryData")  //扩展参数
 						    }
 						 }); 
+					},
+					resetData:function(){
+						model.set("queryData",{});
 					}
 				});
 				
