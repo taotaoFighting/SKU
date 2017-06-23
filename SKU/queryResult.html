@@ -16,13 +16,18 @@
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		    <h1 class="mui-title" style="color: white;">2017春季第一波</h1>
 		</header>
-		<div class="v-box" style="height: 100%;width: 100%;overflow: scroll;">
-			<div class="box" style="margin-top: 3em;overflow: scroll;">
+		<div class="v-box" style="height: 100%;width: 100%;overflow: scroll;margin-top: 50px;">
+			<div class="box">
+				<div class="h-box" style="text-align: center;width: 350%;color: #439CF6;">
+					<div c-repeat="title in titles" c-widget="#titles"></div>
+				</div>
+			<div class="flex-box">
 				<div id="queryTable" style="font-size: 0.9em;width: 350%;overflow: scroll;">
 					<template name="int-template">
 				        <div c-widget="input; bind:$default; class:fluid" c-class="error:$default>500"></div>
 				    </template>
 				</div>
+			</div>
 			</div>
 		</div>
 		
@@ -35,7 +40,7 @@
 		<script type="text/javascript">
 			mui.init();
 			cola(function(model){
-				
+				model.set("titles", ["SKU", "采购订单号", "订单交期","订单数", "波段", "工厂","入库日期","入库数","工厂发货数","未入库数"]);
 				mui.plusReady(function(){
 				var self = plus.webview.currentWebview();
 				var param = self.queryData;
@@ -109,8 +114,8 @@
 		            queryTable: {
 		                $type: "table",
 		                bind: "item in items",
-		                showHeader: true, 
-		                height:window.screen.height - 70, 
+		                showHeader: false, 
+		                height:window.screen.height - 100, 
 		                columns: [{
 		                    bind: ".SKU",
 		                    caption: "SKU",
@@ -152,6 +157,12 @@
 		                    caption: "未入库数",
 		                    align: "center"
 		                }]
+		            },
+					titles: {
+		                $type: "label", 
+		                width:window.screen.width*3.5/5,
+		                color:"blue",
+		                text: "{{title}}",
 		            }
 		        });
 			});

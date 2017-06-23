@@ -16,12 +16,17 @@
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		    <h1 class="mui-title" style="color: white;">日剩余货获量查询结果</h1>
 		</header>
-		<div class="v-box" style="height: 100%;width: 100%;overflow: scroll;">
-			<div class="box" style="margin-top: 3em;overflow: scroll;">
-				<div id="queryTable" style="font-size: 0.9em;width: 100%;overflow: scroll;">
+		<div class="v-box" style="height: 100%;width: 100%;overflow: scroll;margin-top: 50px;"> 
+			<div class="box">
+				<div class="h-box" style="text-align: center;width: 150%;">
+					<div c-repeat="title in titles" c-widget="#titles"></div>
+				</div>
+				<div class="flex-box">
+					<div id="queryTable" style="font-size: 0.9em;width: 150%;overflow: scroll;">
 					<template name="int-template">
 				        <div c-widget="input; bind:$default; class:fluid" c-class="error:$default>500"></div>
 				    </template>
+				</div>
 				</div>
 			</div>
 		</div>
@@ -35,20 +40,67 @@
 		<script type="text/javascript">
 			mui.init();
 			cola(function(model){
-				
+				model.set("titles", ["日期", "品牌", "最大限额","限额单位", "收获量", "剩余量"]);
 				mui.plusReady(function(){
 				var self = plus.webview.currentWebview();
 				var param = self.queryData;
 				$.ajax({
 						type: "POST",
 						contentType:'application/json;charset=UTF-8',
-						url: localStorage.getItem("localhost")+"/scmmk/rest/mobile/board/product_distribution/list",
+						url: localStorage.getItem("localhost")+"/scmmk/rest/mobile/board/storage_daily_ceiling/list",
 						//提交的数据
-						data: JSON.stringify(param),
+						data: JSON.stringify({}),
 						//返回数据的格式
 						datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
 						success: function(data) {
-							model.set("items",data.dataList);
+							var dataList = data.dataList;
+							var tmpItms = [];
+							var titles = [];
+							for(k = 0 ; k < dataList.length ; k++){
+								var e = dataList[k];
+								var title = e["CUSTOMER_NAME"];
+								console.log(JSON.stringify(e))
+								if(titles.length == 0){
+									titles.push(title);
+								}else{
+									var count = 0;
+									for(i = 0 ; i<titles.length ; i++){
+										if(title == titles[i]){
+											break;
+										}else{
+											count++;
+										}
+										if(count == titles.length){
+											titles.push(title);
+										}
+								}
+								}
+							}
+							
+							var sitems = [];
+							for(i = 0 ; i < titles.length ; i++){
+								 sitems.push([{"LIMITED_DATE":titles[i]}]);
+							}
+							
+							for(k = 0 ; k < dataList.length ; k++){
+								var e = dataList[k];
+								var title = e["CUSTOMER_NAME"];
+								for(i = 0 ; i <sitems.length ; i ++){
+									var titleObj = sitems[i][0];
+									if(titleObj["LIMITED_DATE"] == title){
+										sitems[i].push(e);
+									}
+								}
+							}
+							
+							for(i = 0 ; i < sitems.length ; i++){
+								var objs = sitems[i];
+								for(j = 0 ; j < objs.length ; j++){
+									tmpItms.push(objs[j]);
+								}
+							}
+							
+							model.set("items",tmpItms);
 						},
 						//调用出错执行的函数
 						error: function(e) {
@@ -61,33 +113,38 @@
 		            queryTable: {
 		                $type: "table",
 		                bind: "item in items",
-		                showHeader: true, 
-		                height:window.screen.height - 70, 
+		                showHeader: false, 
+		                height:window.screen.height - 100, 
 		                columns: [{
-		                    bind: ".SKU",
+		                    bind: ".LIMITED_DATE",
 		                    caption: "日期",
 		                    align: "center",
 		                }, {
-		                    bind: ".PO_CODE",
+		                    bind: ".BRAND",
 		                    caption: "品牌",
 		                    align: "center"
 		                }, {
-		                    bind: ".PO_DELIVERY_DATE",
+		                    bind: ".CEILING",
 		                    caption: "最大限额",
 		                    align: "center"
 		                }, {
-		                    bind: ".PO_AMOUNT",
+		                    bind: ".LIMITED_UNIT",
 		                    caption: "限额单位",
 		                    align: "center"
 		                }, {
-		                    bind: ".WAVE_NAME",
+		                    bind: ".USED_CEILING",
 		                    caption: "收货量",
 		                    align: "center"
 		                },{
-		                    bind: ".SUPPLIER_NAME",
+		                    bind: ".UNUSED_CEILING",
 		                    caption: "剩余量",
 		                    align: "center",
 		                }]
+		            },
+					titles: {
+		                $type: "label", 
+		                width:window.screen.width*1.5/5,
+		                text: "{{title}}",
 		            }
 		        });
 			});

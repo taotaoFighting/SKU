@@ -1,7 +1,7 @@
 {
     "@platforms": ["android", "iPhone", "iPad"],
     "id": "H58B7A088",/*应用的标识，创建应用时自动生成，勿手动修改*/
-    "name": "SKU",/*应用名称，程序桌面图标名称*/
+    "name": "马克看板",/*应用名称，程序桌面图标名称*/
     "version": {
         "name": "1.0",/*应用版本名称*/
         "code": ""
@@ -436,7 +436,9 @@
 					"resources/semantic.css",
 					"resources/3rd.js",
 					"css/dayMaintain.css",
-					"resources/themes/default/assets/fonts/icons.woff"
+					"resources/themes/default/assets/fonts/icons.woff",
+					"resources/cola.js",
+					"js/js/cola.js"
 				],
 				"refer": [],
 				"priority": 0
