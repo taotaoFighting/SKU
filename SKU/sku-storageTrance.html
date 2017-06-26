@@ -13,7 +13,7 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
-		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
 		    <h1 class="mui-title" style="color: white;">工厂入库情况跟踪</h1>
 		</header>
 		<div class="v-box">
@@ -21,12 +21,24 @@
 				<div id="item1" class="mui-control-content mui-active">
 					<div class="v-box" id="inputFrom">
 						<!--<label>工厂：<c-input id="queryInput" bind="queryData.styleCode" c-widget="width:80%" style="margin-top: 20%;"></c-input></label>-->
-						<label>品牌：<c-dropdown id="queryInput" c-bind="queryData.brand" items="{{band}}"  openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%" style="margin-top: 20%;"></c-dropdown></label>
-						<label>年份：<c-dropdown id="queryInput" c-bind="queryData.years" items="{{years}}"  openmode="drop"  valueProperty="year" textProperty="year" c-widget="width:80%"></c-dropdown></label> 						
-						<label>季节：<c-dropdown id="queryInput" c-bind="queryData.season" items="{{seasons}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown></label>
-						<label>波段：<c-dropdown id="queryInput" c-bind="queryData.band" items="{{waves}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown></label>
-						<label>起时：<c-input id="queryInput"  c-widget="datePicker;width:80%;inputFormat:MM-dd;bind:queryData.deliveryDateS"></c-input></label>
-						<label>止时：<c-input id="queryInput"  c-widget="datePicker;width:80%;inputFormat:MM-dd;bind:queryData.deliveryDateE"></c-input></label>
+						<div class="box">
+							<label>品牌：</label><c-dropdown id="queryInput" c-bind="queryData.brand" items="{{band}}"  openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%" style="margin-top: 20%;"></c-dropdown>
+						</div>
+						<div class="box">
+							<label>年份：</label><c-dropdown id="queryInput" dblclick="dblclick" c-bind="queryData.years" items="{{years}}"  openmode="drop"  valueProperty="year" textProperty="year" c-widget="width:80%"></c-dropdown>
+						</div>
+						<div class="box">
+							<label>季节：</label><c-dropdown id="queryInput" c-bind="queryData.season" items="{{seasons}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown>
+						</div>
+						<div class="box">
+							<label>波段：</label><c-dropdown id="queryInput" c-bind="queryData.band" items="{{waves}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown>
+						</div>
+						<div class="box">
+							<label>起时：</label><c-datePicker id="queryInput" readOnly="true"  c-widget="width:80%;inputFormat:MM-dd;bind:queryData.deliveryDateS"></c-datePicker>
+						</div>
+						<div class="box"> 
+							<label>止时：</label><c-datePicker id="queryInput" readOnly="true" c-widget="width:80%;inputFormat:MM-dd;bind:queryData.deliveryDateE"></c-datePicker>
+						</div>
 						<div class="box" style="margin-top: 10%;">
 							<c-button size="small" color="blue" c-widget="caption:查询;width:90%;click:query" style="margin-left: 5%;"></c-button>
 							<c-button size="small" c-widget="caption:重置;width:90%;click:resetQuery" style="margin-left: 5%;margin-top: 10%;"></c-button>
@@ -102,6 +114,9 @@
 					},
 					resetQuery:function(){//重置查询条件
 						model.set("queryData",{});
+					},
+					dblclick:function(){
+						alert(1111)
 					}
 				});
 			})

@@ -13,15 +13,23 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
-		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
 		    <h1 class="mui-title" style="color: white;">仓库日交货计划</h1>
 		</header>
 		<div class="v-box" style="padding-top: 54px;">
 			<div class="v-box" style="width: 85%;margin-left: 5%;text-align: right;">
-			<label id="rowLabel">品牌：<c-dropdown  id="formInput" c-bind="queryData.brandCode" items="{{brands}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-input></label> 
-			<label id="rowLabel">大仓：<c-dropdown  id="formInput" c-bind="queryData.storageCode" items="{{resp}}" openmode="drop" valueProperty="label" textProperty="label" c-widget="width:70%"></c-dropdown></label>
-			<label id="rowLabel">开始日期：<c-datePicker id="dateP" c-widget="width:70%;bind:queryData.deliveryDateS"></c-datePicker></label>
-			<label id="rowLabel">截止日期：<c-datePicker id="dateP" c-widget="width:70%;bind:queryData.deliveryDateE"></c-datePicker></label>
+			<div class="box" id="rowLabel">
+				<label >品牌：</label><c-dropdown  id="formInput" c-bind="queryData.brandCode" items="{{brands}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-input> 
+			</div>
+			<div class="box" id="rowLabel">
+				<label >大仓：</label><c-dropdown  id="formInput" c-bind="queryData.storageCode" items="{{resp}}" openmode="drop" valueProperty="label" textProperty="label" c-widget="width:70%"></c-dropdown>
+			</div>
+			<div class="box" id="rowLabel">
+				<label >开始日期：</label><c-datePicker id="dateP" c-widget="width:70%;bind:queryData.deliveryDateS"></c-datePicker>
+			</div>
+			<div class="box" id="rowLabel">
+				<label >截止日期：</label><c-datePicker id="dateP" c-widget="width:70%;bind:queryData.deliveryDateE"></c-datePicker>
+			</div>
 			<div class="box" style="margin-top: 20%;">
 				<c-button color="blue" c-widget="caption:查询;width:90%;click:query" style="margin-left: 5%;"></c-button>
 				<c-button c-widget="caption:重置;width:90%;click:reset" style="margin-left: 5%;margin-top: 10%;"></c-button>

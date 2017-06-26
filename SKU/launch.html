@@ -74,6 +74,8 @@
 						success: function(data) {
 							if(data.msg == "登陆成功！"){
 								localStorage.setItem("firstLaunch",false);
+								localStorage.setItem("userName",model.get("param").get("userName"));
+								localStorage.setItem("password",model.get("param").get("password"));
 								mui.openWindow({
 							    url: 'tab-webview-main.html', 
 							    id:'setting',

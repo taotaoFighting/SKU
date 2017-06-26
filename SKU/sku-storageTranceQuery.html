@@ -13,12 +13,12 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
-		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
 		    <h1 class="mui-title" style="color: white;">工厂入库情况跟踪</h1>
 		</header>
 		
 		<div class="v-box" style="padding-top: 54px;">
-			<div class="h-box" style="text-align: center;">
+			<div class="h-box" style="text-align: center;margin-left: 1.6%;width: 96.8%;border: solid 1px lavender;">
 				<div c-repeat="title in titles" c-widget="#titles"></div>
 			</div>
 			<div class="flex-box" >
@@ -52,6 +52,10 @@
 				mui.plusReady(function(){
 				var self = plus.webview.currentWebview();
 				var param = self.queryData;
+				console.log(JSON.stringify(param))
+//				var load = new Loading();
+//				load.init();
+//				load.start();
 				$.ajax({
 						type: "POST",
 						contentType:'application/json;charset=UTF-8',
@@ -61,13 +65,20 @@
 						//返回数据的格式
 						datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
 						success: function(data) {
-							
+						console.log(JSON.stringify(data))
 							var dataList = data.dataList;
+							if(dataList.length == 0){
+								mui.toast('暂无数据',{ duration:'short', type:'div' });
+							}
 							var tmpItms = [];
 							var titles = [];
 							for(k = 0 ; k < dataList.length ; k++){
 								var e = dataList[k];
 								var title = e["SUPPLIER_NAME"];
+								e["PO_AMOUNT"] = ""+e["PO_AMOUNT"];
+								e["SKU_AMOUNT"] = ""+e["PO_AMOUNT"];
+								e["UN_RECEIVED_AMOUNT"] = ""+e["UN_RECEIVED_AMOUNT"];
+								e["UN_RECEIVED_SKU_AMOUNT"] = ""+e["UN_RECEIVED_SKU_AMOUNT"];
 								if(titles.length == 0){
 									titles.push(title);
 								}else{
@@ -105,7 +116,7 @@
 								var objs = sitems[i];
 								for(j = 0 ; j < objs.length ; j++){
 									if(objs[j]["SKU"]){
-										objs.splice(j,1);
+										objs.splice(j,1); 
 									}
 								}
 							}
@@ -177,7 +188,7 @@
 					titles: {
 		                $type: "label",
 		                width:window.screen.width/5,
-		                text: "{{title}}",
+		                text: "{{title}}"
 		            }
 	        	});
 			});

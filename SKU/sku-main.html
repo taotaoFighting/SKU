@@ -23,40 +23,40 @@
 				</div>
 				<div class="box" id="rightBox">
 					<div class="box"  id="leftBox">
-						<button type="button" class="smallButton" style="background-color: red;" onclick="buttonClick('日收货量维护')">日收货量维护</button>
+						<button type="button" class="smallButton" style="background-color: #cd3434;" onclick="buttonClick('日收货量维护')">日收货量维护</button>
 					</div>
 					<div class="box" id="rightBoxLow">
-						<button type="button" class="smallButton" style="background-color: red;" onclick="buttonClick('日收货量查询')">日收货量查询</button>
+						<button type="button" class="smallButton" style="background-color: #cd3434;" onclick="buttonClick('日收货量查询')">日收货量查询</button>
 					</div>
 				</div>
 			</div>
 				
 				<div class="h-box" id="r1">
 					<div class="box" id="contain">
-						<button type="button" class="r1c1" style="background-color: blue;" onclick="buttonClick('预计工厂入库情况跟踪')">
+						<button type="button" class="r1c1" style="background-color: #3a63ca;" onclick="buttonClick('预计工厂入库情况跟踪')">
 							预计工厂入库情况跟踪
 							<img id="containImg" style="width: 2em;" src="img/menu.png" />
 						</button>
 					</div> 
 					<div class="box" id="rightBox"> 
 						<div class="box" id="leftBox">
-							<button type="button" class="smallButton" style="background-color: blue;" onclick="buttonClick('SKU商品分布')">SKU商品分布</button>
+							<button type="button" class="smallButton" style="background-color: #3a63ca;" onclick="buttonClick('SKU商品分布')">SKU商品分布</button>
 						</div>
 						<div class="box" id="rightBoxLow">
-							<button type="button" class="smallButton" style="background-color: blue;" onclick="buttonClick('我的关注')">我的关注</button>
+							<button type="button" class="smallButton" style="background-color: #3a63ca;" onclick="buttonClick('我的关注')">我的关注</button>
 						</div>
 					</div>
 				</div>
 				
 				<div class="h-box" id="r1">
 					<div class="box" id="contain">
-						<button type="button" class="r1c1" style="background-color: orange;" onclick="buttonClick('仓库日交货计划')">
+						<button type="button" class="r1c1" style="background-color: #099193;" onclick="buttonClick('仓库日交货计划')">
 							仓库日交货计划
 							<img id="containImg" style="width: 2em;" src="img/mirror.png" />
 						</button>
 					</div>
 					<div class="box" id="rightBox">
-						<button type="button" class="smallButton" style="background-color: orange;" onclick="buttonClick('入库计划&执行情况')">入库计划&执行情况</button>
+						<button type="button" class="smallButton" style="background-color: #099193;" onclick="buttonClick('入库计划&执行情况')">入库计划&执行情况</button>
 					</div>
 			</div>
 		</div>
@@ -75,6 +75,25 @@
 		document.addEventListener('plusready',plusReady,false);
 		function plusReady(){
 			plus.navigator.setStatusBarBackground('#439CF6');
+			if(localStorage.getItem("firstLaunch")){
+				var param = {userName:localStorage.getItem("userName"),password:localStorage.getItem("password")};
+				$.ajax({
+							type: "POST",
+							contentType:'application/json;charset=UTF-8',
+							url: localStorage.getItem("localhost")+"/scmmk/rest/mobile/login",
+							//提交的数据
+							data: JSON.stringify(param),
+							//返回数据的格式
+							datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
+							success: function(data) {
+							},
+							//调用出错执行的函数
+							error: function(e) {
+								//请求出错处理
+								console.log(JSON.stringify(e))
+							}
+						});
+			}
 		};
 		cola(function(model){
 			
@@ -84,13 +103,15 @@
 		})
 		
 		
-		$()
 		function buttonClick(value){
 			
 			if(value=='交货单审批'){
 				mui.openWindow({
 					url: 'sku-audit.html', 
 					id:'audit',
+					back:{
+						imgSrc:"img/assess.png"
+					}
 				});
 			}else if(value == '日收货量维护'){ 
 				mui.openWindow({

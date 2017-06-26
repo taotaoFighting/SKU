@@ -396,7 +396,10 @@
 					"resources/semantic.js",
 					"css/queryAudit.css",
 					"images/qq.png",
-					"img/assess.png"
+					"img/assess.png",
+					"images/loading.gif",
+					"css/loading.css",
+					"js/loading.js"
 				],
 				"refer": [
 					"sku-auditDetial.html"

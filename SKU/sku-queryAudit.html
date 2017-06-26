@@ -9,11 +9,12 @@
 		<link rel="stylesheet" type="text/css" href="./resources/semantic.css">
 		<link rel="stylesheet" type="text/css" href="./resources/cola.css">
 		<link rel="stylesheet" type="text/css" href="css/queryAudit.css" />
+		<link rel="stylesheet" type="text/css" href="css/loading.css" />
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
-		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
 		    <h1 class="mui-title" style="color: white;">查询结果</h1>
 		</header>
 		<div class="v-box">
@@ -51,6 +52,7 @@
 		<script src="./js/cola.js"></script>
 		<script src="./resources/i18n/zh/cola.js"></script>
 		<script src="./js/mui.min.js"></script>
+		<script src="./js/loading.js"></script>
 		<script type="text/javascript">
 			mui.init();
 			cola(function(model){
@@ -63,7 +65,7 @@
 						var storageWay = arg.item.get("storageWay");
 						arg.item.set("receiptStatus",model.action.transformCode(arg.item));
 						arg.item.set("storageWay",model.action.transfromStorageWay(arg.item));
-						alert(receiptStatus + storageWay)
+						console.log(receiptStatus + storageWay)
 						mui.openWindow({
 						    url: 'sku-auditDetial.html', 
 						    id:'auditDetial',
@@ -101,6 +103,9 @@
 				model.set("DelOrderStatus",self.DelOrderStatus);
 				param["pageSize"]="20";
 				param["pageNo"]="1";
+				var load = new Loading();
+				load.init();
+				load.start();
 				$.ajax({
 						type: "POST",
 						contentType:'application/json;charset=UTF-8',
@@ -111,12 +116,13 @@
 						datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
 						success: function(data) {
 							model.set("items",data.data.entities); 
-							
+							load.stop();
 						},
 						//调用出错执行的函数
 						error: function(e) {
 							//请求出错处理
-							console.log(JSON.stringify(e))
+							console.log(JSON.stringify(e));
+							load.stop();
 						}
 					});
 				});
@@ -126,12 +132,13 @@
 		                $type: "listView",
 		                bind: "item in items",
 		                height:window.screen.height - 54,
-		                pullUp:false, 
+		                pullUp:true, 
 		                pullStep: function(arg) {
 		                    $("#divPullUp").text((arg.distance < arg.theshold) ? "继续上拉加载更多" : "释放以刷新");
 		                },
 		                pullComplete: function(self,arg) {
 		                    $("#divPullUp").text("正在加载...");
+		                    console.log("正在加载")
 		                    arg.done();
 		                },
 		                getItemTemplate: function(arg) {

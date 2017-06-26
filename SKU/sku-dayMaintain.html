@@ -13,16 +13,27 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
-		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
 		    <h1 class="mui-title" style="color: white;">日收货量维护</h1>
 		</header>
 		<div class="v-box" style="padding-top: 54px;">
 			<div class="v-box" style="width: 80%;margin-left: 5%;text-align: right;">
-			<label id="rowLabel">仓库：<c-input  id="formInput" c-bind="queryData.storageCode" c-widget="width:70%"><!--<c-dropdown  id="formInput" c-bind="queryData.storageCode" items="{{resp}}" openmode="drop" valueProperty="label" textProperty="label" c-widget="width:70%"></c-dropdown>--></label>
-			<label id="rowLabel">品牌：<c-dropdown  id="formInput" c-bind="queryData.brand" items="{{band}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-input></label> 
-			<label id="rowLabel">开始日期：<c-datePicker id="formInput" c-widget="width:70%;bind:queryData.dateS"></c-datePicker></label>
-			<label id="rowLabel">结束日期：<c-datePicker id="formInput" c-widget="width:70%;bind:queryData.dateE"></c-datePicker></label>
-			<label id="rowLabel">最大限额：<c-input  id="formInput" c-bind="queryData.ceiling" c-widget="width:70%"></c-input></label>
+			<div class="box" id="rowLabel">
+				<label>仓库：</label><c-input  id="formInput" c-bind="queryData.storageCode" c-widget="width:70%">
+			</div>
+			<div class="box" id="rowLabel">
+				<label>品牌：</label><c-dropdown  id="formInput" c-bind="queryData.brand" items="{{band}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-input>
+			</div>
+			<div class="box" id="rowLabel">
+				<label>开始日期：</label><c-datePicker id="formInput" readOnly="true" c-widget="width:70%;bind:queryData.dateS"></c-datePicker>
+			</div>
+			<div class="box" id="rowLabel">
+				<label>结束日期：</label><c-datePicker id="formInput" readOnly="true" c-widget="width:70%;bind:queryData.dateE"></c-datePicker>
+			</div>
+			<div class="box" id="rowLabel">
+				<label>最大限额：</label><c-input id="formInput" c-bind="queryData.ceiling" c-widget="width:70%"></c-input>
+			</div>
+			<!--<c-dropdown  id="formInput" c-bind="queryData.storageCode" items="{{resp}}" openmode="drop" valueProperty="label" textProperty="label" c-widget="width:70%"></c-dropdown>-->
 			<label id="rowLabel" style="text-align: center;margin-top: 10%;">
 					<c-checkbox id="boxs" label="按箱维护" click="change" checked="true" style="margin-left: 3em;"></c-checkbox>
 					<c-checkbox id="nubs" label="按量维护" click="change" style="margin-left: 3em;"></c-checkbox>

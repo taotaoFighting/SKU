@@ -14,17 +14,27 @@
 	<body>
 		
 		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
-		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
 		    <h1 class="mui-title" style="color: white;">交货单审批</h1>
 		</header>
-		<div class="v-box" style="">
+		<div class="v-box">
 			<div class="h-box">
 				<div class="v-box" style="width: 90%;text-align: right;padding-top: 10%;">
-					<label>交货单状态：<c-dropdown c-bind="queryData.receiptStatus" id="formInput" items="{{DelOrderStatus}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:65%"></c-dropdown></label>
-					<label>交货单编号：<c-input c-bind="queryData.receiptCode" id="formInput" c-widget="width:65%"></c-input></label> 
-					<label>生产订单号：<c-input c-bind="queryData.productionOrderCode" id="formInput" c-widget="width:65%"></c-input></label>
-					<label>采购订单编号：<c-input c-bind="queryData.poCode" id="formInput" c-widget="width:65%"></c-input></label>
-					<label>款号：<c-input c-bind="queryData.style" id="formInput" c-widget="width:65%"></c-input></label>
+					<div class="box">
+						<label>交货单状态：</label><c-dropdown c-bind="queryData.receiptStatus" id="formInput" items="{{DelOrderStatus}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:65%"></c-dropdown>
+					</div>
+					<div class="box">
+						<label>交货单编号：</label><c-input c-bind="queryData.receiptCode" id="formInput" c-widget="width:65%"></c-input>
+					</div>
+					<div class="box">
+						<label>生产订单号：</label><c-input c-bind="queryData.productionOrderCode" id="formInput" c-widget="width:65%"></c-input>
+					</div>
+					<div class="box">
+						<label>采购订单编号：</label><c-input c-bind="queryData.poCode" id="formInput" c-widget="width:65%"></c-input>
+					</div>
+					<div class="box">
+						<label>款号：</label><c-input c-bind="queryData.style" id="formInput" c-widget="width:65%"></c-input>
+					</div>
 				</div>
 			</div>
 			<div class="box" style="margin-top: 5em;">
@@ -86,7 +96,6 @@
 						model.set("queryData",{receiptStatus:"01"});  
 					},
 					query:function(){
-						alert(JSON.stringify(model.get("queryData")))
 						if(!model.get("queryData").get("style")){
 							mui.toast('款号不能为空',{ duration:'short', type:'div' });
 							return;
