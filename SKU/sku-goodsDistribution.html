@@ -97,6 +97,7 @@
 			            };
 			            years.push(item);
 			        }
+			        years.push({year:"请选择"});
 			        model.set("years", years);
 				
 				model.set({
@@ -123,6 +124,9 @@
 						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/enum/Wave/list",
 						success:function(arg){
 							model.set("band",arg.result.dataList);
+							model.get("band").insert({"enumvName":"请选择","enumvCode":""});
+							model.get("queryData").set("band","");
+							model.get("queryData").set("years","请选择");
 						}
 					}
 				});
@@ -132,6 +136,8 @@
 						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/enum/Season/list",
 						success:function(arg){
 							model.set("seasons",arg.result.dataList);
+							model.get("seasons").insert({"enumvName":"请选择","enumvCode":""});
+							model.get("queryData").set("season","")
 						}
 					}
 				});
@@ -171,11 +177,28 @@
 						});
 					},
 					query:function(){//查询
+						var param = {};
+						if(model.get("queryData").get("styleCode")){
+							param["styleCode"] = model.get("queryData").get("styleCode");
+						}
+						if(model.get("queryData").get("colorCode")){
+							param["colorCode"] = model.get("queryData").get("colorCode");
+						}
+						if(model.get("queryData").get("years") && !(model.get("queryData").get("years") == "请选择")){
+							param["years"] = model.get("queryData").get("years");
+						}
+						if(model.get("queryData").get("season")){
+							param["season"] = model.get("queryData").get("season");
+						}
+						if(model.get("queryData").get("band")){
+							param["band"] = model.get("queryData").get("band");
+						}
+						console.log(JSON.stringify(param))
 						 mui.openWindow({
 						    url: 'queryResult.html', 
 						    id:'queryResult',
 						    extras:{
-						        queryData:model.get("queryData")  //扩展参数
+						        queryData:param  //扩展参数
 						    }
 						 }); 
 					},

@@ -8,6 +8,8 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="./resources/semantic.css">
 		<link rel="stylesheet" type="text/css" href="./resources/cola.css">
+		<link rel="stylesheet" type="text/css" href="css/queryAudit.css" />
+		<link rel="stylesheet" type="text/css" href="css/loading.css" />
 	</head>
 	
 	<body>
@@ -16,9 +18,9 @@
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
 		    <h1 class="mui-title" style="color: white;">日剩余货获量查询结果</h1>
 		</header>
-		<div class="v-box" style="height: 100%;width: 100%;overflow: scroll;margin-top: 50px;"> 
+		<div class="v-box" style="height: 100%;width: 100%;overflow: scroll;padding-top: 50px;"> 
 			<div class="box">
-				<div class="h-box" style="text-align: center;width: 150%;">
+				<div class="h-box" id="title" style="width: 150%;">
 					<div c-repeat="title in titles" c-widget="#titles"></div>
 				</div>
 				<div class="flex-box">
@@ -37,6 +39,7 @@
 		<script src="./resources/cola.js"></script>
 		<script src="./resources/i18n/zh/cola.js"></script>
 		<script src="./js/mui.min.js"></script>
+		<script src="./js/loading.js"></script>
 		<script type="text/javascript">
 			mui.init();
 			cola(function(model){
@@ -44,22 +47,29 @@
 				mui.plusReady(function(){
 				var self = plus.webview.currentWebview();
 				var param = self.queryData;
+				var load = new Loading();
+				load.init();
+				load.start();
 				$.ajax({
 						type: "POST",
 						contentType:'application/json;charset=UTF-8',
 						url: localStorage.getItem("localhost")+"/scmmk/rest/mobile/board/storage_daily_ceiling/list",
 						//提交的数据
-						data: JSON.stringify({}),
+						data: JSON.stringify(param),
 						//返回数据的格式
 						datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
 						success: function(data) {
+							load.stop();
+							if(data.status == "300"){
+								mui.toast("无效索引！",{ duration:'short', type:'div' });
+								return;
+							}
 							var dataList = data.dataList;
 							var tmpItms = [];
 							var titles = [];
 							for(k = 0 ; k < dataList.length ; k++){
 								var e = dataList[k];
 								var title = e["CUSTOMER_NAME"];
-								console.log(JSON.stringify(e))
 								if(titles.length == 0){
 									titles.push(title);
 								}else{
@@ -143,7 +153,7 @@
 		            },
 					titles: {
 		                $type: "label", 
-		                width:window.screen.width*1.5/5,
+		                width:window.screen.width*1.49/5,
 		                text: "{{title}}",
 		            }
 		        });

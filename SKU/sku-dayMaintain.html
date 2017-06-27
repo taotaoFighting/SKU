@@ -9,6 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="./resources/semantic.css">
 		<link rel="stylesheet" type="text/css" href="./resources/cola.css">
 		<link rel="stylesheet" type="text/css" href="./css/dayMaintain.css"> 
+		<link rel="stylesheet" type="text/css" href="css/loading.css" />
 	</head>
 
 	<body>
@@ -22,7 +23,7 @@
 				<label>仓库：</label><c-input  id="formInput" c-bind="queryData.storageCode" c-widget="width:70%">
 			</div>
 			<div class="box" id="rowLabel">
-				<label>品牌：</label><c-dropdown  id="formInput" c-bind="queryData.brand" items="{{band}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-input>
+				<label>品牌：</label><c-dropdown  id="formInput" c-bind="queryData.brand" change="clearBand" items="{{band}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-input>
 			</div>
 			<div class="box" id="rowLabel">
 				<label>开始日期：</label><c-datePicker id="formInput" readOnly="true" c-widget="width:70%;bind:queryData.dateS"></c-datePicker>
@@ -49,18 +50,12 @@
 		<script src="./js/cola.js"></script>
 		<script src="./resources/i18n/zh/cola.js"></script>
 		<script src="./js/mui.min.js"></script>
+		<script src="./js/loading.js"></script>
 		<script type="text/javascript">
 			mui.init()
 			cola(function(model){
 				
 				model.set({
-					resp:[{
-						label:"仓库1",
-					},{
-						label:"仓库2",
-					},{
-						label:"仓库3",
-					}],
 					queryData:{limitedUnit:"箱"}
 				});
 				model.describe("band",{
@@ -69,6 +64,8 @@
 						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/enum/Brand/list",
 						success:function(arg){
 							model.set("band",arg.result.dataList);
+							model.get("band").insert({"enumvName":"请选择","enumvCode":""}) 
+							model.get("queryData").set("brand",""); 
 						}
 					}
 				});
@@ -95,6 +92,7 @@
 						
 					},
 					commit:function(){
+						
 						if(!model.get("queryData").get("storageCode")){
 							mui.toast('仓库不能为空',{ duration:'short', type:'div' });
 							return;
@@ -115,7 +113,9 @@
 							mui.toast('最大限额不能为空',{ duration:'short', type:'div' });
 							return;
 						}
-						console.log(JSON.stringify(model.get("queryData")))
+						var load = new Loading();
+						load.init();
+						load.start();
 						//检查是否已维护
 						$.ajax({
 						type: "POST",
@@ -126,7 +126,6 @@
 						//返回数据的格式
 						datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
 						success: function(data) {
-							console.log(JSON.stringify(data))
 							if(data.msg == ""){
 								$.ajax({
 									type: "POST",
@@ -137,11 +136,13 @@
 									//返回数据的格式
 									datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
 									success: function(data) {
-										console.log(JSON.stringify(data))
+										mui.toast(data.msg,{ duration:'short', type:'div' });
+										load.stop();
 									},
 									//调用出错执行的函数
 									error: function(e) {
 										//请求出错处理
+										load.stop();
 									}
 								});
 							}else{
@@ -157,15 +158,17 @@
 											//返回数据的格式
 											datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
 											success: function(data) {
-												console.log(JSON.stringify(data))
+												mui.toast(data.msg,{ duration:'short', type:'div' });
+												load.stop();
 											},
 											//调用出错执行的函数
 											error: function(e) {
 												//请求出错处理
+												load.stop();
 											}
 										});
 									}else {
-										
+										load.stop();
 									}
 								})
 							}

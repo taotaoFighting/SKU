@@ -26,7 +26,7 @@
 						<div class="box">
 							<label c-bind="getName(items)" style="color: #439CF6;font-size: 1.3em;"></label>
 						</div>
-						<div class="h-box" style="text-align: center;">
+						<div class="h-box" id="title" style="text-align: center;padding-left: 0%;">
 							<div c-repeat="title in titles" c-widget="#titles"></div>
 						</div>
 						<div c-repeat="item in items" c-widget="#labelRow">
@@ -72,6 +72,10 @@
 								return ;
 							}
 							var dataList = data.dataList; 
+							if(dataList.length == 0){
+								mui.toast('暂无数据',{ duration:'short', type:'div' });
+								return;
+							}
 							var tmpItms = [];
 							var titles = [];
 							for(k = 0 ; k < dataList.length ; k++){

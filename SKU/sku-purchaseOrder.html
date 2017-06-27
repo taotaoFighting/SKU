@@ -9,6 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="./resources/semantic.css">
 		<link rel="stylesheet" type="text/css" href="./resources/cola.css">
 		<link rel="stylesheet" type="text/css" href="./css/purchaseOrder.css" />
+		<link rel="stylesheet" type="text/css" href="css/loading.css" />
 	</head>
 
 	<body>
@@ -49,6 +50,7 @@
 		<script src="./resources/cola.js"></script>
 		<script src="./resources/i18n/zh/cola.js"></script>
 		<script src="./js/mui.min.js"></script>
+		<script src="./js/loading.js"></script>
 		<script type="text/javascript">
 			mui.init();
 			cola(function(model){
@@ -60,7 +62,9 @@
 				var self = plus.webview.currentWebview();
 				var receiptCode = self.receiptCode;
 				model.set("receiptCode",receiptCode);
-				console.log(JSON.stringify(self.queryData));
+				var load = new Loading();
+				load.init();
+				load.start();
 				$.ajax({
 						type: "POST",
 						contentType:'application/json;charset=UTF-8',
@@ -71,11 +75,13 @@
 						data:JSON.stringify(self.queryData),
 						success: function(data) {
 							model.set("items",data.dataList);
-							console.log(JSON.stringify(data.dataList));
+							load.stop();
 						},
 						//调用出错执行的函数
 						error: function(e) {
 							//请求出错处理
+							load.stop();
+							mui.toast('出错了！',{ duration:'short', type:'div' });
 						}
 					});
 				});

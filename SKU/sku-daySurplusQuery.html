@@ -19,10 +19,10 @@
 		<div class="v-box" style="padding-top: 54px;">
 			<div class="v-box" style="width: 85%;margin-left: 5%;text-align: right;">
 			<div class="box" id="rowLabel">
-				<label >仓库：</label><c-dropdown  id="formInput" items="{{resp}}" openmode="drop" valueProperty="label" textProperty="label" c-widget="width:70%"></c-dropdown>
+				<label >仓库：</label><c-input  id="formInput" c-bind="queryData.storageCode" c-widget="width:70%">
 			</div>
 			<div class="box" id="rowLabel">
-				<label >品牌：</label><c-dropdown c-bind="queryData.brand" id="formInput" items="{{band}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-input> 
+				<label >品牌：</label><c-dropdown c-bind="queryData.brand" id="formInput" change="clearBand" items="{{band}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-input> 
 			</div>
 			<div class="box" id="rowLabel">
 				<label >开始日期：</label><c-datePicker id="dateP" readOnly="true" c-widget="width:70%;bind:queryData.dateS"></c-datePicker>
@@ -32,7 +32,7 @@
 			</div>
 			<div class="box" style="margin-top: 20%;">
 				<c-button color="blue" c-widget="caption:查询;width:90%;click:query" style="margin-left: 5%;"></c-button>
-				<c-button c-widget="caption:重置;width:90%;click:reset" style="margin-left: 5%;margin-top: 10%;"></c-button>
+				<c-button c-widget="caption:重置;width:90%;click:resetData" style="margin-left: 5%;margin-top: 10%;"></c-button>
 			</div>
 			</div>
 		</div>
@@ -47,13 +47,6 @@
 			cola(function(model){
 				
 				model.set({
-					resp:[{
-						label:"仓库1",
-					},{
-						label:"仓库2",
-					},{
-						label:"仓库3",
-					}],
 					queryData:{}
 				});
 				model.describe("band",{
@@ -62,20 +55,38 @@
 						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/enum/Brand/list",
 						success:function(arg){
 							model.set("band",arg.result.dataList);
+							model.get("band").insert({"enumvName":"请选择","enumvCode":""});
+							model.get("queryData").set("brand","");
 						}
 					}
 				});
 				
 				model.action({
 					query:function(){
-						console.log(JSON.stringify(model.get("queryData")))
+						var param = {};
+						if(model.get("queryData").get("storageCode")){
+							param["storageCode"] = model.get("queryData").get("storageCode");
+						}
+						if(model.get("queryData").get("brand")){
+							param["brand"] = model.get("queryData").get("brand");
+						}
+						if(model.get("queryData").get("dateS")){
+							param["dateS"] = model.get("queryData").get("dateS");
+						}
+						if(model.get("queryData").get("dateE")){
+							param["dateE"] = model.get("queryData").get("dateE");
+						}
+						console.log(JSON.stringify(param))
 						mui.openWindow({
 						    url: 'sku-daySurplusQueryResult.html', 
 						    id:'daySurplusQueryResult',
 						    extras:{
-						        queryData:model.get("queryData")  //扩展参数
+						        queryData:param  //扩展参数
 						    }
 						 }); 
+					},
+					resetData:function(){
+						model.set("queryData",{});
 					}
 				});
 				

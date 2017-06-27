@@ -22,7 +22,7 @@
 				<label >品牌：</label><c-dropdown c-bind="queryData.brand"  id="formInput" items="{{brands}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-dropdown>
 			</div>
 			<div class="box" id="rowLabel">
-				<label >大仓：</label><c-dropdown c-bind="queryData.customerCode" id="formInput" items="{{brands}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-input> 
+				<label >大仓：</label><c-input  id="formInput" c-bind="queryData.storageCode" c-widget="width:70%"> 
 			</div>
 			<div class="box" id="rowLabel">
 				<label >年份：</label><c-dropdown c-bind="queryData.years" id="formInput" items="{{years}}" openmode="drop" valueProperty="year" textProperty="year" c-widget="width:70%"></c-dropdown>
@@ -57,16 +57,10 @@
 			            };
 			            years.push(item);
 			        }
+			        years.push({year:"请选择"});
 			        model.set("years", years);
 				
 				model.set({
-					resp:[{
-						label:"仓库1",
-					},{
-						label:"仓库2",
-					},{
-						label:"仓库3",
-					}],
 					queryData:{}
 				});
 				model.describe("brands",{
@@ -75,6 +69,9 @@
 						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/enum/Brand/list",
 						success:function(arg){
 							model.set("brands",arg.result.dataList);
+							model.get("brands").insert({"enumvName":"请选择","enumvCode":""});
+							model.get("queryData").set("brand","")
+							model.get("queryData").set("years","请选择")
 						}
 					}
 				});
@@ -85,6 +82,8 @@
 						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/enum/Season/list",
 						success:function(arg){
 							model.set("seasons",arg.result.dataList);
+							model.get("seasons").insert({"enumvName":"请选择","enumvCode":""});
+							model.get("queryData").set("season","")
 						}
 					}
 				});
@@ -95,18 +94,36 @@
 						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/enum/Wave/list",
 						success:function(arg){
 							model.set("waves",arg.result.dataList);
+							model.get("waves").insert({"enumvName":"请选择","enumvCode":""});
+							model.get("queryData").set("band","")
 						}
 					}
 				});
 				
 				model.action({
 					query:function(){
-						alert(JSON.stringify(model.get("queryData")))
+						var param = {};
+						if(model.get("queryData").get("brand")){
+							param["brand"] = model.get("queryData").get("brand");
+						}
+						if(model.get("queryData").get("storageCode")){
+							param["storageCode"] = model.get("queryData").get("storageCode");
+						}
+						if(model.get("queryData").get("years") && !(model.get("queryData").get("years") == "请选择")){
+							param["years"] = model.get("queryData").get("years");
+						}
+						if(model.get("queryData").get("season")){
+							param["season"] = model.get("queryData").get("season");
+						}
+						if(model.get("queryData").get("band")){
+							param["band"] = model.get("queryData").get("band");
+						}
+						console.log(JSON.stringify(param))
 						mui.openWindow({
 						    url: 'sku-incomePlanQuery.html', 
 						    id:'incomePlanQuery',
 						    extras:{
-						        queryData:model.get("queryData")  //扩展参数
+						        queryData:param  //扩展参数  
 						    }
 						 }); 
 					},

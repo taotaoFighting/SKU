@@ -22,17 +22,17 @@
 				<label >品牌：</label><c-dropdown  id="formInput" c-bind="queryData.brandCode" items="{{brands}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-input> 
 			</div>
 			<div class="box" id="rowLabel">
-				<label >大仓：</label><c-dropdown  id="formInput" c-bind="queryData.storageCode" items="{{resp}}" openmode="drop" valueProperty="label" textProperty="label" c-widget="width:70%"></c-dropdown>
+				<label >大仓：</label></label><c-input  id="formInput" c-bind="queryData.storageCode" c-widget="width:70%">
 			</div>
 			<div class="box" id="rowLabel">
-				<label >开始日期：</label><c-datePicker id="dateP" c-widget="width:70%;bind:queryData.deliveryDateS"></c-datePicker>
+				<label >开始日期：</label><c-datePicker id="dateP" readOnly="true" c-widget="width:70%;bind:queryData.deliveryDateS"></c-datePicker>
 			</div>
 			<div class="box" id="rowLabel">
-				<label >截止日期：</label><c-datePicker id="dateP" c-widget="width:70%;bind:queryData.deliveryDateE"></c-datePicker>
+				<label >截止日期：</label><c-datePicker id="dateP" readOnly="true" c-widget="width:70%;bind:queryData.deliveryDateE"></c-datePicker>
 			</div>
 			<div class="box" style="margin-top: 20%;">
 				<c-button color="blue" c-widget="caption:查询;width:90%;click:query" style="margin-left: 5%;"></c-button>
-				<c-button c-widget="caption:重置;width:90%;click:reset" style="margin-left: 5%;margin-top: 10%;"></c-button>
+				<c-button c-widget="caption:重置;width:90%;click:resetData" style="margin-left: 5%;margin-top: 10%;"></c-button>
 			</div>
 			</div>
 		</div>
@@ -48,13 +48,6 @@
 				
 				
 				model.set({
-					resp:[{
-						label:"仓库1",
-					},{
-						label:"仓库2",
-					},{
-						label:"仓库3",
-					}],
 					queryData:{}
 				});
 				
@@ -64,20 +57,38 @@
 						url:localStorage.getItem("localhost")+"/scmmk/rest/mobile/enum/Brand/list",
 						success:function(arg){
 							model.set("brands",arg.result.dataList);
+							model.get("brands").insert({"enumvName":"请选择","enumvCode":""});
+							model.get("queryData").set("brandCode",""); 
 						}
 					}
 				});
 				
 				model.action({
 					query:function(){
-						alert(JSON.stringify(model.get("queryData")))
+						var param = {};
+						if(model.get("queryData").get("brandCode")){
+							param["brandCode"] = model.get("queryData").get("brandCode");
+						}
+						if(model.get("queryData").get("storageCode")){
+							param["storageCode"] = model.get("queryData").get("storageCode");
+						}
+						if(model.get("queryData").get("deliveryDateS")){
+							param["deliveryDateS"] = model.get("queryData").get("deliveryDateS");
+						}
+						if(model.get("queryData").get("deliveryDateE")){
+							param["deliveryDateE"] = model.get("queryData").get("deliveryDateE");
+						}
+						console.log(JSON.stringify(param));
 						mui.openWindow({
 						    url: 'sku-deliveryPalnQueryResult.html', 
 						    id:'deliveryPalnQueryResult',
 						    extras:{
-						        queryData:model.get("queryData")  //扩展参数
+						        queryData:param  //扩展参数
 						    }
 						 }); 
+					},
+					resetData:function(){
+						model.set("queryData",{});
 					}
 				});
 				

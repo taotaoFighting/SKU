@@ -9,6 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="./resources/semantic.css">
 		<link rel="stylesheet" type="text/css" href="./resources/cola.css">
 		<link rel="stylesheet" type="text/css" href="css/queryAudit.css" />
+		<link rel="stylesheet" type="text/css" href="css/loading.css" />
 	</head>
 
 	<body>
@@ -18,7 +19,7 @@
 		</header>
 		
 		<div class="v-box" style="padding-top: 54px;">
-			<div class="h-box" style="text-align: center;margin-left: 1.6%;width: 96.8%;border: solid 1px lavender;">
+			<div class="h-box" id="title" style="margin-left: 1.6%;width: 96.8%;">
 				<div c-repeat="title in titles" c-widget="#titles"></div>
 			</div>
 			<div class="flex-box" >
@@ -41,6 +42,7 @@
 		<script src="./resources/cola.js"></script>
 		<script src="./resources/i18n/zh/cola.js"></script>
 		<script src="./js/mui.min.js"></script>
+		<script src="./js/loading.js"></script>
 		<script type="text/javascript">
 			mui.init();
 			cola(function(model){
@@ -53,9 +55,9 @@
 				var self = plus.webview.currentWebview();
 				var param = self.queryData;
 				console.log(JSON.stringify(param))
-//				var load = new Loading();
-//				load.init();
-//				load.start();
+				var load = new Loading();
+				load.init();
+				load.start();
 				$.ajax({
 						type: "POST",
 						contentType:'application/json;charset=UTF-8',
@@ -66,6 +68,7 @@
 						datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
 						success: function(data) {
 						console.log(JSON.stringify(data))
+							load.stop();
 							var dataList = data.dataList;
 							if(dataList.length == 0){
 								mui.toast('暂无数据',{ duration:'short', type:'div' });
@@ -121,11 +124,13 @@
 								}
 							}
 							model.set("itemes",sitems);
+							load.stop();
 						},
 						//调用出错执行的函数
 						error: function(e) {
 							//请求出错处理
 							console.log(JSON.stringify(e))
+							load.stop();
 						}
 					});
 				});

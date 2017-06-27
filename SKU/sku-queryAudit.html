@@ -115,8 +115,13 @@
 						//返回数据的格式
 						datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
 						success: function(data) {
+							
 							model.set("items",data.data.entities); 
 							load.stop();
+							if(data.data.entities.length == 0){
+								mui.toast("无搜索结果！",{ duration:'short', type:'div' });
+							}
+							
 						},
 						//调用出错执行的函数
 						error: function(e) {

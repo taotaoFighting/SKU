@@ -328,7 +328,11 @@
 					"resources/cola.css",
 					"resources/semantic.css",
 					"resources/3rd.js",
-					"resources/themes/default/assets/fonts/icons.woff"
+					"resources/themes/default/assets/fonts/icons.woff",
+					"images/loading.gif",
+					"css/loading.css",
+					"css/queryAudit.css",
+					"js/loading.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -474,7 +478,10 @@
 					"resources/cola.js",
 					"resources/cola.css",
 					"resources/semantic.css",
-					"resources/3rd.js"
+					"resources/3rd.js",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/cola.js"
 				],
 				"refer": [
 					"tab-webview-main.html"
@@ -492,7 +499,8 @@
 					"css/mui.min.css",
 					"resources/cola.css",
 					"resources/semantic.css",
-					"resources/3rd.js"
+					"resources/3rd.js",
+					"css/queryAudit.css"
 				],
 				"refer": [],
 				"priority": 0

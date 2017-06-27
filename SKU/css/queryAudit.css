@@ -52,3 +52,11 @@
     transition: background 0.1s ease;
     border-right: solid 1px lavender;
 }
+#title{
+	text-align: center;
+	margin-left: 0%;
+	width: 100%;
+	border-top: solid 1px lavender;
+	border-left: solid 1px lavender;
+	border-bottom: solid 1px lavender;
+}
