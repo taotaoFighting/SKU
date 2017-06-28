@@ -76,7 +76,7 @@
 		function plusReady(){
 			plus.navigator.setStatusBarBackground('#439CF6');
 			if(localStorage.getItem("firstLaunch")){
-				var param = {userName:localStorage.getItem("userName"),password:localStorage.getItem("password")};
+				var param = {userName:localStorage.getItem("userName"),password:localStorage.getItem("passwordDefault")};
 				$.ajax({
 							type: "POST",
 							contentType:'application/json;charset=UTF-8',

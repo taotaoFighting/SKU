@@ -25,19 +25,19 @@
 				<div id="item1" class="mui-control-content mui-active">
 					<div class="v-box" id="inputFrom">
 						<div class="box">
-							<label>款号：</label><c-input id="queryInput" bind="queryData.styleCode" c-widget="width:80%" style="margin-top: 20%;"></c-input>
+							<label>款号：</label><c-input class="queryInput" bind="queryData.styleCode" c-widget="width:80%" style="margin-top: 20%;"></c-input>
 						</div>
 						<div class="box">
-							<label>颜色：</label><c-dropdown id="queryInput" bind="queryData.colorCode" items="{{colors}}"  openmode="drop" valueProperty="value" textProperty="color" c-widget="width:80%"></c-dropdown>
+							<label>颜色：</label><c-dropdown class="queryInput" id="drop" bind="queryData.colorCode" items="{{colors}}"  openmode="drop" valueProperty="value" textProperty="color" c-widget="width:80%"></c-dropdown>
 						</div>
 						<div class="box">
-							<label>年份：</label><c-dropdown id="queryInput" bind="queryData.years" items="{{years}}"  openmode="drop"  valueProperty="year" textProperty="year" c-widget="width:80%"></c-dropdown>
+							<label>年份：</label><c-dropdown class="queryInput" id="drop" bind="queryData.years" items="{{years}}"  openmode="drop"  valueProperty="year" textProperty="year" c-widget="width:80%"></c-dropdown>
 						</div>
 						<div class="box">
-							<label>季节：</label><c-dropdown id="queryInput" bind="queryData.season" items="{{seasons}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown>
+							<label>季节：</label><c-dropdown class="queryInput" id="drop" bind="queryData.season" items="{{seasons}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown>
 						</div>
 						<div class="box">
-							<label>波段：</label><c-dropdown id="queryInput" bind="queryData.band" items="{{band}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown>
+							<label>波段：</label><c-dropdown class="queryInput" id="drop" bind="queryData.band" items="{{band}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown>
 						</div>
 						<div class="box" style="margin-top: 10%;">
 							<c-button size="big" color="blue" c-widget="caption:查询;width:90%;click:query" style="margin-left: 5%;"></c-button>
@@ -88,6 +88,10 @@
 			mui.init()
 			
 			cola(function(model){
+				
+				$(".v-box").click(function(){
+					
+				});
 				
 				var years = [];
 				var today = new Date();

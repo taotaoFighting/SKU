@@ -22,22 +22,22 @@
 					<div class="v-box" id="inputFrom">
 						<!--<label>工厂：<c-input id="queryInput" bind="queryData.styleCode" c-widget="width:80%" style="margin-top: 20%;"></c-input></label>-->
 						<div class="box">
-							<label>品牌：</label><c-dropdown id="queryInput" c-bind="queryData.brand" items="{{band}}"  openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%" style="margin-top: 20%;"></c-dropdown>
+							<label>品牌：</label><c-dropdown class="queryInput" c-bind="queryData.brand" items="{{band}}"  openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%" style="margin-top: 20%;"></c-dropdown>
 						</div>
 						<div class="box">
-							<label>年份：</label><c-dropdown id="queryInput" dblclick="dblclick" c-bind="queryData.years" items="{{years}}"  openmode="drop"  valueProperty="year" textProperty="year" c-widget="width:80%"></c-dropdown>
+							<label>年份：</label><c-dropdown class="queryInput" dblclick="dblclick" c-bind="queryData.years" items="{{years}}"  openmode="drop"  valueProperty="year" textProperty="year" c-widget="width:80%"></c-dropdown>
 						</div>
 						<div class="box">
-							<label>季节：</label><c-dropdown id="queryInput" c-bind="queryData.season" items="{{seasons}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown>
+							<label>季节：</label><c-dropdown class="queryInput" c-bind="queryData.season" items="{{seasons}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown>
 						</div>
 						<div class="box">
-							<label>波段：</label><c-dropdown id="queryInput" c-bind="queryData.band" items="{{waves}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown>
+							<label>波段：</label><c-dropdown class="queryInput" c-bind="queryData.band" items="{{waves}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown>
 						</div>
 						<div class="box">
-							<label>起时：</label><c-datePicker id="queryInput" readOnly="true"  c-widget="width:80%;inputFormat:MM-dd;bind:queryData.deliveryDateS"></c-datePicker>
+							<label>起时：</label><c-datePicker class="queryInput" readOnly="true"  c-widget="width:80%;inputFormat:MM-dd;bind:queryData.deliveryDateS"></c-datePicker>
 						</div>
 						<div class="box"> 
-							<label>止时：</label><c-datePicker id="queryInput" readOnly="true" c-widget="width:80%;inputFormat:MM-dd;bind:queryData.deliveryDateE"></c-datePicker>
+							<label>止时：</label><c-datePicker class="queryInput" readOnly="true" c-widget="width:80%;inputFormat:MM-dd;bind:queryData.deliveryDateE"></c-datePicker>
 						</div>
 						<div class="box" style="margin-top: 10%;">
 							<c-button size="small" color="blue" c-widget="caption:查询;width:90%;click:query" style="margin-left: 5%;"></c-button>
@@ -57,6 +57,10 @@
 			mui.init()
 			
 			cola(function(model){
+				
+				$(".v-box").click(function(){
+					
+				})
 				
 				var years = [];
 				var today = new Date();
