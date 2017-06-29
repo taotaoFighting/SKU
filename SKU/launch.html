@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title></title>
-    <link href="css/mui.min.css" rel="stylesheet" />
+    <link href="./css/mui.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="./resources/semantic.css">
 	<link rel="stylesheet" type="text/css" href="./resources/cola.css">
 </head>
@@ -43,74 +43,7 @@
 	<script src="./js/cola.js"></script>
 	<script src="./resources/i18n/zh/cola.js"></script>
 	<script src="./js/mui.min.js"></script>
-	<script type="text/javascript">
-		
-		
-		document.addEventListener('plusready',plusReady,false);
-		function plusReady(){
-			plus.navigator.setStatusBarBackground('#439CF6');
-			localStorage.setItem("localhost","http://202.96.245.236:8080");
-		};
-		cola(function(model){
-			model.set({
-				"param":{},
-				"isSavepad":true
-			});
-			
-			if(localStorage.getItem("password")){
-				model.get("param").set("password",localStorage.getItem("password"));
-			}
-			
-			if(localStorage.getItem("userName")){
-				model.get("param").set("userName",localStorage.getItem("userName"));
-			}
-			
-			model.action({
-				launch:function(){
-					$.ajax({
-						type: "POST",
-						contentType:'application/json;charset=UTF-8',
-						url: localStorage.getItem("localhost")+"/scmmk/rest/mobile/login",
-						//提交的数据
-						data: JSON.stringify(model.get("param")),
-						//返回数据的格式
-						datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
-						success: function(data) {
-							console.log(JSON.stringify(data))
-							if(data.msg == "登陆成功！"){
-								localStorage.setItem("firstLaunch",false);
-								localStorage.setItem("userName",model.get("param").get("userName"));
-								localStorage.setItem("passwordDefault",model.get("param").get("password"));
-								if(model.get("isSavepad")){
-									localStorage.setItem("password",model.get("param").get("password"));
-								}else{
-									localStorage.removeItem("password");
-								}
-								mui.openWindow({
-							    url: 'tab-webview-main.html', 
-							    id:'setting',
-							    styles:{
-		    						popGesture:'none'	
-		    					}
-							  });
-							}else{
-								mui.toast('账号或密码错误！',{ duration:'short', type:'div'});
-							}
-						},
-						//调用出错执行的函数
-						error: function(e) {
-							//请求出错处理
-						}
-					});
-					
-				},
-				change:function(){
-					model.set("isSavepad",!model.get("isSavepad"));
-					console.log(model.get("isSavepad"))
-				}
-			});
-		})
-	</script>
-	
+	<script type="text/javascript" src="js/util.js" ></script>
+	<script type="text/javascript" src="js/launch.js" ></script>
 </body>
 </html>

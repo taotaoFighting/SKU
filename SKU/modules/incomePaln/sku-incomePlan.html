@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../resources/semantic.css">
+		<link rel="stylesheet" type="text/css" href="../../resources/cola.css">
+		<link rel="stylesheet" type="text/css" href="../../css/dayMaintain.css">
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
+		    <h1 class="mui-title" style="color: white;">入库计划</h1>
+		</header>
+		<div class="v-box" style="padding-top: 54px;">
+			<div class="v-box" style="width: 80%;margin-left: 5%;text-align: right;">
+			<div class="box" id="rowLabel">
+				<label >品牌：</label><c-dropdown c-bind="queryData.brand"  id="formInput" items="{{brands}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-dropdown>
+			</div>
+			<div class="box" id="rowLabel">
+				<label >大仓：</label><c-input  id="formInput" c-bind="queryData.storageCode" c-widget="width:70%"> 
+			</div>
+			<div class="box" id="rowLabel">
+				<label >年份：</label><c-dropdown c-bind="queryData.years" id="formInput" items="{{years}}" openmode="drop" valueProperty="year" textProperty="year" c-widget="width:70%"></c-dropdown>
+			</div>
+			<div class="box" id="rowLabel">
+				<label >季节：</label><c-dropdown c-bind="queryData.season" id="formInput" items="{{seasons}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-dropdown>
+			</div>
+			<div class="box" id="rowLabel">
+				<label >波段：</label><c-dropdown c-bind="queryData.band" id="formInput" items="{{waves}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-dropdown>
+			</div>
+			<div class="box" style="margin-top: 20%;">
+				<c-button color="blue" c-widget="caption:查询;width:90%;click:query" style="margin-left: 5%;"></c-button>
+				<c-button c-widget="caption:重置;width:90%;click:resetData" style="margin-left: 5%;margin-top: 10%;"></c-button>
+			</div>
+			</div>
+		</div>
+		<script src="../../resources/jquery-2.1.3.js"></script> 
+		<script src="../../resources/3rd.js"></script>
+		<script src="../../resources/semantic.js"></script>
+		<script src="../../js/cola.js"></script>
+		<script src="../../resources/i18n/zh/cola.js"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/util.js"></script>
+		<script src="../../js/sku-incomePaln.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../resources/semantic.css">
+		<link rel="stylesheet" type="text/css" href="../../resources/cola.css">
+		<link rel="stylesheet" type="text/css" href="../../css/audit.css"/>
+	</head>
+
+	<body>
+		
+		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
+		    <h1 class="mui-title" style="color: white;">交货单审批</h1>
+		</header>
+		<div class="v-box">
+			<div class="h-box">
+				<div class="v-box" style="width: 90%;text-align: right;padding-top: 10%;">
+					<div class="box">
+						<label>交货单状态：</label><c-dropdown c-bind="queryData.receiptStatus" id="formInput" items="{{DelOrderStatus}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:65%"></c-dropdown>
+					</div>
+					<div class="box">
+						<label>交货单编号：</label><c-input c-bind="queryData.receiptCode" id="formInput" c-widget="width:65%"></c-input>
+					</div>
+					<div class="box">
+						<label>生产订单号：</label><c-input c-bind="queryData.productionOrderCode" id="formInput" c-widget="width:65%"></c-input>
+					</div>
+					<div class="box">
+						<label>采购订单编号：</label><c-input c-bind="queryData.poCode" id="formInput" c-widget="width:65%"></c-input>
+					</div>
+					<div class="box">
+						<label>款号：</label><c-input c-bind="queryData.style" id="formInput" c-widget="width:65%"></c-input>
+					</div>
+				</div>
+			</div>
+			<div class="box" style="margin-top: 5em;">
+				<c-button  color="blue" c-widget="caption:查询;width:80%;" click="query" style="margin-left: 10%;"></c-button>
+				<c-button  c-widget="caption:重置;width:80%;" click="dataBack" style="margin-left: 10%;margin-top: 2em;"></c-button>
+			</div>
+		</div>
+		
+		<script src="../../resources/jquery-2.1.3.js"></script> 
+		<script src="../../resources/3rd.js"></script>
+		<script src="../../resources/semantic.js"></script>
+		<script src="../../js/cola.js"></script>
+		<script src="../../resources/i18n/zh/cola.js"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/util.js"></script>
+		<script src="../../js/sku-audit.js"></script>
+	</body>
+
+</html>

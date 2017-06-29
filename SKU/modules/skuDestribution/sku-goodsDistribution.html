@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../resources/semantic.css">
+		<link rel="stylesheet" type="text/css" href="../../resources/cola.css">
+		<link rel="stylesheet" type="text/css" href="../../css/goodsDistribution.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
+			<img id="rightAddImage" src="img/rightAddImage.png"/>
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
+				<div id="segmentedControl" class="mui-segmented-control" style="border: 1px solid #ffffff;">
+					<a class="mui-control-item mui-active" id="itemLineHeight" href="#item1">实时查询</a>
+					<a class="mui-control-item" id="itemLineHeight"  href="#item3">我的关注</a>
+				</div>
+		</header>
+		<div class="v-box">
+			<div class="box" style="height: 100%;">
+				<div id="item1" class="mui-control-content mui-active">
+					<div class="v-box" id="inputFrom">
+						<div class="box">
+							<label>款号：</label><c-input class="queryInput" bind="queryData.styleCode" c-widget="width:80%" style="margin-top: 20%;"></c-input>
+						</div>
+						<div class="box">
+							<label>颜色：</label><c-dropdown class="queryInput" id="drop" bind="queryData.colorCode" items="{{colors}}"  openmode="drop" valueProperty="value" textProperty="color" c-widget="width:80%"></c-dropdown>
+						</div>
+						<div class="box">
+							<label>年份：</label><c-dropdown class="queryInput" id="drop" bind="queryData.years" items="{{years}}"  openmode="drop"  valueProperty="year" textProperty="year" c-widget="width:80%"></c-dropdown>
+						</div>
+						<div class="box">
+							<label>季节：</label><c-dropdown class="queryInput" id="drop" bind="queryData.season" items="{{seasons}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown>
+						</div>
+						<div class="box">
+							<label>波段：</label><c-dropdown class="queryInput" id="drop" bind="queryData.band" items="{{band}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:80%"></c-dropdown>
+						</div>
+						<div class="box" style="margin-top: 10%;">
+							<c-button size="big" color="blue" c-widget="caption:查询;width:90%;click:query" style="margin-left: 5%;"></c-button>
+						</div>
+						<div class="box" style="text-align: center;margin-top: 20%;">
+							<c-button size="small" color="teal" c-widget="caption:重置;width:35%;click:resetQuery"></c-button>
+							<c-button size="small" color="blue" c-widget="caption:关注;width:35%;click:attention" style="margin-left: 5%;"></c-button>
+						</div>
+					</div>
+				</div>
+				<div id="item3" class="mui-control-content">
+					<div class="v-box">
+						<c-listView id="fousList" itemClick="itemClick" style="margin-top: 44px;">
+						    <template name="odd">
+						        <li id="liRow">
+						        	<div id="boxRow" class="v-box">
+						        		<div class="box" style="padding-top: 1em;">
+						        			<label id="labelRow" c-bind="transfromTitle(country)"></label>
+						        		</div>
+						        		<div id="line"></div>
+						        		<div class="box" style="padding-top: 0.5em;">
+						        			<label>年份：<label id="labelRow" c-bind="country.years"></label></label>
+						        			<label style="margin-left: 2em;">季节：<label id="labelRow" c-bind="transfromSeason(country)"></label></label>
+						        		</div>
+						        		<div class="box" style="padding-top: 0.5em;margin-bottom: 0.5em;">
+						        			<label>波段：<label id="labelRow" c-bind="transfromBand(country)"></label></label>
+						        		</div>
+						        	</div>
+						        </li>
+						    </template>
+						    <template name="slide-left-pane">
+						        <div c-onclick="onRemoveClick(country)" style="padding:0 0.75em; color:#fff" class="remove red-background">
+						            <div style="position:relative; top:50%; line-height:1.5em; margin-top:-0.75em" class="text">delete</div>
+						        </div>
+						    </template>
+						    <template name="slide-right-pane">
+						        <!--<div c-onclick="onRemoveClick(country)" style="padding:0 0.75em; color:#fff" class="remove red-background">
+						            <div style="position:relative; top:50%; line-height:1.5em; margin-top:-0.75em" class="text">delete</div>
+						        </div>-->
+						    </template>
+						</c-listView>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../resources/jquery-2.1.3.js"></script> 
+		<script src="../../resources/3rd.js"></script>
+		<script src="../../resources/semantic.js"></script>
+		<script src="../../resources/cola.js"></script>
+		<script src="../../resources/i18n/zh/cola.js"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/util.js"></script>
+		<script src="../../js/sku-goodsDistribution.js"></script>
+	</body>
+
+</html>
