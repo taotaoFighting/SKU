@@ -14,7 +14,6 @@ var $util = new _util();
 							//提交的数据
 							data: param,
 							//返回数据的格式
-							datatype: "json", //"xml", "html", "script", "json", "jsonp", "text".
 							success: function(data) {
 							},
 							//调用出错执行的函数

@@ -84,7 +84,9 @@
 		                pullComplete: function(self,arg) {
 		                    $("#divPullUp").text("正在加载...");
 		                    console.log("正在加载")
+		                    
 		                    arg.done();
+		                    
 		                },
 		                getItemTemplate: function(arg) {
 		                    return "row";

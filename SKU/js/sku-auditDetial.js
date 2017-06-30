@@ -37,16 +37,17 @@
 						 }); 
 					},
 					passWay:function(){
-						
-						model.get("data").set("storageWay",model.get("storageWay"));
-						model.get("data").set("receiptStatus",model.get("receiptStatus"));
+						var jsonData = model.get("data").toJSON();
+						jsonData["storageWay"] = model.get("storageWay");
+						jsonData["receiptStatus"] = model.get("receiptStatus");
 						$util._ajaxJSON({
 								url: "board/delivery_note/header/approve",
-								data:JSON.stringify(model.get("data")),
+								data:jsonData,
 								success: function(data) {
 									console.log(JSON.stringify(data))
 									if(data.msg == "success"){
 										cola.widget("auditButton").set("disabled",true);
+										model.get("data").set("receiptStatus","审批通过");
 										//正常情况
 										mui.toast('审批成功',{ duration:'short', type:'div' });
 									}else{

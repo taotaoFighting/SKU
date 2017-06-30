@@ -506,7 +506,9 @@
 			"resources/3rd.js",
 			"js/loading.js",
 			"js/util.js",
-			"js/sku-queryAudit.js"
+			"js/sku-queryAudit.js",
+			"resources/cola.js",
+			"img/assess.png"
 		],
 		"refer": [
 			"modules/deliveryOrder/sku-auditDetial.html"
