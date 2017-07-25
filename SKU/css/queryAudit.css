@@ -8,7 +8,6 @@
 }
 #queryList{
 	margin-top: 44px;
-	background-color: lavender;
 	font-size: 0.9rem;
 }
 .ui.label {
@@ -56,7 +55,37 @@
 	text-align: center;
 	margin-left: 0%;
 	width: 100%;
+	font-size: 1rem;
 	border-top: solid 1px lavender;
 	border-left: solid 1px lavender;
 	border-bottom: solid 1px lavender;
+}
+.content_span{
+	width: 35%;
+	text-align: center;
+	border-right: solid 1px lavender;	
+	
+}
+.content_row{
+	border-bottom: solid 1px lavender;	
+	width:100%;
+	
+}
+.title_span{
+	font-size: 1rem;
+	color: #439CF6;
+}
+#incomeQueryList{
+	margin-top: 44px;
+	font-size: 0.9rem;
+}
+.income_span{
+	width: 20%;
+	text-align: center;
+	border-right: solid 1px lavender;
+}
+
+.cellingQueryList{
+	margin-top: 0px;
+	font-size: 0.9rem;
 }

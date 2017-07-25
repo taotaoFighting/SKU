@@ -20,7 +20,7 @@
 		<div class="v-box">
 			<c-listView id="queryList" itemClick="itemClick">
 				<template name="row">
-					<li style="margin-top:0.7em;background-position: right;background-image: url(../../img/assess.png);background-repeat: no-repeat;">
+					<li style="margin-top:0.7em;background-position: right;background-image: url(../../img/assess.png);background-repeat: no-repeat;border-bottom: solid 1px lavender;">
 						<div class="v-box">
 						    <div class="box" style="margin-left: 3%;width: 97%;">
 						    	<label>交货单状态：<span c-bind="transformCode(item)"></span></label>
@@ -31,7 +31,6 @@
 						    	<label id="labelSpace">数量：<span c-bind="item.productNum"></span></label>
 						    	<label id="labelSpace">入库方式：<span c-bind="transfromStorageWay(item)"></span></label>
 						    	<label id="labelSpace">折扣率：<span c-bind="item.discount"></span></label>
-						    	<!--<img style="width: 2em;position: fixed;margin-right: 10em;" src="img/assess.png"/>-->
 						    </div>
 						     <div class="box" id="boxRow" style="margin-bottom: 6px;">
 						    	<label>预计到货时间：<span c-bind="item.predictReceiptDate"></span></label>
@@ -39,11 +38,6 @@
 						</div>
 					</li>
 				</template>	
-				<template name="pull-up-pane">
-			        <div style="height:72px;padding-bottom:72px">
-			            <div id="divPullUp" style="line-height:48px"></div>
-			        </div>
-			    </template>
 			</c-listView>
 		</div>
 		<script src="../../resources/jquery-2.1.3.js"></script> 
@@ -54,6 +48,6 @@
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/loading.js"></script>
 		<script src="../../js/util.js"></script>
-		<script src="../../js/sku-queryAudit.js"></script>
+		<script src="./sku-queryAudit.js"></script>
 	</body>
 </html>

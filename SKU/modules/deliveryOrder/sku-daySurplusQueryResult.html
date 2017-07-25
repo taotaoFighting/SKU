@@ -20,14 +20,34 @@
 		</header>
 		<div class="v-box" style="height: 100%;width: 100%;overflow: scroll;padding-top: 50px;"> 
 			<div class="box">
-				<div class="h-box" id="title" style="width: 150%;">
+				<div class="h-box" id="title" style="width: 147.5%;margin-left: 1%;">
 					<div c-repeat="title in titles" c-widget="#titles"></div>
 				</div>
 				<div class="flex-box">
-					<div id="queryTable" style="font-size: 0.9em;width: 150%;overflow: scroll;background-color: white;">
-					<template name="int-template">
-				        <div c-widget="input; bind:$default; class:fluid" c-class="error:$default>500"></div>
-				    </template>
+					<c-listView id="cellingQueryList" itemClick="itemClick" style="width:150%;">
+				<template name="row">
+					<li class="content_row">
+						<div class="h-box" style="width:100%;">
+						   <span class="content_span" c-bind="item.LIMITED_DATE"></span>
+						   <span class="content_span" c-bind="item.BRAND"></span>
+						   <span class="content_span" c-bind="item.CEILING"></span>
+						   <span class="content_span" c-bind="item.LIMITED_UNIT"></span>
+						   <span class="content_span" c-bind="item.USED_CEILING"></span>
+						   <span class="content_span" style="border-right: solid 0px;" c-bind="item.UNUSED_CEILING"></span>
+						</div>
+					</li>
+				</template>	
+				<template name="titleRow"> 
+					<li class="content_row">
+						<span class="title_span" c-bind="item.LIMITED_DATE"></span>
+					</li>
+				</template>
+				<template name="pull-up-pane">
+			        <div style="height:72px;padding-bottom:72px">
+			            <div id="divPullUp" style="line-height:48px"></div>
+			        </div>
+			    </template>
+			</c-listView>
 				</div>
 				</div>
 			</div>
@@ -41,7 +61,7 @@
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/loading.js"></script>
 		<script src="../../js/util.js"></script>
-		<script src="../../js/sku-daySurplusQueryResult.js"></script>
+		<script src="./sku-daySurplusQueryResult.js"></script>
 	</body>
 
 </html>

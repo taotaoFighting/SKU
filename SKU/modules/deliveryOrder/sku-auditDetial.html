@@ -24,10 +24,13 @@
 				<label id="rowLabel">数量：<span c-bind="data.productNum"></span></label>
 				<label id="rowLabel">入库方式：<span c-bind="data.storageWay"></span></label>
 				<label id="rowLabel">折扣率：<span c-bind="data.discount"></span>1</label>
-				<label id="rowLabel">预计到货时间：<span c-bind="data.predictReceiptDate"></span></label>
+				<div id="rowLabel" style="padding-top: 0px;">
+					<label >预计到货时间：</label><c-datePicker id="comeTime" c-bind="data.predictReceiptDate" readOnly="true" disabled="true" c-widget="width:50%"></c-datePicker>
+				</div>
 				<label id="rowLabel">生产订单编号：<span c-bind="data.productionOrderCode"></span></label>
-				<label id="rowLabel">客户编号：<span>待商议</span></label>
-				<label id="rowLabel" style="margin-bottom: 1em;">生产订单状态：<span>待商议</span></label>
+				<label id="rowLabel">客户姓名：<span c-bind="data.customerName"></span></label>
+				<label id="rowLabel">客户编号：<span c-bind="data.customerCode"></span></label>
+				<label id="rowLabel" style="margin-bottom: 1em;">生产订单状态：<span c-bind="data.productionOrderStatus"></span></label>
 				<div class="flex-box" style="background-color: lavender;">
 					<div class="box">
 						<c-button id="buttonPosition" size="small" color="blue" c-widget="caption:装箱单详情;width:90%;click:detial" style="margin-left: 5%;"></c-button>
@@ -46,7 +49,7 @@
 		<script src="../../resources/i18n/zh/cola.js"></script>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/util.js"></script>
-		<script src="../../js/sku-auditDetial.js"></script>
+		<script src="./sku-auditDetial.js"></script>
 	</body>
 
 </html>

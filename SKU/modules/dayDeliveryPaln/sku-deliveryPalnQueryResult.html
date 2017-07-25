@@ -11,31 +11,46 @@
 		<link rel="stylesheet" type="text/css" href="../../css/queryAudit.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/loading.css" />
 	</head>
-
+	
 	<body>
+		
 		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
-		    <h1 class="mui-title" style="color: white;">查询结果</h1>
+		    <h1 class="mui-title" style="color: white;" c-bind="title"></h1>
 		</header>
-		
-		<div class="v-box" style="padding-top: 44px;">
-			<div class="flex-box" >
-				<c-listView id="queryList" style="margin-top: 0em;width: 210%;overflow: scroll;background-color: white;">
+		<div class="v-box" style="height: 100%;width: 100%;overflow: scroll;padding-top: 50px;">
+			<div class="box">
+				<div class="h-box" id="title" style="width: 187.5%;margin-left: 1%;">
+					<div class="titleRow" c-repeat="title in titles" c-widget="#titles"></div>
+				</div> 
+			<div class="flex-box" style="margin-top: -3rem;">
+				<c-listView id="queryList" itemClick="itemClick" style="width:190%;">
 				<template name="row">
-					<li style="margin-top:0.7em;">
-						<div class="box">
-							<label c-bind="getName(items)" style="color: #439CF6;font-size: 1.3em;"></label>
-						</div>
-						<div class="h-box" id="title" style="text-align: center;padding-left: 0%;">
-							<div c-repeat="title in titles" c-widget="#titles"></div>
-						</div>
-						<div c-repeat="item in items" c-widget="#labelRow">
+					<li class="content_row">
+						<div class="h-box" style="width:100%;">
+						   <span class="content_span" c-bind="item.RECEIPT_CODE">111</span>
+						   <span class="content_span" c-bind="item.SUPPLIER_NAME"></span>
+						   <span class="content_span" c-bind="item.PO_DELIVERY_DATE"></span>
+						   <span class="content_span" c-bind="item.PO_AMOUNT"></span>
+						   <span class="content_span" style="border-right: solid 0px;" c-bind="item.PACKED_AMOUNT"></span>
 						</div>
 					</li>
-				</template>			        
+				</template>	
+				<template name="titleRow"> 
+					<li class="content_row">
+						<span class="title_span" c-bind="item.SKU"></span>
+					</li>
+				</template>
+				<template name="pull-up-pane">
+			        <div style="height:72px;padding-bottom:72px">
+			            <div id="divPullUp" style="line-height:48px"></div>
+			        </div>
+			    </template>
 			</c-listView>
 			</div>
+			</div>
 		</div>
+		
 		<script src="../../resources/jquery-2.1.3.js"></script> 
 		<script src="../../resources/3rd.js"></script>
 		<script src="../../resources/semantic.js"></script>
@@ -44,7 +59,7 @@
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/loading.js"></script>
 		<script src="../../js/util.js"></script>
-		<script src="../../js/sku-deliveryPlanQueryResult.js"></script>
+		<script src="./sku-deliveryPlanQueryResult.js"></script>
 	</body>
 
 </html>

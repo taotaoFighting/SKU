@@ -166,7 +166,8 @@
 			"modules/deliveryOrder/sku-dayMaintain.html",
 			"modules/deliveryOrder/sku-daySurplusQuery.html",
 			"modules/dayDeliveryPaln/sku-deliveryPlan.html",
-			"modules/incomePaln/sku-incomePlan.html"
+			"modules/incomePaln/sku-incomePlan.html",
+			"modules/skuDestribution/sku-myFocus.html"
 		]
 	},
 	"sku-audit.html": {
@@ -283,7 +284,8 @@
 			"js/cola.js",
 			"launch.js",
 			"js/util.js",
-			"js/launch.js"
+			"js/launch.js",
+			"tab-main.html"
 		],
 		"refer": [
 			"tab-webview-main.html",
@@ -450,7 +452,9 @@
 		"resources": [
 			"sku-main.html",
 			"fonts/mui.ttf",
-			"js/tab-main.js"
+			"js/tab-main.js",
+			"js/mui.min.js",
+			"css/mui.min.css"
 		],
 		"refer": [
 			"sku-main.html",
@@ -462,7 +466,10 @@
 		"resources": [
 			"resources/jquery-2.1.3.js",
 			"images/user-photo.png",
-			"js/tab-setting.js"
+			"js/tab-setting.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
 		],
 		"refer": [
 			"modules/setting/sku-about.html"
@@ -483,7 +490,8 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"js/sku-audit.js",
-			"js/util.js"
+			"js/util.js",
+			"modules/deliveryOrder/sku-audit.js"
 		],
 		"refer": [
 			"modules/deliveryOrder/sku-queryAudit.html"
@@ -508,7 +516,8 @@
 			"js/util.js",
 			"js/sku-queryAudit.js",
 			"resources/cola.js",
-			"img/assess.png"
+			"img/assess.png",
+			"modules/deliveryOrder/sku-queryAudit.js"
 		],
 		"refer": [
 			"modules/deliveryOrder/sku-auditDetial.html"
@@ -528,10 +537,13 @@
 			"resources/cola.css",
 			"js/sku-auditDetial.js",
 			"resources/semantic.css",
-			"resources/3rd.js"
+			"resources/3rd.js",
+			"resources/themes/default/assets/fonts/icons.woff",
+			"modules/deliveryOrder/sku-auditDetial.js"
 		],
 		"refer": [
-			"modules/deliveryOrder/sku-boxDetail.html"
+			"modules/deliveryOrder/sku-boxDetail.html",
+			"modules/deliveryOrder/sku-purchaseOrder.html"
 		]
 	},
 	"modules/setting/sku-about.html": {
@@ -557,7 +569,11 @@
 			"resources/cola.css",
 			"resources/semantic.css",
 			"resources/3rd.js",
-			"fonts/mui.ttf"
+			"fonts/mui.ttf",
+			"modules/skuDestribution/sku-goodsDistribution.js"
+		],
+		"refer": [
+			"modules/skuDestribution/sku-queryResult.html"
 		]
 	},
 	"modules/storageTrance/sku-storageTrance.html": {
@@ -575,7 +591,11 @@
 			"css/mui.min.css",
 			"resources/cola.css",
 			"resources/semantic.css",
-			"resources/3rd.js"
+			"resources/3rd.js",
+			"modules/storageTrance/sku-storageTrance.js"
+		],
+		"refer": [
+			"modules/storageTrance/sku-storageTranceQuery.html"
 		]
 	},
 	"modules/deliveryOrder/sku-dayMaintain.html": {
@@ -613,7 +633,11 @@
 			"resources/semantic.css",
 			"resources/3rd.js",
 			"resources/themes/default/assets/fonts/icons.woff",
-			"fonts/mui.ttf"
+			"fonts/mui.ttf",
+			"modules/deliveryOrder/sku-daySurplusQuery.js"
+		],
+		"refer": [
+			"modules/deliveryOrder/sku-daySurplusQueryResult.html"
 		]
 	},
 	"modules/dayDeliveryPaln/sku-deliveryPlan.html": {
@@ -631,7 +655,11 @@
 			"resources/cola.css",
 			"js/sku-deliveryPaln.js",
 			"resources/semantic.css",
-			"resources/3rd.js"
+			"resources/3rd.js",
+			"modules/dayDeliveryPaln/sku-deliveryPaln.js"
+		],
+		"refer": [
+			"modules/dayDeliveryPaln/sku-deliveryPalnQueryResult.html"
 		]
 	},
 	"modules/incomePaln/sku-incomePlan.html": {
@@ -650,6 +678,179 @@
 			"resources/cola.css",
 			"resources/semantic.css",
 			"resources/3rd.js"
+		],
+		"refer": [
+			"modules/incomePaln/sku-incomePlanQuery.html"
+		]
+	},
+	"modules/skuDestribution/sku-queryResult.html": {
+		"resources": [
+			"css/loading.css",
+			"js/sku-queryResult.js",
+			"css/queryAudit.css",
+			"js/loading.js",
+			"images/loading.gif",
+			"resources/jquery-2.1.3.js",
+			"resources/cola.js",
+			"fonts/mui.ttf",
+			"resources/semantic.js",
+			"resources/i18n/zh/cola.js",
+			"js/util.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"resources/cola.css",
+			"resources/semantic.css",
+			"resources/3rd.js",
+			"img/assess.png",
+			"resources/themes/default/assets/fonts/icons.woff",
+			"modules/skuDestribution/sku-queryResult.js"
+		]
+	},
+	"tab-message.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css"
+		]
+	},
+	"modules/skuDestribution/sku-myFocus.html": {
+		"resources": [
+			"resources/jquery-2.1.3.js",
+			"css/goodsDistribution.css",
+			"css/mui.min.css",
+			"resources/cola.css",
+			"resources/semantic.css",
+			"resources/3rd.js",
+			"resources/semantic.js",
+			"resources/i18n/zh/cola.js",
+			"js/sku-myFocus.js",
+			"js/util.js",
+			"js/mui.min.js",
+			"resources/cola.js",
+			"fonts/mui.ttf"
+		],
+		"refer": [
+			"modules/skuDestribution/sku-queryResult.html"
+		]
+	},
+	"modules/deliveryOrder/sku-boxDetail.html": {
+		"resources": [
+			"modules/deliveryOrder/sku-boxDetial.js",
+			"css/boxDetial.css",
+			"resources/cola.js",
+			"resources/jquery-2.1.3.js",
+			"resources/semantic.js",
+			"resources/i18n/zh/cola.js",
+			"js/util.js",
+			"js/mui.min.js",
+			"css/loading.css",
+			"css/mui.min.css",
+			"resources/cola.css",
+			"resources/semantic.css",
+			"resources/3rd.js",
+			"js/loading.js",
+			"images/loading.gif",
+			"fonts/mui.ttf"
+		]
+	},
+	"modules/deliveryOrder/sku-purchaseOrder.html": {
+		"resources": [
+			"resources/jquery-2.1.3.js",
+			"css/purchaseOrder.css",
+			"resources/cola.js",
+			"fonts/mui.ttf",
+			"resources/semantic.js",
+			"resources/i18n/zh/cola.js",
+			"js/util.js",
+			"js/mui.min.js",
+			"images/loading.gif",
+			"css/loading.css",
+			"css/mui.min.css",
+			"resources/cola.css",
+			"resources/semantic.css",
+			"resources/3rd.js",
+			"js/loading.js"
+		]
+	},
+	"modules/incomePaln/sku-incomePlanQuery.html": {
+		"resources": [
+			"resources/cola.js",
+			"images/loading.gif",
+			"css/loading.css",
+			"js/sku-incomePlanQuey.js",
+			"css/queryAudit.css",
+			"js/loading.js",
+			"modules/incomePaln/sku-incomePlanQuey.js",
+			"resources/jquery-2.1.3.js",
+			"resources/semantic.js",
+			"resources/i18n/zh/cola.js",
+			"js/util.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"resources/cola.css",
+			"resources/semantic.css",
+			"resources/3rd.js",
+			"fonts/mui.ttf",
+			"resources/themes/default/assets/fonts/icons.woff"
+		]
+	},
+	"modules/storageTrance/sku-storageTranceQuery.html": {
+		"resources": [
+			"resources/cola.js",
+			"images/loading.gif",
+			"css/loading.css",
+			"modules/storageTrance/sku-storageTranceQuery.js",
+			"css/queryAudit.css",
+			"js/loading.js",
+			"resources/jquery-2.1.3.js",
+			"fonts/mui.ttf",
+			"resources/semantic.js",
+			"resources/i18n/zh/cola.js",
+			"js/util.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"resources/cola.css",
+			"resources/semantic.css",
+			"resources/3rd.js"
+		]
+	},
+	"modules/dayDeliveryPaln/sku-deliveryPalnQueryResult.html": {
+		"resources": [
+			"modules/dayDeliveryPaln/sku-deliveryPlanQueryResult.js",
+			"resources/cola.js",
+			"images/loading.gif",
+			"css/loading.css",
+			"css/queryAudit.css",
+			"js/loading.js",
+			"resources/jquery-2.1.3.js",
+			"fonts/mui.ttf",
+			"resources/semantic.js",
+			"resources/i18n/zh/cola.js",
+			"js/util.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"resources/cola.css",
+			"resources/semantic.css",
+			"resources/3rd.js"
+		]
+	},
+	"modules/deliveryOrder/sku-daySurplusQueryResult.html": {
+		"resources": [
+			"resources/cola.js",
+			"images/loading.gif",
+			"css/loading.css",
+			"modules/deliveryOrder/sku-daySurplusQueryResult.js",
+			"css/queryAudit.css",
+			"js/loading.js",
+			"resources/jquery-2.1.3.js",
+			"resources/semantic.js",
+			"resources/i18n/zh/cola.js",
+			"js/util.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"resources/cola.css",
+			"resources/semantic.css",
+			"resources/3rd.js",
+			"fonts/mui.ttf"
 		]
 	}
 }

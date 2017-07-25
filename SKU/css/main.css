@@ -6,11 +6,13 @@
 			justify-content: center;
 			color: white;
 			border: solid 0px;
+			font-size: 1.3rem;
 		}
 		#containImg {
 			display: block !important;
 			margin: 0 auto;
 			margin-top: 5%;
+			width: 2rem;
 		}
 		#r1{
 			width: 98%;
@@ -25,6 +27,7 @@
 			background-color: blue;
 			color: white;
 			border: solid 0px;
+			font-size: 1.3rem;
 		}
 		#contain{
 			width: 49.5%;

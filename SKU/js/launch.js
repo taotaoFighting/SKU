@@ -21,6 +21,12 @@
 			
 			model.action({
 				launch:function(){
+					if(!model.get("param").get("userName") || !model.get("param").get("password")){
+						
+						mui.toast('账号密码不能为空！',{ duration:'short', type:'div'});
+						
+						return;
+					}
 					$util._ajaxJSON({
 						url: "login",
 						data: model.get("param"),
@@ -35,13 +41,14 @@
 								}else{
 									localStorage.removeItem("password");
 								}
-								mui.openWindow({
-							    url: 'tab-main.html', 
-							    id:'setting',
-							    styles:{
-		    						popGesture:'none'	
-		    					}
-							  });
+//								mui.openWindow({
+//							    url: 'tab-main.html', 
+//							    id:'setting',
+//							    styles:{
+//		    						popGesture:'none'	
+//		    					}
+//							  });
+							  location.replace('tab-main.html');
 							}else{
 								mui.toast('账号或密码错误！',{ duration:'short', type:'div'});
 							}

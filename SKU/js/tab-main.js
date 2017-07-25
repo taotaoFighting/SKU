@@ -1,5 +1,9 @@
  			//mui初始化
 			mui.init();
+			
+			//alert('length = '+window.history.length);
+			console.log(JSON.stringify(history))
+			
 			if(window.plus){
 			plusReady();
 			}else{

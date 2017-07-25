@@ -15,24 +15,31 @@
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
-		    <h1 class="mui-title" style="color: white;">工厂入库情况跟踪</h1>
+		    <h1 class="mui-title" style="color: white;">查询结果</h1> 
 		</header>
 		
-		<div class="v-box" style="padding-top: 54px;">
-			<div class="h-box" id="title" style="margin-left: 1.6%;width: 96.8%;">
-				<div c-repeat="title in titles" c-widget="#titles"></div>
+		<div class="v-box" style="padding-top: 54px;"> 
+			<div class="h-box" id="title" style="text-align: center;margin-left: 1.4%;width: 96.8%;"> 
+				<div class="titleRow" c-repeat="title in titles" c-widget="#titles"></div>
 			</div>
-			<div class="flex-box">
-				<c-listView id="queryList" style="margin-top: 0em;background-color: white;">
+			<div class="flex-box"> 
+				<c-listView id="incomeQueryList" style="margin-top: 0rem;">
 				<template name="row">
-					<li style="margin-top:0.7em;">
-						<div class="box">
-							<label c-bind="getName(items)" style="color: #439CF6;font-size: 1.3em;"></label>
-						</div>
-						<div c-repeat="item in items" c-widget="#labelRow">
+					<li class="content_row">
+						<div class="h-box" style="width:100%;">
+						   <span class="income_span" c-bind="item.WAVE_NAME"></span>
+						   <span class="income_span" c-bind="item.PO_AMOUNT"></span>
+						   <span class="income_span" c-bind="item.SKU_AMOUNT"></span>  
+						   <span class="income_span" c-bind="item.UN_RECEIVED_AMOUNT"></span>
+						   <span class="income_span" style="border-right: solid 0px;" c-bind="item.UN_RECEIVED_SKU_AMOUNT"></span>
 						</div>
 					</li>
-				</template>			        
+				</template>	
+				<template name="titleRow"> 
+					<li class="content_row">
+						<span class="title_span" c-bind="item.TITLE"></span>
+					</li>
+				</template>
 			</c-listView>
 			</div>
 		</div>
@@ -44,6 +51,7 @@
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/loading.js"></script>
 		<script src="../../js/util.js"></script>
-		<script src="../../js/sku-storageTranceQuery.js"></script>
+		<script src="./sku-storageTranceQuery.js"></script>
 	</body>
+
 </html>
