@@ -133,7 +133,7 @@
 			            },
 						titles: {
 			                $type: "label",
-			                width:window.screen.width*0.975/5,
+			                width:window.screen.width/5,
 			                text: "{{title}}",
 			            }
 		        	});

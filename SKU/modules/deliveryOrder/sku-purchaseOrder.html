@@ -10,14 +10,15 @@
 		<link rel="stylesheet" type="text/css" href="../../resources/cola.css">
 		<link rel="stylesheet" type="text/css" href="../../css/purchaseOrder.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/loading.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/sku-mainFlexFont/mainFlexFont.css" />
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
-		    <h1 class="mui-title" style="color: white;">采购订单详情</h1>
+		    <h1 class="mui-title font-nav" style="color: white;">采购订单详情</h1>
 		</header>
-		<div class="v-box" style="background-color: lavender;">
+		<div class="v-box v-box-font" style="background-color: lavender;">
 			<div class="box" style="margin-top: 54px;background-color: white;margin-left: 1%;width: 98%;">
 				<label id="titleLabel" style="margin-left: 4%;width: 97%;">交货单编号：<label>HJ009888uu900888</label></label>
 			</div>
@@ -60,17 +61,20 @@
 				
 //				alert(window.screen.width)
 				$('#queryList').css("font-size",(window.screen.width/375.0)*12);
-				$('#titleLabel').css("font-size",(window.screen.width/375.0)*12);
+				$('#titleLabel').css("font-size",(window.screen.width/375.0)*14);
 				mui.plusReady(function(){
 				var self = plus.webview.currentWebview();
 				var receiptCode = self.receiptCode;
 				model.set("receiptCode",receiptCode);
+				var param = self.queryData;
+				param['pageSize'] = 100;
+				param['pageNo'] = 1;
 				var load = new Loading();
 				load.init();
 				load.start();
 				$util._ajaxJSON({
 						url: "board/delivery_note/po/list",
-						data:self.queryData,
+						data:param,
 						success: function(data) {
 							model.set("items",data.dataList);
 							load.stop();

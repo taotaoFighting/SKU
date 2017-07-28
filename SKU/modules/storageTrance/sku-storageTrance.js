@@ -72,10 +72,10 @@
 							param["band"] = model.get("queryData").get("band");
 						}
 						if(model.get("queryData").get("deliveryDateS")){
-							param["deliveryDateS"] = model.get("queryData").get("deliveryDateS");
+							param["deliveryDateS"] = model.get("queryData").get("deliveryDateS").toISOString().substr(0,10);
 						}
 						if(model.get("queryData").get("deliveryDateE")){
-							param["deliveryDateE"] = model.get("queryData").get("deliveryDateE");
+							param["deliveryDateE"] = model.get("queryData").get("deliveryDateE").toISOString().substr(0,10);
 						}
 						
 						console.log(JSON.stringify(param))

@@ -10,17 +10,18 @@
 		<link rel="stylesheet" type="text/css" href="../../resources/cola.css">
 		<link rel="stylesheet" type="text/css" href="../../css/queryAudit.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/loading.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/sku-mainFlexFont/mainFlexFont.css" />
 	</head>
 	
 	<body>
 		
 		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
-		    <h1 class="mui-title" style="color: white;">日剩余货获量查询结果</h1>
+		    <h1 class="mui-title font-nav" style="color: white;">日剩余货获量查询结果</h1>
 		</header>
 		<div class="v-box" style="height: 100%;width: 100%;overflow: scroll;padding-top: 50px;"> 
 			<div class="box">
-				<div class="h-box" id="title" style="width: 147.5%;margin-left: 1%;">
+				<div class="h-box" id="title" style="width: 150%;">
 					<div c-repeat="title in titles" c-widget="#titles"></div>
 				</div>
 				<div class="flex-box">
@@ -39,7 +40,7 @@
 				</template>	
 				<template name="titleRow"> 
 					<li class="content_row">
-						<span class="title_span" c-bind="item.LIMITED_DATE"></span>
+						<span class="title_span" c-bind="changeTitle(item)"></span>
 					</li>
 				</template>
 				<template name="pull-up-pane">

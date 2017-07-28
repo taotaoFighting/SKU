@@ -9,14 +9,15 @@
 		<link rel="stylesheet" type="text/css" href="../../resources/semantic.css">
 		<link rel="stylesheet" type="text/css" href="../../resources/cola.css">
 		<link rel="stylesheet" type="text/css" href="../../css/goodsDistribution.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/sku-mainFlexFont/mainFlexFont.css" />
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
-		    <h1 class="mui-title" style="color: white;">工厂入库情况跟踪</h1>
+		    <h1 class="mui-title font-nav" style="color: white;">工厂入库情况跟踪</h1>
 		</header>
-		<div class="v-box">
+		<div class="v-box v-box-font">
 			<div class="box" style="height: 100%;">
 				<div id="item1" class="mui-control-content mui-active">
 					<div class="v-box" id="inputFrom">
@@ -40,8 +41,8 @@
 							<label>止时：</label><c-datePicker class="queryInput" readOnly="true" c-widget="width:80%;inputFormat:MM-dd;bind:queryData.deliveryDateE"></c-datePicker>
 						</div>
 						<div class="box" style="margin-top: 10%;">
-							<c-button size="small" color="blue" c-widget="caption:查询;width:90%;click:query" style="margin-left: 5%;"></c-button>
-							<c-button size="small" c-widget="caption:重置;width:90%;click:resetQuery" style="margin-left: 5%;margin-top: 10%;"></c-button>
+							<c-button size="small" color="blue" c-widget="caption:查询;width:90%;click:query" style="margin-left: 5%;font-size: 1rem;"></c-button>
+							<c-button size="small" c-widget="caption:重置;width:90%;click:resetQuery" style="margin-left: 5%;margin-top: 10%;font-size: 1rem;"></c-button>
 						</div>
 					</div>
 				</div>

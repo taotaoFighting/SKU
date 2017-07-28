@@ -6801,7 +6801,7 @@ body .ui.menu {
   width: 50%;
 }
 .calendar .date-header {
-  height: 1.5em;
+  height: 0.5em;
   border-bottom: 1px solid #00b5ad;
 }
 .calendar .date-header td {

@@ -6,6 +6,7 @@
 			mui.plusReady(function(){
 				var self = plus.webview.currentWebview();
 				var param = self.queryData;
+				var storages = self.storages;
 				var title = self.title;
 				var pageNo = 1;
 				var pageSize = 40;
@@ -19,7 +20,7 @@
 							var dataList = data.dataList;
 							if(data.status == "300"){
 								mui.toast('无效索引',{ duration:'short', type:'div' });
-//								return ;
+								return [];
 							}
 							
 							if(dataList.length == 0){
@@ -50,7 +51,7 @@
 							
 							var sitems = [];
 							for(i = 0 ; i < titles.length ; i++){
-								 sitems.push([{"LIMITED_DATE":titles[i]}]);
+								 sitems.push([{"TITLE":titles[i]}]);
 							}
 							
 							for(k = 0 ; k < dataList.length ; k++){
@@ -58,15 +59,13 @@
 								var title = e["CUSTOMER_NAME"];
 								for(i = 0 ; i <sitems.length ; i ++){
 									var titleObj = sitems[i][0];
-									if(titleObj["LIMITED_DATE"] == title){
+									if(titleObj["TITLE"] == title){
 										sitems[i].push(e);
 									}
 								}
 							}
 							
 							console.log(JSON.stringify(sitems));
-							model.set('tmpDataArrs',sitems);
-							
 							for(i = 0 ; i < sitems.length ; i++){
 								var objs = sitems[i];
 								for(j = 0 ; j < objs.length ; j++){
@@ -106,6 +105,20 @@
 					}
 				});
 				
+				model.action({
+					changeTitle:function(item){
+						console.log(JSON.stringify(storages))
+						var title = '不在任何仓库的数据';
+						for(var i = 0; i< storages.length;i++){
+							if(item.get('TITLE') == storages[i]['ENUMV_CODE']){
+								title = storages[i]['ENUMV_NAME'];
+								break;
+							}
+						}
+						
+						return title;
+					}
+				});
 				model.widgetConfig({
 		            cellingQueryList: {
 		                $type: "listView",

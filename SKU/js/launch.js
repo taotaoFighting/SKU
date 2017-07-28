@@ -1,5 +1,8 @@
 
 		var $util = new _util();
+		mui.init({
+				swipeBack:false //启用右滑关闭功能
+			});
 		document.addEventListener('plusready',plusReady,false);
 		function plusReady(){
 			plus.navigator.setStatusBarBackground('#439CF6');

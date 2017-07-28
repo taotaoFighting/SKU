@@ -51,13 +51,16 @@
     transition: background 0.1s ease;
     border-right: solid 1px lavender;
 }
+.ui.list-view .list.item {
+    padding: 0.8em 0em;
+}
 #title{
 	text-align: center;
 	margin-left: 0%;
 	width: 100%;
 	font-size: 1rem;
 	border-top: solid 1px lavender;
-	border-left: solid 1px lavender;
+	/*border-left: solid 1px lavender;*/
 	border-bottom: solid 1px lavender;
 }
 .content_span{
@@ -74,6 +77,7 @@
 .title_span{
 	font-size: 1rem;
 	color: #439CF6;
+	margin-left: 1rem;
 }
 #incomeQueryList{
 	margin-top: 44px;

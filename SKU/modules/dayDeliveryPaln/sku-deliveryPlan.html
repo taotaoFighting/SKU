@@ -19,10 +19,10 @@
 		<div class="v-box" style="padding-top: 54px;">
 			<div class="v-box" style="width: 85%;margin-left: 5%;text-align: right;">
 			<div class="box" id="rowLabel">
-				<label >品牌：</label><c-dropdown  id="formInput" c-bind="queryData.brandCode" items="{{brands}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-input> 
+				<label >品牌：</label><c-dropdown  id="formInput" c-bind="queryData.brandCode" items="{{brands}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-dropdown> 
 			</div>
 			<div class="box" id="rowLabel">
-				<label >大仓：</label></label><c-input  id="formInput" c-bind="queryData.storageCode" c-widget="width:70%">
+				<label >仓库：</label><c-dropdown  id="formInput" c-bind="queryData.storageCode" items="{{storages}}" openmode="drop" valueProperty="ENUMV_CODE" textProperty="ENUMV_NAME" c-widget="width:70%"></c-dropdown>
 			</div>
 			<div class="box" id="rowLabel">
 				<label >开始日期：</label><c-datePicker id="dateP" readOnly="true" c-widget="width:70%;bind:queryData.deliveryDateS"></c-datePicker>

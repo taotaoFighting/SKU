@@ -9,14 +9,15 @@
 		<link rel="stylesheet" type="text/css" href="../../resources/semantic.css">
 		<link rel="stylesheet" type="text/css" href="../../resources/cola.css">
 		<link rel="stylesheet" type="text/css" href="../../css/auditDetial.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/sku-mainFlexFont/mainFlexFont.css" />
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
-		    <h1 class="mui-title" style="color: white;">交货单审批</h1>
+		    <h1 class="mui-title font-nav" style="color: white;">交货单审批</h1>
 		</header>
-		<div class="v-box" style="background-color: lavender;">
+		<div class="v-box v-box-font" style="background-color: lavender;">
 			<div class="v-box" id="rowBox">
 				<label id="rowLabel">交货单编号：<span c-bind="data.receiptCode"></span></label>
 				<label id="rowLabel">交货单状态：<span c-bind="data.receiptStatus"></span></label>
@@ -33,10 +34,10 @@
 				<label id="rowLabel" style="margin-bottom: 1em;">生产订单状态：<span c-bind="data.productionOrderStatus"></span></label>
 				<div class="flex-box" style="background-color: lavender;">
 					<div class="box">
-						<c-button id="buttonPosition" size="small" color="blue" c-widget="caption:装箱单详情;width:90%;click:detial" style="margin-left: 5%;"></c-button>
-						<c-button id="buttonPosition" size="small" color="blue" c-widget="caption:采购订单详情;width:90%;click:purchaseDetial" style="margin-left: 5%;"></c-button>
-						<c-button id="auditButton" size="small" color="blue" c-widget="caption:审核通过;width:90%;click:passWay" style="margin-left: 5%;"></c-button>
-						<c-button id="buttonPosition" size="small" color="blue" c-widget="caption:退回;width:90%;click:comeBack" style="margin-left: 5%;"></c-button>
+						<c-button id="buttonPosition" size="small" color="blue" c-widget="caption:装箱单详情;width:90%;click:detial" style="margin-left: 5%;font-size: 1rem;"></c-button>
+						<c-button id="buttonPosition" size="small" color="blue" c-widget="caption:采购订单详情;width:90%;click:purchaseDetial" style="margin-left: 5%;font-size: 1rem;"></c-button>
+						<c-button id="auditButton" size="small" color="blue" c-widget="caption:审核通过;width:90%;click:passWay" style="margin-left: 5%;font-size: 1rem;"></c-button>
+						<c-button id="buttonPosition" size="small" color="blue" c-widget="caption:退回;width:90%;click:comeBack" style="margin-left: 5%;font-size: 1rem;"></c-button>
 					</div>
 				</div>
 			</div>

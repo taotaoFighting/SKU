@@ -9,6 +9,18 @@
 				model.set({
 					queryData:{}
 				});
+				model.describe("storages",{
+					provider:{
+						method:"POST",
+						url:$util.reqUrl()+"board/repertory/list",
+						success:function(arg){
+							model.set("storages",arg.result.dataList);
+							model.get("storages").insert({"ENUMV_NAME":"请选择","ENUMV_CODE":""},"begin") 
+							model.get("queryData").set("storageCode",""); 
+						}
+					}
+				});
+				
 				model.describe("band",{
 					provider:{
 						method:"POST",
@@ -31,17 +43,21 @@
 							param["brand"] = model.get("queryData").get("brand");
 						}
 						if(model.get("queryData").get("dateS")){
-							param["dateS"] = model.get("queryData").get("dateS");
+							param["dateS"] = model.get("queryData").get("dateS").toISOString().substr(0,10);
+							
 						}
 						if(model.get("queryData").get("dateE")){
-							param["dateE"] = model.get("queryData").get("dateE");
+							param["dateE"] = model.get("queryData").get("dateE").toISOString().substr(0,10);
 						}
+						
 						console.log(JSON.stringify(param))
+						
 						mui.openWindow({
 						    url: 'sku-daySurplusQueryResult.html', 
 						    id:'daySurplusQueryResult',
 						    extras:{
-						        queryData:param  //扩展参数
+						        queryData:param,  //扩展参数
+						        storages:model.get('storages').toJSON()
 						    }
 						 }); 
 					},

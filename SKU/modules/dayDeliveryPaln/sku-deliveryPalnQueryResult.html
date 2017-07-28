@@ -16,14 +16,14 @@
 		
 		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
-		    <h1 class="mui-title" style="color: white;" c-bind="title"></h1>
+		    <h1 class="mui-title" style="color: white;">仓库日交货计划</h1>
 		</header>
 		<div class="v-box" style="height: 100%;width: 100%;overflow: scroll;padding-top: 50px;">
 			<div class="box">
-				<div class="h-box" id="title" style="width: 187.5%;margin-left: 1%;">
+				<div class="h-box" id="title" style="width: 190%;">
 					<div class="titleRow" c-repeat="title in titles" c-widget="#titles"></div>
 				</div> 
-			<div class="flex-box" style="margin-top: -3rem;">
+			<div class="flex-box" style="margin-top: -3rem;"> 
 				<c-listView id="queryList" itemClick="itemClick" style="width:190%;">
 				<template name="row">
 					<li class="content_row">
@@ -41,11 +41,6 @@
 						<span class="title_span" c-bind="item.SKU"></span>
 					</li>
 				</template>
-				<template name="pull-up-pane">
-			        <div style="height:72px;padding-bottom:72px">
-			            <div id="divPullUp" style="line-height:48px"></div>
-			        </div>
-			    </template>
 			</c-listView>
 			</div>
 			</div>

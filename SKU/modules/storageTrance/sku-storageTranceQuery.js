@@ -21,6 +21,12 @@
 							console.log(JSON.stringify(result)) ;
 							var data = result;
 							var dataList = data.dataList;
+							
+							if(data.status == "300"){
+								mui.toast('无效索引',{ duration:'short', type:'div' });
+								return [] ;
+
+							}
 							if(dataList.length == 0){
 								mui.toast('暂无数据',{ duration:'short', type:'div' });
 							}
@@ -134,7 +140,7 @@
 			            },
 						titles: {
 			                $type: "label",
-			                width:window.screen.width*0.975/5,
+			                width:window.screen.width,
 			                text: "{{title}}",
 			            }
 		        	});

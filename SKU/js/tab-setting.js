@@ -46,6 +46,7 @@
 			
 			localStorage.removeItem("firstLaunch");
 			 plus.runtime.restart();
+			 
 		});
 		document.getElementById("tel").addEventListener('tap',function () {
 			 mui.openWindow({

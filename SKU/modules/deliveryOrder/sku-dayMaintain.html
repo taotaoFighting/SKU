@@ -10,20 +10,21 @@
 		<link rel="stylesheet" type="text/css" href="../../resources/cola.css">
 		<link rel="stylesheet" type="text/css" href="../../css/dayMaintain.css"> 
 		<link rel="stylesheet" type="text/css" href="../../css/loading.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/sku-mainFlexFont/mainFlexFont.css" />
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
-		    <h1 class="mui-title" style="color: white;">日收货量维护</h1>
+		    <h1 class="mui-title font-30" style="color: white;">日收货量维护</h1>
 		</header>
-		<div class="v-box" style="padding-top: 54px;">
+		<div class="v-box v-box-font" style="padding-top: 54px;">
 			<div class="v-box" style="width: 80%;margin-left: 5%;text-align: right;">
 			<div class="box" id="rowLabel">
-				<label>仓库：</label><c-input  id="formInput" c-bind="queryData.storageCode" c-widget="width:70%">
+				<label>仓库：</label><c-dropdown  id="formInput" c-bind="queryData.storageCode" items="{{storages}}" openmode="drop" valueProperty="ENUMV_CODE" textProperty="ENUMV_NAME" c-widget="width:70%"></c-dropdown>
 			</div>
 			<div class="box" id="rowLabel">
-				<label>品牌：</label><c-dropdown  id="formInput" c-bind="queryData.brand" change="clearBand" items="{{band}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-input>
+				<label>品牌：</label><c-dropdown  id="formInput" c-bind="queryData.brand" change="clearBand" items="{{band}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-dropdown>
 			</div>
 			<div class="box" id="rowLabel">
 				<label>开始日期：</label><c-datePicker id="formInput" readOnly="true" c-widget="width:70%;bind:queryData.dateS"></c-datePicker>
@@ -36,11 +37,11 @@
 			</div>
 			<!--<c-dropdown  id="formInput" c-bind="queryData.storageCode" items="{{resp}}" openmode="drop" valueProperty="label" textProperty="label" c-widget="width:70%"></c-dropdown>-->
 			<label id="rowLabel" style="text-align: center;margin-top: 10%;">
-					<c-checkbox id="boxs" label="按箱维护" click="change" checked="true" style="margin-left: 3em;"></c-checkbox>
-					<c-checkbox id="nubs" label="按量维护" click="change" style="margin-left: 3em;"></c-checkbox>
+					<c-checkbox id="boxs" label="按箱维护" click="change" checked="true" style="margin-left: 3em;font-size: 0.8rem;"></c-checkbox>
+					<c-checkbox id="nubs" label="按量维护" click="change" style="margin-left: 3em;font-size: 0.8rem;"></c-checkbox>
 			</label>
 			<div class="box" style="margin-top: 20%;">
-				<c-button class="basic" color="blue" c-widget="caption:提交;width:90%;click:commit" style="margin-left: 5%;"></c-button>
+				<c-button class="basic" color="blue" c-widget="caption:提交;width:90%;click:commit" style="margin-left: 5%;font-size: 1rem;"></c-button>
 			</div>
 			</div>
 		</div>
@@ -52,6 +53,7 @@
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/loading.js"></script>
 		<script src="../../js/util.js"></script>
+		<!--<script src="../../js/flexible.min.js"></script>-->
 		<script src="./sku-dayMaintain.js"></script>
 	</body>
 

@@ -150,7 +150,9 @@
 			"resources/3rd.js",
 			"img/background.jpg",
 			"js/util.js",
-			"js/main.js"
+			"js/main.js",
+			"css/sku-mainFlexFont/mainFlexFont.css",
+			"js/flexible.min.js"
 		],
 		"refer": [
 			"sku-audit.html",
@@ -454,7 +456,9 @@
 			"fonts/mui.ttf",
 			"js/tab-main.js",
 			"js/mui.min.js",
-			"css/mui.min.css"
+			"css/mui.min.css",
+			"js/flexible.min.js",
+			"css/sku-mainFlexFont/mainFlexFont.css"
 		],
 		"refer": [
 			"sku-main.html",
@@ -469,7 +473,9 @@
 			"js/tab-setting.js",
 			"js/mui.min.js",
 			"fonts/mui.ttf",
-			"css/mui.min.css"
+			"css/mui.min.css",
+			"css/sku-mainFlexFont/mainFlexFont.css",
+			"js/flexible.min.js"
 		],
 		"refer": [
 			"modules/setting/sku-about.html"
@@ -491,7 +497,10 @@
 			"css/mui.min.css",
 			"js/sku-audit.js",
 			"js/util.js",
-			"modules/deliveryOrder/sku-audit.js"
+			"modules/deliveryOrder/sku-audit.js",
+			"css/sku-mainFlexFont/mainFlexFont.css",
+			"js/flexible.min.js",
+			"resources/themes/default/assets/fonts/icons.ttf"
 		],
 		"refer": [
 			"modules/deliveryOrder/sku-queryAudit.html"
@@ -517,7 +526,8 @@
 			"js/sku-queryAudit.js",
 			"resources/cola.js",
 			"img/assess.png",
-			"modules/deliveryOrder/sku-queryAudit.js"
+			"modules/deliveryOrder/sku-queryAudit.js",
+			"css/sku-mainFlexFont/mainFlexFont.css"
 		],
 		"refer": [
 			"modules/deliveryOrder/sku-auditDetial.html"
@@ -570,7 +580,9 @@
 			"resources/semantic.css",
 			"resources/3rd.js",
 			"fonts/mui.ttf",
-			"modules/skuDestribution/sku-goodsDistribution.js"
+			"modules/skuDestribution/sku-goodsDistribution.js",
+			"css/sku-mainFlexFont/mainFlexFont.css",
+			"js/cola.js"
 		],
 		"refer": [
 			"modules/skuDestribution/sku-queryResult.html"
@@ -615,7 +627,11 @@
 			"resources/3rd.js",
 			"js/loading.js",
 			"resources/themes/default/assets/fonts/icons.woff",
-			"fonts/mui.ttf"
+			"fonts/mui.ttf",
+			"modules/deliveryOrder/sku-dayMaintain.js",
+			"images/loading.gif",
+			"css/sku-mainFlexFont/mainFlexFont.css",
+			"js/flexible.min.js"
 		]
 	},
 	"modules/deliveryOrder/sku-daySurplusQuery.html": {
@@ -634,7 +650,9 @@
 			"resources/3rd.js",
 			"resources/themes/default/assets/fonts/icons.woff",
 			"fonts/mui.ttf",
-			"modules/deliveryOrder/sku-daySurplusQuery.js"
+			"modules/deliveryOrder/sku-daySurplusQuery.js",
+			"css/sku-mainFlexFont/mainFlexFont.css",
+			"js/flexible.min.js"
 		],
 		"refer": [
 			"modules/deliveryOrder/sku-daySurplusQueryResult.html"
@@ -677,7 +695,8 @@
 			"js/cola.js",
 			"resources/cola.css",
 			"resources/semantic.css",
-			"resources/3rd.js"
+			"resources/3rd.js",
+			"modules/incomePaln/sku-incomePaln.js"
 		],
 		"refer": [
 			"modules/incomePaln/sku-incomePlanQuery.html"
@@ -726,7 +745,9 @@
 			"js/util.js",
 			"js/mui.min.js",
 			"resources/cola.js",
-			"fonts/mui.ttf"
+			"fonts/mui.ttf",
+			"modules/skuDestribution/sku-myFocus.js",
+			"js/cola.js"
 		],
 		"refer": [
 			"modules/skuDestribution/sku-queryResult.html"
@@ -768,7 +789,8 @@
 			"resources/cola.css",
 			"resources/semantic.css",
 			"resources/3rd.js",
-			"js/loading.js"
+			"js/loading.js",
+			"css/sku-mainFlexFont/mainFlexFont.css"
 		]
 	},
 	"modules/incomePaln/sku-incomePlanQuery.html": {

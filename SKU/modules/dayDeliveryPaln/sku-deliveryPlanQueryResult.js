@@ -19,12 +19,10 @@
 							var data = result;
 							if(data.status == "300"){
 								mui.toast('无效索引',{ duration:'short', type:'div' });
-								return ;
 							}
 							var dataList = data.dataList; 
 							if(dataList.length == 0){
 								mui.toast('暂无数据',{ duration:'short', type:'div' });
-								return;
 							}
 							var tmpItms = [];
 							var titles = [];
@@ -129,7 +127,7 @@
 		            },
 					titles: {
 		                $type: "label", 
-		                width:window.screen.width*1.9/5,
+		                width:window.screen.width*1.92/5,
 		                text: "{{title}}",
 		            }
 	        	});

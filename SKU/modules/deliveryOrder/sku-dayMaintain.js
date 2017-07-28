@@ -8,6 +8,19 @@
 				model.set({
 					queryData:{limitedUnit:"箱"}
 				});
+				
+				model.describe("storages",{
+					provider:{
+						method:"POST",
+						url:$util.reqUrl()+"board/repertory/list",
+						success:function(arg){
+							model.set("storages",arg.result.dataList);
+							model.get("storages").insert({"ENUMV_NAME":"请选择","ENUMV_CODE":""},"begin") 
+							model.get("queryData").set("storageCode",""); 
+						}
+					}
+				});
+				
 				model.describe("band",{
 					provider:{
 						method:"POST",

@@ -1,5 +1,7 @@
  			//mui初始化
-			mui.init();
+			mui.init({
+				swipeBack:false //启用右滑关闭功能
+			});
 			
 			//alert('length = '+window.history.length);
 			console.log(JSON.stringify(history))
