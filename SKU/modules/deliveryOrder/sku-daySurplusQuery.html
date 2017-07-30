@@ -26,10 +26,10 @@
 				<label >品牌：</label><c-dropdown c-bind="queryData.brand" id="formInput" change="clearBand" items="{{band}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-input> 
 			</div>
 			<div class="box" id="rowLabel">
-				<label >开始日期：</label><c-datePicker id="dateP" readOnly="true" c-widget="width:70%;bind:queryData.dateS"></c-datePicker>
+				<label >开始日期：</label><c-datePicker id="dateP" readOnly="true" c-widget="width:70%;bind:queryData.dateS;placeholder:开始日期"></c-datePicker>
 			</div>
 			<div class="box" id="rowLabel">
-				<label >截止日期：</label><c-datePicker id="dateP" readOnly="true" c-widget="width:70%;bind:queryData.dateE"></c-datePicker>
+				<label >截止日期：</label><c-datePicker id="dateP" readOnly="true" c-widget="width:70%;bind:queryData.dateE;placeholder:截止日期"></c-datePicker>
 			</div>
 			<div class="box" style="margin-top: 20%;">
 				<c-button color="blue" c-widget="caption:查询;width:90%;click:query" style="margin-left: 5%;font-size: 1rem;"></c-button>

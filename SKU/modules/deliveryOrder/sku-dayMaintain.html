@@ -16,7 +16,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background-color: #439CF6;">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
-		    <h1 class="mui-title font-30" style="color: white;">日收货量维护</h1>
+		    <h1 class="mui-title font-nav" style="color: white;">日收货量维护</h1>
 		</header>
 		<div class="v-box v-box-font" style="padding-top: 54px;">
 			<div class="v-box" style="width: 80%;margin-left: 5%;text-align: right;">
@@ -27,13 +27,13 @@
 				<label>品牌：</label><c-dropdown  id="formInput" c-bind="queryData.brand" change="clearBand" items="{{band}}" openmode="drop" valueProperty="enumvCode" textProperty="enumvName" c-widget="width:70%"></c-dropdown>
 			</div>
 			<div class="box" id="rowLabel">
-				<label>开始日期：</label><c-datePicker id="formInput" readOnly="true" c-widget="width:70%;bind:queryData.dateS"></c-datePicker>
+				<label>开始日期：</label><c-datePicker id="formInput" readOnly="true" c-widget="width:70%;bind:queryData.dateS;placeholder:开始日期"></c-datePicker>
 			</div>
 			<div class="box" id="rowLabel">
-				<label>结束日期：</label><c-datePicker id="formInput" readOnly="true" c-widget="width:70%;bind:queryData.dateE"></c-datePicker>
+				<label>结束日期：</label><c-datePicker id="formInput" readOnly="true" c-widget="width:70%;bind:queryData.dateE;placeholder:结束日期"></c-datePicker>
 			</div>
 			<div class="box" id="rowLabel">
-				<label>最大限额：</label><c-input id="formInput" c-bind="queryData.ceiling" c-widget="width:70%"></c-input>
+				<label>最大限额：</label><c-input id="formInput" c-bind="queryData.ceiling" c-widget="width:70%;placeholder:最大限额"></c-input>
 			</div>
 			<!--<c-dropdown  id="formInput" c-bind="queryData.storageCode" items="{{resp}}" openmode="drop" valueProperty="label" textProperty="label" c-widget="width:70%"></c-dropdown>-->
 			<label id="rowLabel" style="text-align: center;margin-top: 10%;">
