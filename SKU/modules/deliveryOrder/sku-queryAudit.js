@@ -104,6 +104,7 @@
 			            queryList: {
 			                $type: "listView",
 			                bind: "item in items",
+			                highlightCurrentItem:false,
 			                autoLoadPage:true,
 			                height:window.screen.height - 54,
 			                getItemTemplate: function(arg) {

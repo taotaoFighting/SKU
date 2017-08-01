@@ -685,7 +685,8 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"js/flexible.min.js",
-					"css/sku-mainFlexFont/mainFlexFont.css"
+					"css/sku-mainFlexFont/mainFlexFont.css",
+					"css/tab-main.css"
 				],
 				"refer": [
 					"tab-setting.html",
@@ -705,7 +706,9 @@
 					"js/flexible.min.js"
 				],
 				"refer": [
-					"modules/setting/sku-about.html"
+					"modules/setting/sku-about.html",
+					"modules/setting/sku-tel.html",
+					"modules/setting/sku-settingPassword.html"
 				],
 				"priority": 0
 			},
@@ -838,7 +841,8 @@
 					"resources/cola.css",
 					"resources/semantic.css",
 					"resources/3rd.js",
-					"modules/storageTrance/sku-storageTrance.js"
+					"modules/storageTrance/sku-storageTrance.js",
+					"css/sku-mainFlexFont/mainFlexFont.css"
 				],
 				"refer": [
 					"modules/storageTrance/sku-storageTranceQuery.html"
@@ -912,7 +916,8 @@
 					"js/sku-deliveryPaln.js",
 					"resources/semantic.css",
 					"resources/3rd.js",
-					"modules/dayDeliveryPaln/sku-deliveryPaln.js"
+					"modules/dayDeliveryPaln/sku-deliveryPaln.js",
+					"css/sku-mainFlexFont/mainFlexFont.css"
 				],
 				"refer": [
 					"modules/dayDeliveryPaln/sku-deliveryPalnQueryResult.html"
@@ -935,7 +940,8 @@
 					"resources/cola.css",
 					"resources/semantic.css",
 					"resources/3rd.js",
-					"modules/incomePaln/sku-incomePaln.js"
+					"modules/incomePaln/sku-incomePaln.js",
+					"css/sku-mainFlexFont/mainFlexFont.css"
 				],
 				"refer": [
 					"modules/incomePaln/sku-incomePlanQuery.html"
@@ -1061,7 +1067,8 @@
 					"resources/semantic.css",
 					"resources/3rd.js",
 					"fonts/mui.ttf",
-					"resources/themes/default/assets/fonts/icons.woff"
+					"resources/themes/default/assets/fonts/icons.woff",
+					"css/sku-mainFlexFont/mainFlexFont.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -1128,6 +1135,40 @@
 					"resources/semantic.css",
 					"resources/3rd.js",
 					"fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/setting/sku-tel.html": {
+				"resources": [
+					"resources/semantic.js",
+					"resources/i18n/zh/cola.js",
+					"resources/cola.js",
+					"resources/cola.css",
+					"modules/setting/sku-tel.js",
+					"resources/semantic.css",
+					"resources/3rd.js",
+					"resources/jquery-2.1.3.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/setting/sku-settingPassword.html": {
+				"resources": [
+					"resources/semantic.js",
+					"resources/i18n/zh/cola.js",
+					"resources/jquery-2.1.3.js",
+					"js/mui.min.js",
+					"resources/cola.js",
+					"fonts/mui.ttf",
+					"js/sku-settingPassword.js",
+					"css/mui.min.css",
+					"resources/cola.css",
+					"resources/semantic.css",
+					"resources/3rd.js"
 				],
 				"refer": [],
 				"priority": 0

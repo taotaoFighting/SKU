@@ -1,8 +1,6 @@
 			var $util = new _util();
 			mui.init()
 			cola(function(model){
-				model.set({
-				});
 				model.describe("countries",{
 					provider:{
 						method:"POST",

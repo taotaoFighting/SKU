@@ -18,7 +18,7 @@ Date.prototype.Format = function (fmt) {
 };
 var _util = function(){ //  http://202.96.245.236:8080  http://192.168.3.107:8080
 	var _self = this;
-	var root_url = "http://192.168.3.107:8080/";
+	var root_url = "http://202.96.245.236:8080/";
 	_self.rootUrl = function (){
 		return root_url;
 	};

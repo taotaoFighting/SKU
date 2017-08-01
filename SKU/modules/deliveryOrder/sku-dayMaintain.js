@@ -6,7 +6,10 @@
 					
 				})
 				model.set({
-					queryData:{limitedUnit:"箱"}
+					queryData:{limitedUnit:"箱",
+					storageCode:'请选择',
+					brand:'请选择'
+					}
 				});
 				
 				model.describe("storages",{

@@ -18,7 +18,7 @@
 			})
 			
 			
-			document.getElementById("back").addEventListener('tap',function () {
-					
-					mui.back();
-				});
+//			document.getElementById("back").addEventListener('tap',function () {
+//					
+//					mui.back();
+//				});

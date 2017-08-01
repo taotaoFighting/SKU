@@ -33,14 +33,22 @@
 		},false);
 		
 		document.getElementById("clearCache").addEventListener('tap',function () {
-			var btnArray = ['否', '是'];
-			mui.confirm('确定清除缓存？', '清除缓存', btnArray, function(e) {
-				if (e.index == 1) {
-					alert("确定");
-				} else {
-					alert("取消")
-				}
-			})
+//			var btnArray = ['否', '是'];
+//			mui.confirm('确定清除缓存？', '清除缓存', btnArray, function(e) {
+//				if (e.index == 1) {
+					plus.cache.calculate(function(size) {
+			            sizeCache = size;
+			            mui.confirm("您目前的系统缓存为" + parseFloat(sizeCache / (1024 * 1024)).toFixed(2) + "M？", "清除缓存", ["确认", "取消"], function(e) {
+			                if(e.index == 1) {} else {
+			                    plus.cache.clear(function() {
+			                        alert("缓存清除完毕")
+			                    });
+			                }
+			            });
+			        });
+//				} else {
+//				}
+//			})
 		});
 		document.getElementById("logout").addEventListener('tap',function () {
 			

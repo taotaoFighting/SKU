@@ -16,12 +16,12 @@
 					var data = result;
 							if(data.status == "300"){
 								mui.toast('无效索引',{ duration:'short', type:'div' });
-								return ;
+//								return ;
 							}
 							var dataList = data.dataList; 
 							if(dataList.length == 0){
 								mui.toast('暂无数据',{ duration:'short', type:'div' });
-								return;
+//								return;
 							}
 							var tmpItms = [];
 							var titles = [];

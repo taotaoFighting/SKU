@@ -18,7 +18,12 @@
 			        model.set("years", years);
 				
 				model.set({
-					queryData:{}
+					queryData:{
+						brand:'请选择',
+						years:'请选择',
+						season:'请选择',
+						band:'请选择'
+					}
 				});
 				
 				model.describe("band",{

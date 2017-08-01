@@ -93,3 +93,9 @@
 	margin-top: 0px;
 	font-size: 0.9rem;
 }
+#incomeQueryList::-webkit-scrollbar {
+width: 0em;
+}
+#incomeQueryList::-webkit-scrollbar:horizontal {
+height: 0em;
+}

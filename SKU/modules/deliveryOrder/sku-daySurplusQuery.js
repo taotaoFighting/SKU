@@ -7,7 +7,10 @@
 				})
 				
 				model.set({
-					queryData:{}
+					queryData:{
+						storageCode:'请选择',
+						brand:'请选择'
+					}
 				});
 				model.describe("storages",{
 					provider:{

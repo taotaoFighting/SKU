@@ -19,28 +19,26 @@
 		    <h1 class="mui-title font-nav" style="color: white;">交货单审批</h1>
 		</header>
 		<div class="v-box v-box-font">
-			<div class="h-box">
-				<div class="v-box" style="width: 90%;text-align: right;padding-top: 10%;">
-					<div class="box">
-						<label>交货单状态：</label><c-dropdown c-bind="queryData.receiptStatus" id="formInput" items="{{DelOrderStatus}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:65%;placeholder:交货单状态"></c-dropdown>
-					</div>
-					<div class="box">
-						<label>交货单编号：</label><c-input c-bind="queryData.receiptCode" id="formInput" c-widget="width:65%;placeholder:交货单编号"></c-input>
-					</div>
-					<div class="box">
-						<label>生产订单号：</label><c-input c-bind="queryData.productionOrderCode" id="formInput" c-widget="width:65%;placeholder:生产订单号"></c-input>
-					</div>
-					<div class="box">
-						<label>采购订单编号：</label><c-input c-bind="queryData.poCode" id="formInput" c-widget="width:65%;placeholder:采购订单编号"></c-input>
-					</div>
-					<div class="box">
-						<label>款号：</label><c-input c-bind="queryData.style" id="formInput" c-widget="width:65%;placeholder:款号"></c-input>
-					</div>
+			<div class="v-box" style="width: 90%;text-align: right;padding-top: 10%;">
+				<div class="box" >
+					<label style="text-align: center;">交货单状态：</label><c-dropdown c-bind="queryData.receiptStatus" id="formInput" items="{{DelOrderStatus}}"  openmode="drop"  valueProperty="enumvCode" textProperty="enumvName" c-widget="width:65%;placeholder:交货单状态"></c-dropdown>
 				</div>
-			</div>
-			<div class="box" style="margin-top: 5em;">
-				<c-button  color="blue" c-widget="caption:查询;width:80%;" click="query" style="margin-left: 10%;font-size: 1rem;"></c-button>
-				<c-button  c-widget="caption:重置;width:80%;" click="dataBack" style="margin-left: 10%;margin-top: 2em;font-size: 1rem;"></c-button>
+				<div class="box">
+					<label>交货单编号：</label><c-input c-bind="queryData.receiptCode" id="formInput" c-widget="width:65%;placeholder:交货单编号"></c-input>
+				</div>
+				<div class="box">
+					<label>生产订单号：</label><c-input c-bind="queryData.productionOrderCode" id="formInput" c-widget="width:65%;placeholder:生产订单号"></c-input>
+				</div>
+				<div class="box">
+					<label>采购订单编号：</label><c-input c-bind="queryData.poCode" id="formInput" c-widget="width:65%;placeholder:采购订单编号"></c-input>
+				</div>
+				<div class="box">
+					<label>款号：</label><c-input c-bind="queryData.style" id="formInput" c-widget="width:65%;placeholder:款号"></c-input>
+				</div>
+				<div class="box" style="margin-top: 15%">
+					<c-button  color="blue" c-widget="caption:查询;width:80%;" click="query" style="margin-left: 10%;font-size: 1rem;"></c-button>
+					<c-button  c-widget="caption:重置;width:80%;" click="dataBack" style="margin-left: 10%;margin-top: 2em;font-size: 1rem;"></c-button>
+				</div>
 			</div>
 		</div>
 		

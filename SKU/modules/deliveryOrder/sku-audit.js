@@ -32,7 +32,7 @@
 				
 				model.set({
 					queryData:{
-//						style:"716301027003"
+						receiptStatus:"新建"
 					}
 				});
 				

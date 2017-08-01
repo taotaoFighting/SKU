@@ -24,26 +24,6 @@
 			
 			model.action({
 				launch:function(){
-					
-					localStorage.setItem("firstLaunch",false);
-								localStorage.setItem("userName",model.get("param").get("userName"));
-								localStorage.setItem("passwordDefault",model.get("param").get("password"));
-								if(model.get("isSavepad")){
-									localStorage.setItem("password",model.get("param").get("password"));
-								}else{
-									localStorage.removeItem("password");
-								}
-//								mui.openWindow({
-//							    url: 'tab-main.html', 
-//							    id:'setting',
-//							    styles:{
-//		    						popGesture:'none'	
-//		    					}
-//							  });
-							  location.replace('tab-main.html');
-					
-					
-					
 					if(!model.get("param").get("userName") || !model.get("param").get("password")){
 						
 						mui.toast('账号密码不能为空！',{ duration:'short', type:'div'});

@@ -19,8 +19,16 @@
 			        model.set("years", years);
 				
 				model.set({
-					queryData:{},
+					queryData:{
+						years:'请选择',
+						colorCode:'请选择',
+						season:'请选择',
+						band:'请选择'
+					},
 					colors:[{
+						color:"请选择",
+						value:""
+					},{
 						color:"红色",
 						value:"354"
 					},{
@@ -45,6 +53,7 @@
 							model.get("band").insert({"enumvName":"请选择","enumvCode":""},"begin");
 							model.get("queryData").set("band","");
 							model.get("queryData").set("years","请选择");
+							model.get("queryData").set("colorCode","请选择");
 						}
 					}
 				});
