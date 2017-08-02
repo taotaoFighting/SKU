@@ -29678,7 +29678,7 @@ Template
         }
       } else {
         $(slideDom).transit({
-          x: maxDistance,
+          x: 0,
           duration: SLIDE_ANIMATION_SPEED
         });
       }

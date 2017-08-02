@@ -106,6 +106,7 @@
 		    plus.gallery.pick(function(a) { 
 		    plus.io.resolveLocalFileSystemURL(a, function(entry) { 
 		        plus.io.resolveLocalFileSystemURL("_doc/", function(root) { 
+		        	
 		        root.getFile("head.png", {}, function(file) { 
 		            //文件已存在 
 		            file.remove(function() { 
@@ -128,6 +129,8 @@
 		            entry.copyTo(root, 'head.png', function(e) { 
 		            var path = e.fullPath + "?version=" + new Date().getTime(); 
 		            uploadHead(path); /*上传图片*/ 
+		            console.log('path = '+path)
+		            $('#headerImage').attr('src',path);
 		            },function(e) { 
 		            console.log('copy image fail:' + e.message); 
 		            }); 

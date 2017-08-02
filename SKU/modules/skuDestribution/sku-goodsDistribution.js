@@ -102,7 +102,7 @@
 						if(model.get("queryData").get("styleCode")){
 							param["styleCode"] = model.get("queryData").get("styleCode");
 						}
-						if(model.get("queryData").get("colorCode")){
+						if(model.get("queryData").get("colorCode") && !(model.get("queryData").get("colorCode") == "请选择")){
 							param["colorCode"] = model.get("queryData").get("colorCode");
 						}
 						if(model.get("queryData").get("years") && !(model.get("queryData").get("years") == "请选择")){

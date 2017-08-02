@@ -14,6 +14,8 @@
 				cola.Provider.prototype.translateResult = function(result, invokerOptions) {
 					
 					var data = result;
+					
+//					console.log(JSON.stringify(data))
 							if(data.status == "300"){
 								mui.toast('无效索引',{ duration:'short', type:'div' });
 //								return ;
@@ -92,6 +94,7 @@
 							arg.options['contentType'] = 'application/json;charset=UTF-8';
 							arg.options['data'] = JSON.stringify(param);
 							arg.options['url'] = $util.reqUrl() + 'board/product_distribution/list?pageSize='+pageSize+'&pageNo='+pageNo
+//							console.log(JSON.stringify(arg.options));
 						},
 						method:"POST",
 						url:'http://192.168.3.107:8080/scmmk/rest/mobile/board/product_distribution/list?pageSize=20&pageNo='+pageNo,

@@ -686,10 +686,10 @@
 					"css/mui.min.css",
 					"js/flexible.min.js",
 					"css/sku-mainFlexFont/mainFlexFont.css",
-					"css/tab-main.css"
+					"css/tab-main.css",
+					"tab-setting.html"
 				],
 				"refer": [
-					"tab-setting.html",
 					"tab-message.html"
 				],
 				"priority": 0
